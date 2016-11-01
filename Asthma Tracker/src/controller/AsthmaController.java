@@ -35,8 +35,12 @@ public class AsthmaController {
 	Stage stage;
 	Scene scene;
 	Parent root;
+	ResultSet resultSet;
 	// EventHandler +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    //sets main in Main.java 
+    //defines user object to enable the passing userName
+	Account user = new Account();
+	
+	//sets main in Main.java 
 	public void setMain(Main mainIn)
 	{
 		main = mainIn;
@@ -174,7 +178,7 @@ public class AsthmaController {
 	}
 	
 	/* Checks userName and password against database userNames */
-	public boolean checkLogIn(String userName, String password) throws SQLException{//having issues:it's trying to look for a column name rather than a value in that column
+	public boolean checkLogIn(String userName, String password) throws SQLException{
 		boolean logIn = false;
 		boolean missing_credentials = false;
 		lblErrorgetUserName.setText(null);
@@ -228,12 +232,12 @@ public class AsthmaController {
 		password = txtgetPassword.getText();
 		lblErrorlogIn.setText(null);
 		if(checkLogIn(userName, password)){ 
+			user.setuserName(userName);
+			
 			stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("/view/MainView.fxml"));
 			scene = new Scene(root);
 			stage.setScene(scene);
-			
-			currentUser(userName);
 		}else{
 			if(!userName.equals("") && !password.equals("")){
 				lblErrorlogIn.setText("Incorrect user name or password.");
@@ -241,25 +245,11 @@ public class AsthmaController {
 		}
 	}
 
-	//finds current user -- does not currently work right
-	public void currentUser(String curUser) throws SQLException{
-		try 
-		{
-			Connection conn = DBConfig.getConnection();
-			
-			String query = "SELECT * FROM account WHERE userName = " + curUser;
-			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, curUser);
-			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()){
-				lbldisplay.setText(String.valueOf(rs.getString("firstName")));
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-	
+	//finds current user 
+	public String findCurrentUser(Account user) throws SQLException{
+		return user.getuserName();
 	}
+
 	/* Insert a row to Account table of Database -> populates: firstName, lastName, userName, password */
 	private void insertAccount(ActionEvent event) throws MySQLIntegrityConstraintViolationException, SQLException {
 		String query = "insert into account " + "(firstName,lastName,userName, password) "
