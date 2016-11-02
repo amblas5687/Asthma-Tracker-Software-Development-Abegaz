@@ -1,1 +1,3 @@
-/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.loginstyle{
+	-fx-background-image:url("cross1.png");
+}

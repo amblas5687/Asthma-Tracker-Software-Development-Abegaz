@@ -133,7 +133,7 @@ public class AsthmaController {
 				}else if(password2 == conPassword2){//will insert account
 					test = true;
 				}else{//password does not equal confirmation password
-					lblErrorPassword.setText("Incorrect password confirmation.");
+					lblErrorPassword.setText("Incorrect password confirmation. Please try again.");
 					test = false;
 					txtpassword.setText(null);
 					txtconPassword.setText(null);
