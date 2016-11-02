@@ -1,0 +1,9 @@
+package view
+
+import javafx.scene.layout.AnchorPane
+
+component AccountStyle {
+	AnchorPane {
+		//TODO Add Nodes
+	}
+}
