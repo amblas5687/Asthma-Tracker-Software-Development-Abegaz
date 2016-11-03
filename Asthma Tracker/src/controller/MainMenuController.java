@@ -27,10 +27,10 @@ public class MainMenuController {
 	//////////////Name though
 	@FXML private Button logOut; //Logs Out
     @FXML private Button OOB; // OutOfBreath
-    @FXML private Button AAP; // Asthma Action Plan 
+    @FXML private Button AAP; // Asthma Action Plan
     @FXML private Label welcome; // Welcome Message
 
-    //Runs Displaying welcome message method
+    //Runs methods at scene start
     @FXML
     void initialize(){
     setWelcome();
@@ -55,13 +55,11 @@ public class MainMenuController {
 			AsthmaController con1=new AsthmaController();
 			con1.setMain(main);
 			break;
-		/*
 		case "OOB":
 			root = FXMLLoader.load(getClass().getResource("/view/OutOfBreathView.fxml"));
 			OutOfBreathController con2=new OutOfBreathController();
 			con2.setMain(main);
 			break;
-			*/
 			/*
 		case "AAP":
 			root = FXMLLoader.load(getClass().getResource("/view/AAP_Page_PlaceHolder.fxml"));
