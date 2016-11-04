@@ -31,15 +31,15 @@ public class AsthmaController {
 	@FXML private PasswordField  txtpassword, txtconPassword, txtgetPassword;
 	@FXML private Button btnSubmit, btnSave, btngetLogIn, btnlogIn, btnCreateAccount;
 	@FXML private Label lblStatus, lblErrorallFields, lblErrorfirstName, lblErrorlastName, lblErroruserName,
-	lblErrorPassword, lblErrorlogIn, lblErrorgetUserName, lblErrorgetPassword, lbldisplay;
+	lblErrorPassword, lblErrorlogIn, lblErrorgetUserName, lblErrorgetPassword;
 	Stage stage;
 	Scene scene;
 	Parent root;
 	ResultSet resultSet;
-	public static Account curUser = new Account();//-Anna
+	
 	// EventHandler +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //defines user object to enable the passing userName
-	Account user = new Account();
+	public static Account curUser = new Account();//-Anna
 
 	//sets main in Main.java
 	public void setMain(Main mainIn)
@@ -226,48 +226,49 @@ public class AsthmaController {
 		return logIn;
 	}
 
+	//gets and sets current users
 	public void setCurrentUserInfo(String curUserName) throws SQLException{
 
 		//String currentUser = curUser;//mod by Anna
 		//return curUser;//mod by Anna
 
-	String SQLQuery = "SELECT * FROM `account` WHERE account.userName=" + "'"+curUserName+"'";
-	ResultSet rs = null;
+		String SQLQuery = "SELECT * FROM `account` WHERE account.userName=" + "'"+curUserName+"'";
+		ResultSet rs = null;
 
-	try(
+		try(
 			Connection conn = DBConfig.getConnection();
 			PreparedStatement curUserInfo = conn.prepareStatement(SQLQuery);
-	){
+		){
 
-		rs = curUserInfo.executeQuery();
+			rs = curUserInfo.executeQuery();
 
-		// check to see if receiving any data
-		if (rs.next())
-		{
+			// check to see if receiving any data
+			if (rs.next())
+			{
 				//create an instance of your model
-	        	curUser.setfirstName(rs.getString("firstName"));
-	        	curUser.setlastName(rs.getString("lastName"));
-	        	curUser.setuserName(rs.getString("userName"));
-	        	System.out.println("error check: current user " + curUser.getfirstName() + " " + curUser.getlastName() + " " +curUser.getuserName());//-Anna
-		}//if
-		else
+	        		curUser.setfirstName(rs.getString("firstName"));
+	        		curUser.setlastName(rs.getString("lastName"));
+	        		curUser.setuserName(rs.getString("userName"));
+	        		System.out.println("error check: current user " + curUser.getfirstName() + " " + curUser.getlastName() + " " +curUser.getuserName());//-Anna
+			}//if
+			else
+			{
+				curUser.setfirstName(null);
+        			curUser.setlastName(null);
+        			curUser.setuserName(null);
+        			System.out.println("current user not found" + curUser);
+			}
+		}catch(SQLException ex)//try
 		{
-			curUser.setfirstName(null);
-        	curUser.setlastName(null);
-        	curUser.setuserName(null);
-        	System.out.println("current user not found" + curUser);
-		}
-	}catch(SQLException ex)//try
-	{
-		ex.printStackTrace();
-	}finally //catch
-	{
-		if(rs != null)
+			ex.printStackTrace();
+		}finally //catch
 		{
-			rs.close();
-		}
-	}//finally
-}
+			if(rs != null)
+			{
+				rs.close();
+			}
+		}//finally
+	}
 
 	//Click Log In button on Log In page, takes you to main view page
 	public void ClicklogInButton(ActionEvent event) throws Exception {
@@ -277,7 +278,6 @@ public class AsthmaController {
 		lblErrorlogIn.setText(null);
 		if(checkLogIn(userName, password)){
 			setCurrentUserInfo(userName);
-			user.setuserName(userName);
 
 			stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("/view/MainView.fxml"));
@@ -288,11 +288,6 @@ public class AsthmaController {
 				lblErrorlogIn.setText("Incorrect user name or password.");
 			}
 		}
-	}
-
-	//finds current user
-	public String findCurrentUser(Account user) throws SQLException{
-		return user.getuserName();
 	}
 
 	/* Insert a row to Account table of Database -> populates: firstName, lastName, userName, password */
