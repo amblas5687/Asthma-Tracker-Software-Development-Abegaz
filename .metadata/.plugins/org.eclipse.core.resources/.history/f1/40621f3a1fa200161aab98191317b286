@@ -1,0 +1,9 @@
+.loginstyle{
+	-fx-background-image:url("cross1.png");
+}
+
+.tabstyle{
+	-fx-background-color:#452bbb;
+	-fx-font-family: "Poor Richard";
+	-fx-font-size: 16px;
+}

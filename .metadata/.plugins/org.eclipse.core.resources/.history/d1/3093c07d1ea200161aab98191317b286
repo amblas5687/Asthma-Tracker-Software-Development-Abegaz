@@ -27,11 +27,11 @@ import model.Account;
 public class AsthmaController {
 	Main main = new Main();
 	//accessing the controls from .fxml file for inserting purpose
-	@FXML private TextField txtfirstName, txtlastName,txtuserName, txtgetUserName, txtbirthdate, txtECname, txtECphone, txtECemail;
+	@FXML private TextField txtfirstName, txtlastName,txtuserName, txtgetUserName;
 	@FXML private PasswordField  txtpassword, txtconPassword, txtgetPassword;
-	@FXML private Button btnSubmit, btnSave, btngetLogIn1, btngetLogIn2, btnlogIn, btnCreateAccount;
+	@FXML private Button btnSubmit, btnSave, btngetLogIn1, btngetLogIn2 btnlogIn, btnCreateAccount;
 	@FXML private Label lblStatus, lblErrorallFields1,lblErrorallFields2, lblErrorfirstName, lblErrorlastName, lblErroruserName, 
-	lblErrorPassword, lblErrorlogIn, lblErrorgetUserName, lblErrorgetPassword, lbldisplay, lblErrorBirthdate, lblErrorECname, lblErrorECphone, lblErrorECemail;
+	lblErrorPassword, lblErrorlogIn, lblErrorgetUserName, lblErrorgetPassword, lbldisplay;
 	Stage stage;
 	Scene scene;
 	Parent root;

@@ -27,11 +27,11 @@ import model.Account;
 public class AsthmaController {
 	Main main = new Main();
 	//accessing the controls from .fxml file for inserting purpose
-	@FXML private TextField txtfirstName, txtlastName,txtuserName, txtgetUserName, txtbirthdate, txtECname, txtECphone, txtECemail;
+	@FXML private TextField txtfirstName, txtlastName,txtuserName, txtgetUserName;
 	@FXML private PasswordField  txtpassword, txtconPassword, txtgetPassword;
-	@FXML private Button btnSubmit, btnSave, btngetLogIn1, btngetLogIn2, btnlogIn, btnCreateAccount;
-	@FXML private Label lblStatus, lblErrorallFields1,lblErrorallFields2, lblErrorfirstName, lblErrorlastName, lblErroruserName, 
-	lblErrorPassword, lblErrorlogIn, lblErrorgetUserName, lblErrorgetPassword, lbldisplay, lblErrorBirthdate, lblErrorECname, lblErrorECphone, lblErrorECemail;
+	@FXML private Button btnSubmit, btnSave, btngetLogIn, btnlogIn, btnCreateAccount;
+	@FXML private Label lblStatus, lblErrorallFields, lblErrorfirstName, lblErrorlastName, lblErroruserName, 
+	lblErrorPassword, lblErrorlogIn, lblErrorgetUserName, lblErrorgetPassword, lbldisplay;
 	Stage stage;
 	Scene scene;
 	Parent root;
@@ -58,12 +58,10 @@ public class AsthmaController {
 		int plen = txtpassword.getLength();
 		int cplen = txtconPassword.getLength();
 		
-		lblErrorallFields1.setText(null);
-		lblErrorallFields2.setText(null);
+		lblErrorallFields.setText(null);
 		if(firstName.equals("") || lastName.equals("") || userName.equals("") || 
 				password.equals("") || conPassword.equals("")){//catches when all or any field is blank
-			lblErrorallFields1.setText("*Please fill in all fields.");
-			lblErrorallFields2.setText("*Please fill in all fields.");
+			lblErrorallFields.setText("Please fill in all fields.");
 			test = false;
 		}
 		
