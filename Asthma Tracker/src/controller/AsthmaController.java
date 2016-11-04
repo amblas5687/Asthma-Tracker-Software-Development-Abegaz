@@ -47,8 +47,6 @@ public class AsthmaController {
 		main = mainIn;
 	}
 
-
-
 	/*Click Event which checks password & username, clears if error occurs, takes to LogIn view*/
 	public void ClickSubmitButton(ActionEvent event) throws SQLException {
 		String firstName, lastName, userName, password, conPassword;
