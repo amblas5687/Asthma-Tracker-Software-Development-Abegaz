@@ -38,7 +38,7 @@ public class MainMenuController {
 
     //Displays welcome message, and makes it editable in code. Watch method called for changes.
     public void setWelcome() {
-    	welcome.setText("Welcome, " + AsthmaController.getCurrentUser());
+    	welcome.setText("Welcome, ");
     }
 
     @FXML
