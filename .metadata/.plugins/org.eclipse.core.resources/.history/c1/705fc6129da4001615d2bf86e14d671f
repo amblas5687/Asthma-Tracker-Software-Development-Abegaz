@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?> 
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="740.0" styleClass="welcomestyle" stylesheets="@../application/application.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
+   <top>
+      <AnchorPane prefHeight="96.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="logOut" layoutX="645.0" layoutY="14.0" mnemonicParsing="false" onAction="#ClickButton" text="Log Out">
+               <font>
+                  <Font name="Georgia Bold" size="15.0" />
+               </font>
+            </Button>
+            <Label fx:id="welcome" layoutX="243.0" layoutY="43.0" text="Welcome, Bruce!" textFill="#452bbb">
+               <font>
+                  <Font name="Poor Richard" size="40.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="387.0" prefWidth="741.0" stylesheets="@../application/application.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="144.0" layoutY="39.0" text="The Asthma Tracker is designed with YOU in mind!  ">
+               <font>
+                  <Font name="Georgia Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="87.0" layoutY="120.0" text="we do all the managing for you.  If you haven't already, please fill out the ">
+               <font>
+                  <Font name="Georgia" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="84.0" layoutY="141.0" text="Asthma Action Plan by pressing the button below so we can get to know ">
+               <font>
+                  <Font name="Georgia" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="82.0" layoutY="162.0" text="you a little better.  Otherwise, you can move on to the Out of Breath timer.">
+               <font>
+                  <Font name="Georgia" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="322.0" layoutY="216.0" text=" Let's go! " textFill="#452bbb">
+               <font>
+                  <Font name="Poor Richard" size="30.0" />
+               </font>
+            </Label>
+            <Button fx:id="OOB" layoutX="111.0" layoutY="279.0" mnemonicParsing="false" onAction="#ClickButton" text="OUT OF BREATH TIMER" textFill="#452bbb">
+               <font>
+                  <Font name="Georgia Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="AAP" layoutX="415.0" layoutY="279.0" mnemonicParsing="false" onAction="#ClickButton" text="ASTHMA ACTION PLAN" textFill="#452bbb">
+               <font>
+                  <Font name="Georgia Bold" size="15.0" />
+               </font>
+            </Button>
+            <Label layoutX="87.0" layoutY="99.0" text="Asthma can be difficult to manage, but with your handy Asthma Tracker,">
+               <font>
+                  <Font name="Georgia" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </bottom>
+</BorderPane>

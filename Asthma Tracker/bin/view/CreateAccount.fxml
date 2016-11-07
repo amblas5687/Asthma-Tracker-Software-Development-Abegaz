@@ -151,47 +151,47 @@
                               <Font name="Georgia Bold" size="17.0" />
                            </font>
                         </Label>
-                        <Label layoutX="58.0" layoutY="109.0" text="Full Name:">
+                        <Label layoutX="169.0" layoutY="109.0" text="Full Name:">
                            <font>
                               <Font name="Georgia" size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="32.0" layoutY="229.0" text="Phone Number:">
+                        <Label layoutX="145.0" layoutY="271.0" text="Phone Number:">
                            <font>
                               <Font name="Georgia" size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtECphone" layoutX="167.0" layoutY="223.0" prefHeight="31.0" prefWidth="305.0">
+                        <TextField fx:id="txtECphone" layoutX="271.0" layoutY="265.0" prefHeight="31.0" prefWidth="305.0">
                            <font>
                               <Font name="Calibri" size="15.0" />
                            </font>
                         </TextField>
-                        <Label layoutX="98.0" layoutY="343.0" text="Email:">
+                        <Label layoutX="201.0" layoutY="353.0" text="Email:">
                            <font>
                               <Font name="Georgia" size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtECname" layoutX="167.0" layoutY="103.0" prefHeight="31.0" prefWidth="305.0">
+                        <TextField fx:id="txtECname" layoutX="271.0" layoutY="103.0" prefHeight="31.0" prefWidth="305.0">
                            <font>
                               <Font name="Calibri" size="15.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="txtECemail" layoutX="167.0" layoutY="337.0" prefHeight="31.0" prefWidth="305.0">
+                        <TextField fx:id="txtECemail" layoutX="271.0" layoutY="347.0" prefHeight="31.0" prefWidth="305.0">
                            <font>
                               <Font name="Calibri" size="15.0" />
                            </font>
                         </TextField>
-                        <Label fx:id="lblErrorECname" layoutX="167.0" layoutY="150.0" prefHeight="19.0" prefWidth="327.0" textFill="RED">
+                        <Label fx:id="lblErrorECname" layoutX="207.0" layoutY="150.0" prefHeight="19.0" prefWidth="327.0" textFill="RED">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblErrorECphone" layoutX="167.0" layoutY="274.0" prefHeight="19.0" prefWidth="327.0" textFill="RED">
+                        <Label fx:id="lblErrorECphone" layoutX="207.0" layoutY="312.0" prefHeight="19.0" prefWidth="327.0" textFill="RED">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblErrorECemail" layoutX="167.0" layoutY="385.0" prefHeight="19.0" prefWidth="327.0" textFill="RED">
+                        <Label fx:id="lblErrorECemail" layoutX="207.0" layoutY="393.0" prefHeight="19.0" prefWidth="327.0" textFill="RED">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
@@ -199,6 +199,21 @@
                         <Label fx:id="lblErrorallFields2" layoutX="476.0" layoutY="26.0" prefHeight="20.0" prefWidth="247.0" textFill="RED">
                            <font>
                               <Font name="Georgia Bold Italic" size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtECrelation" layoutX="271.0" layoutY="186.0" prefHeight="31.0" prefWidth="305.0">
+                           <font>
+                              <Font name="Calibri" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="161.0" layoutY="192.0" text="Relationship:">
+                           <font>
+                              <Font name="Georgia" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblErrorECrelation" layoutX="207.0" layoutY="229.0" prefHeight="19.0" prefWidth="327.0" textFill="RED">
+                           <font>
+                              <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
                         </Label>
                      </children>
