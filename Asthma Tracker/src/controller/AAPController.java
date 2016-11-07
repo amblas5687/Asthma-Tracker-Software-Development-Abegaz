@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import application.AAPLauncher;
+
 import application.DBConfig;
 import application.Main;
 import javafx.event.ActionEvent;
@@ -56,7 +56,7 @@ public class AAPController {
     private Button resetBTN;
     @FXML
     private Button updateBTN;
-    
+
 
     @FXML
     private TextField drNameTF;
@@ -64,47 +64,45 @@ public class AAPController {
     private TextField drPhoneTF;
     @FXML
     private TextField drCityTF;
-    
+
   //For loading new scenes
     Stage stage;
     Scene scene;
     Parent root;
 
-    
+
     //current user
     Account activeUser = AsthmaController.curUser;
-    
-    
-    //for testing and used by the AAPLancher
-    private AAPLauncher main;
-    public void setMain(AAPLauncher mainIn)
-  	{
-  		main=mainIn;
-  	}
-    
+
+
+
+
 	//for integration
-    /*
+
     private Main main;
   	public void setMain(Main mainIn)
   	{
   		main=mainIn;
-  	}*/
-  	
-  	
+  	}
+
+
   	//runs when initialized, grabs info from database and populates the textfields
+  	// CHRISTIAN // This needs to handle cases where the user has not set up AAP yet,
+  	// CHRISTIAN // whether by making a blank AAP as a place holder, or checking to see if they have one
+  	/*
+
 	@FXML
   	public void initialize() throws SQLException
   	{
   		System.out.println("error check: initialize ran");
-  		
-  		//set username for testing
-  		activeUser.setuserName("ab6789");
-  		
+
+
+
   		//pass the object from getAAPInfo method
   		AAP userPlan = getAAPInfo(activeUser.getuserName());
-  		
+
   		//set the textfields with the content of the database
-  		
+
   		//mildMed
 	    mildMedTF.setText(userPlan.getMildMed());
 	    mildAmtTF.setText(Integer.toString(userPlan.getMildAmt()));
@@ -119,44 +117,40 @@ public class AAPController {
 	    sevMedTF.setText(userPlan.getSevMed());
 	    sevAmtTF.setText(Integer.toString(userPlan.getSevAmt()));
 	    sevFreqTF.setText(Integer.toString(userPlan.getSevFreq()));
-	    
+
 	    //dr info
 	    drNameTF.setText(userPlan.getDrName());
 	    drPhoneTF.setText(Integer.toString(userPlan.getDrPhone()));
 	    drCityTF.setText(userPlan.getDrCity());
   	}//end method
-  	
-	
-	
+
+*/
+
 	//TODO need the fxml for main menu and the controller
   	//right now this is integrated personally
     @FXML
-    void backToMain(ActionEvent event) throws Exception 
+    void backToMain(ActionEvent event) throws Exception
     {
-    	/*
+
     	//get the stage the button was hit in
     	stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-    	
-    	//load the new fxml file
-    	//TODO update the fxml to the main menu
-    	root = FXMLLoader.load(getClass().getResource("/view/MainMenuTest.fxml"));
-    	
-    	//create a new controller
-		MainMenuController con1 = new MainMenuController();
-		
-		//link the controller to the main
-		con1.setMain(main);
-		
-		//sets fxml file as a scene
+
+    	try {
+			root = FXMLLoader.load(getClass().getResource("/view/MainView.fxml"));
+
+		MainMenuController conX=new MainMenuController();
+		conX.setMain(main);
 		scene = new Scene(root);
-		
-		//loads the scene on top of whatever stage the button is in
 		stage.setScene(scene);
-		*/
-    }//end method
-    
-    
-    
+    	} catch (Exception e){
+			e.printStackTrace();
+		}
+
+
+    }
+
+
+
     //used to reset fields in AAP
     @FXML
     void resetAAP(ActionEvent event) {
@@ -174,22 +168,22 @@ public class AAPController {
 	    sevMedTF.setText(null);
 	    sevAmtTF.setText(null);
 	    sevFreqTF.setText(null);
-	    
+
 	    //dr info
 	    drNameTF.setText(null);
 	    drPhoneTF.setText(null);
 	    drCityTF.setText(null);
-	    
+
 	    System.out.println("error check: current user reset " + activeUser.getuserName());
     }//end method
 
-    
+
     //use to submit AAP to database
     @FXML
     void submitAAP(ActionEvent event) throws SQLException {
-    	
-    	//get the information from the textfields 
-    	
+
+    	//get the information from the textfields
+
     	//mildMed
 	    String mildMed = mildMedTF.getText();
 	    int mildAmt = Integer.parseInt(mildAmtTF.getText());
@@ -204,86 +198,85 @@ public class AAPController {
 	    String sevMed = sevMedTF.getText();
 	    int sevAmt = Integer.parseInt(sevAmtTF.getText());
 	    int sevFreq = Integer.parseInt(sevFreqTF.getText());
-	    
+
 	    //dr info
 	    String drName = drNameTF.getText();
 	    int drPhone = Integer.parseInt(drPhoneTF.getText());
 	    String drCity = drCityTF.getText();
-	    
-    	
+
+
     	//create an instance of your model and set the values into it
     	AAP newPlan = new AAP();
-    	
+
     	//mild
     	newPlan.setMildMed(mildMed);
     	newPlan.setMildAmt(mildAmt);
     	newPlan.setMildFreq(mildFreq);
-    	
+
     	//mod
     	newPlan.setModMed(modMed);
     	newPlan.setModAmt(modAmt);
     	newPlan.setModFreq(modFreq);
-    	
+
     	//sev
     	newPlan.setSevMed(sevMed);
     	newPlan.setSevAmt(sevAmt);
     	newPlan.setSevFreq(sevFreq);
-    	
+
     	//dr info
     	newPlan.setDrName(drName);
     	newPlan.setDrPhone(drPhone);
     	newPlan.setDrCity(drCity);
-    	
-    	
-    	//create a query 
+
+
+    	//create a query
     	String AAP = "update aap set mildMed = ?, mildAmt = ?, mildFreq = ?, modMed = ?, modAmt = ?, modFreq = ?, sevMed = ?, sevAmt = ?, sevFreq = ?, drName = ?, drPhone = ?, drCity = ?"
 				+ "where uNameFK = ?";
-    	
+
 
 		//attempt to connect to database
 		try (Connection conn = DBConfig.getConnection();
-				PreparedStatement insertAAP = conn.prepareStatement(AAP);) 
+				PreparedStatement insertAAP = conn.prepareStatement(AAP);)
 		{
-		
+
 			//mild
 			insertAAP.setString(1, newPlan.getMildMed());
 			insertAAP.setInt(2, newPlan.getMildAmt());
 			insertAAP.setInt(3, newPlan.getMildFreq());
-			
+
 			//mod
 			insertAAP.setString(4, newPlan.getModMed());
 			insertAAP.setInt(5, newPlan.getModAmt());
 			insertAAP.setInt(6, newPlan.getModFreq());
-			
+
 			//sev
 			insertAAP.setString(7, newPlan.getSevMed());
 			insertAAP.setInt(8, newPlan.getSevAmt());
 			insertAAP.setInt(9, newPlan.getSevFreq());
-			
+
 			//dr info
 			insertAAP.setString(10, newPlan.getDrName());
 			insertAAP.setInt(11, newPlan.getDrPhone());
 			insertAAP.setString(12, newPlan.getDrCity());
-			
+
 			insertAAP.setString(13, activeUser.getuserName());
-		
-			//set username for testing
-	  		activeUser.setuserName("ab6789");
-	  		
+
+
+
 			//execute the update
 			insertAAP.executeUpdate();
-			
+
 			System.out.println("error check: current user updated " + activeUser.getuserName());
 			System.out.println("error check: success! account updated " + newPlan);
 
 		}//try
     }//end method
-    
-    
-    //gets info from the database 
+
+
+    //gets info from the database
     private AAP getAAPInfo (String userName) throws SQLException
     {
-    	
+
     	String AAPInfo = "select * from aap where uNameFK =" + "'"+userName+"'";
 		ResultSet rs = null;
 
@@ -299,33 +292,33 @@ public class AAPController {
 			{
 				//create instance of model
 				AAP displayPlan = new AAP();
-		    	
+
 				//add info from db to model
-				
+
 		    	//mild
 				displayPlan.setMildMed(rs.getString("mildMed"));
 				displayPlan.setMildAmt(rs.getInt("mildAmt"));
 				displayPlan.setMildFreq(rs.getInt("mildFreq"));
-		    	
+
 		    	//mod
 				displayPlan.setModMed(rs.getString("modMed"));
 				displayPlan.setModAmt(rs.getInt("modAmt"));
 				displayPlan.setModFreq(rs.getInt("modFreq"));
-		    	
+
 		    	//sev
 				displayPlan.setSevMed(rs.getString("sevMed"));
 				displayPlan.setSevAmt(rs.getInt("sevAmt"));
 				displayPlan.setSevFreq(rs.getInt("sevFreq"));
-		    	
+
 		    	//dr info
 				displayPlan.setDrName(rs.getString("drName"));
 				displayPlan.setDrPhone(rs.getInt("drPhone"));
 				displayPlan.setDrCity(rs.getString("drCity"));
-				
-					
+
+
 		        System.out.println("gotten aap " + displayPlan);
-		       
-		        //return the object 
+
+		        //return the object
 		        return displayPlan;
 			}//if
 			else
