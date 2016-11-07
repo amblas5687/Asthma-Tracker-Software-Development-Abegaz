@@ -294,21 +294,13 @@ public class AsthmaController {
 				+ "values(?,?,?,?)";
 		String BreathUser = "INSERT INTO `asthmatrackerdb`.`clicktracker` (`userNameFK`) VALUES (?)";//query to add row in clicktracker-Anna
 		String AAPUser = "INSERT INTO `asthmatrackerdb`.`aap` (`uNameFK`) VALUES (?)";//query to add row in app-Anna
-<<<<<<< HEAD
-		
-=======
 
->>>>>>> refs/remotes/origin/Christian
 		ResultSet keys = null;
 		try (Connection conn = DBConfig.getConnection();
 				PreparedStatement insertAccount = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 		    		PreparedStatement insertClicktracker = conn.prepareStatement(BreathUser, Statement.RETURN_GENERATED_KEYS);//-Anna
-				PreparedStatement insertAAP = conn.prepareStatement(AAPUser, Statement.RETURN_GENERATED_KEYS)//-Anna
-<<<<<<< HEAD
-		    ) 
-=======
-		    )
->>>>>>> refs/remotes/origin/Christian
+				PreparedStatement insertAAP = conn.prepareStatement(AAPUser, Statement.RETURN_GENERATED_KEYS))//-Anna
+
 		{
 
 			// get values from the TextField controls
@@ -338,11 +330,11 @@ public class AsthmaController {
 			// get the number of return rows, will return 0 if successful
 			int affectedRow = insertAccount.executeUpdate();
 			System.out.println(affectedRow);
-			
+
 			//set for clicktracker and update-Anna
 			insertClicktracker.setString(1, account.getuserName());
 			insertClicktracker.executeUpdate();
-			
+
 			//set for app and update-Anna
 			insertAAP.setString(1, account.getuserName());
 			insertAAP.executeUpdate();
