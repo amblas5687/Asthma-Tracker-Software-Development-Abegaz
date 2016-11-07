@@ -5,6 +5,7 @@
 //Query: INSERT INTO `asthmatrackerdb`.`clicktracker` (`userNameFK`) VALUES ('theUser');
 package controller;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -208,26 +209,21 @@ public class OutOfBreathController
     @FXML
     void returnToMain(ActionEvent event)
     {
-    	/*
+
     	//get the stage the button was hit in
     	stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
-    	//load the new fxml file
-    	//TODO update the fxml to the main menu
-    	root = FXMLLoader.load(getClass().getResource(""));
+    	try {
+			root = FXMLLoader.load(getClass().getResource("/view/MainView.fxml"));
 
-    	//create a new controller
-		MainAccountController con1 = new MainAccountController();
-
-		//link the controller to the main
-		con1.setMain(main);
-
-		//sets fxml file as a scene
+		MainMenuController conX=new MainMenuController();
+		conX.setMain(main);
 		scene = new Scene(root);
-
-		//loads the scene on top of whatever stage the button is in
 		stage.setScene(scene);
-		*/
+    	} catch (Exception e){
+			e.printStackTrace();
+		}
+
 
     }
 

@@ -36,7 +36,7 @@ public class AsthmaController {
 	Scene scene;
 	Parent root;
 	ResultSet resultSet;
-	
+
 	// EventHandler +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //defines user object to enable the passing userName
 	public static Account curUser = new Account();//-Anna
@@ -294,13 +294,21 @@ public class AsthmaController {
 				+ "values(?,?,?,?)";
 		String BreathUser = "INSERT INTO `asthmatrackerdb`.`clicktracker` (`userNameFK`) VALUES (?)";//query to add row in clicktracker-Anna
 		String AAPUser = "INSERT INTO `asthmatrackerdb`.`aap` (`uNameFK`) VALUES (?)";//query to add row in app-Anna
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> refs/remotes/origin/Christian
 		ResultSet keys = null;
 		try (Connection conn = DBConfig.getConnection();
 				PreparedStatement insertAccount = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 		    		PreparedStatement insertClicktracker = conn.prepareStatement(BreathUser, Statement.RETURN_GENERATED_KEYS);//-Anna
 				PreparedStatement insertAAP = conn.prepareStatement(AAPUser, Statement.RETURN_GENERATED_KEYS)//-Anna
+<<<<<<< HEAD
 		    ) 
+=======
+		    )
+>>>>>>> refs/remotes/origin/Christian
 		{
 
 			// get values from the TextField controls
@@ -335,6 +343,14 @@ public class AsthmaController {
 			insertClicktracker.setString(1, account.getuserName());
 			insertClicktracker.executeUpdate();
 			
+			//set for app and update-Anna
+			insertAAP.setString(1, account.getuserName());
+			insertAAP.executeUpdate();
+
+			//set for clicktracker and update-Anna
+			insertClicktracker.setString(1, account.getuserName());
+			insertClicktracker.executeUpdate();
+
 			//set for app and update-Anna
 			insertAAP.setString(1, account.getuserName());
 			insertAAP.executeUpdate();
