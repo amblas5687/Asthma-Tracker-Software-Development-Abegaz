@@ -40,6 +40,14 @@ public class MainMenuController {
     public void setWelcome() {
     	//welcome.setText("Welcome, ");
     }
+
+    @FXML
+    void ClickOOBButton(ActionEvent event) throws Exception{
+    	stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+    	root = FXMLLoader.load(getClass().getResource("/view/OutOfBreathView.fxml"));
+		OutOfBreathController con2=new OutOfBreathController();
+		con2.setMain(main);
+    }
     
     @FXML
 	void ClickButton(ActionEvent event) throws Exception {

@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.stage.Stage;
 
 
@@ -25,9 +26,9 @@ public class MainMenuController {
 	//////////////If you want to use something other than Button/Label for these in the FXML
 	//////////////Go ahead I will change the code here to fit GUI, just remember to use the same
 	//////////////Name though
-	@FXML private Button logOut; //Logs Out
-    @FXML private Button OOB; // OutOfBreath
-    @FXML private Button AAP; // Asthma Action Plan
+	@FXML private Menu logOut; //Logs Out
+    @FXML private Menu OOB; // OutOfBreath
+    @FXML private Menu AAP; // Asthma Action Plan
     @FXML private Label welcome; // Welcome Message
 
     //Runs methods at scene start
@@ -40,7 +41,7 @@ public class MainMenuController {
     public void setWelcome() {
     	//welcome.setText("Welcome, ");
     }
-    
+
     @FXML
 	void ClickButton(ActionEvent event) throws Exception {
     	try{

@@ -40,7 +40,7 @@ public class MainMenuController {
     public void setWelcome() {
     	//welcome.setText("Welcome, ");
     }
-    
+
     @FXML
 	void ClickButton(ActionEvent event) throws Exception {
     	try{
