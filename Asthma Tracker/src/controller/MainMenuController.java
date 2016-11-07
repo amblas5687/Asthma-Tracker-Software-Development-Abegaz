@@ -38,7 +38,7 @@ public class MainMenuController {
 
     //Displays welcome message, and makes it editable in code. Watch method called for changes.
     public void setWelcome() {
-    	welcome.setText("Welcome, ");
+    	welcome.setText("Welcome, " + AsthmaController.curUser.getfirstName());
     }
 
     @FXML
@@ -60,13 +60,13 @@ public class MainMenuController {
 			OutOfBreathController con2=new OutOfBreathController();
 			con2.setMain(main);
 			break;
-			/*
+
 		case "AAP":
-			root = FXMLLoader.load(getClass().getResource("/view/AAP_Page_PlaceHolder.fxml"));
+			root = FXMLLoader.load(getClass().getResource("/view/AAPView.fxml"));
 			AAPController con3=new AAPController();
 			con3.setMain(main);
 			break;
-			*/
+
 		default:
 			root = FXMLLoader.load(getClass().getResource("/view/MainView.fxml"));
 			MainMenuController conX=new MainMenuController();
