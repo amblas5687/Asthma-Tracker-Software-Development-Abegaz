@@ -5,3 +5,19 @@
 .welcomestyle{
 	-fx-background-image:url("sunBG.png");
 }
+
+.severestyle{
+	-fx-background-image:url("severe.png");
+}
+
+.moderatestyle{
+	-fx-background-image:url("moderate.png");
+}
+
+.mildstyle{
+	-fx-background-image:url("mild.png");
+}
+
+.docstyle{
+	-fx-background-image:url("doctor.png");
+}

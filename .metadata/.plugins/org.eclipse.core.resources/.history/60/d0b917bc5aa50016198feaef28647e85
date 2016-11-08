@@ -1,0 +1,27 @@
+.loginstyle{
+	-fx-background-image:url("cross1.png");
+}
+
+.welcomestyle{
+	-fx-background-image:url("sunBG.png");
+}
+
+.severestyle{
+	-fx-background-image:url("severe.png");
+}
+
+.moderatestyle{
+	-fx-background-image:url("moderate.png");
+}
+
+.mildstyle{
+	-fx-background-image:url("mild.png");
+}
+
+.docstyle{
+	-fx-background-image:url("doctor.png");
+}
+
+.AAPstyle{
+	-fx-background-image:url("AAPbg.png");
+}

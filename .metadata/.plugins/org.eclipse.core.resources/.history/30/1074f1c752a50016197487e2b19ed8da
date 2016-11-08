@@ -1,0 +1,11 @@
+.loginstyle{
+	-fx-background-image:url("cross1.png");
+}
+
+.welcomestyle{
+	-fx-background-image:url("sunBG.png");
+}
+
+.severestyle{
+	-fx-background-image:url("severe.png");
+}

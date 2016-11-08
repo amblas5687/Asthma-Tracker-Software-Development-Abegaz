@@ -5,6 +5,7 @@
 //Query: INSERT INTO `asthmatrackerdb`.`clicktracker` (`userNameFK`) VALUES ('theUser');
 package controller;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +15,7 @@ import application.DBConfig;
 import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-//import javafx.fxml.FXMLLoader;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -97,7 +98,7 @@ public class OutOfBreathController
 		  		//System.out.println("error check line 96");
 
 	        	breathCount = rs.getInt("clicks");
-	        	breathCountLBL.setText("Count: " + Integer.toString(breathCount));
+	        	breathCountLBL.setText(Integer.toString(breathCount));
 
 	        	System.out.println("error check: getBreath ran, breath count " + breathCount);
 	        	//System.out.println ("error check line");
@@ -208,21 +209,21 @@ public class OutOfBreathController
     @FXML
     void returnToMain(ActionEvent event)
     {
-    	/*
+
     	//get the stage the button was hit in
     	stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-    	//load the new fxml file
-    	//TODO update the fxml to the main menu
-    	root = FXMLLoader.load(getClass().getResource(""));
-    	//create a new controller
-		MainAccountController con1 = new MainAccountController();
-		//link the controller to the main
-		con1.setMain(main);
-		//sets fxml file as a scene
+
+    	try {
+			root = FXMLLoader.load(getClass().getResource("/view/MainView.fxml"));
+
+		MainMenuController conX=new MainMenuController();
+		conX.setMain(main);
 		scene = new Scene(root);
-		//loads the scene on top of whatever stage the button is in
 		stage.setScene(scene);
-		*/
+    	} catch (Exception e){
+			e.printStackTrace();
+		}
+
 
     }
 
