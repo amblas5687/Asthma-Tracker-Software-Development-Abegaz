@@ -227,9 +227,6 @@ public class AsthmaController {
 	//gets and sets current users
 	public void setCurrentUserInfo(String curUserName) throws SQLException{
 
-		//String currentUser = curUser;//mod by Anna
-		//return curUser;//mod by Anna
-
 		String SQLQuery = "SELECT * FROM `account` WHERE account.userName=" + "'"+curUserName+"'";
 		ResultSet rs = null;
 
@@ -268,6 +265,7 @@ public class AsthmaController {
 		}//finally
 	}
 
+	
 	//Click Log In button on Log In page, takes you to main view page
 	public void ClicklogInButton(ActionEvent event) throws Exception {
 		String userName, password;
@@ -275,10 +273,16 @@ public class AsthmaController {
 		password = txtgetPassword.getText();
 		lblErrorlogIn.setText(null);
 		if(checkLogIn(userName, password)){
-			setCurrentUserInfo(userName);
+			setCurrentUserInfo(userName);//sets the current user info to static variable-Anna
+			resetBreathZero(userName);//resets the user's breath count to 0 on log in-Anna
 
 			stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("/view/MainView.fxml"));
+			
+			//integration- Anna
+			MainMenuController con1 = new MainMenuController();
+			con1.setMain(main);
+			
 			scene = new Scene(root);
 			stage.setScene(scene);
 		}else{
@@ -339,13 +343,6 @@ public class AsthmaController {
 			insertAAP.setString(1, account.getuserName());
 			insertAAP.executeUpdate();
 
-			//set for clicktracker and update-Anna
-			insertClicktracker.setString(1, account.getuserName());
-			insertClicktracker.executeUpdate();
-
-			//set for app and update-Anna
-			insertAAP.setString(1, account.getuserName());
-			insertAAP.executeUpdate();
 
 			//Once we enter the data, we need to clear our UI so as to accept  the next input
 			if (affectedRow == 1) {
@@ -378,4 +375,28 @@ public class AsthmaController {
 		}
 	}
 
+	
+	//when user logs in, resets breath count to 0-Anna
+	public void resetBreathZero(String username)
+	{
+		String zeroQuery = "update clicktracker set clicks = 0 where userNameFK = ?";
+
+    	//attempt to connect to database
+		try (Connection conn = DBConfig.getConnection();
+				PreparedStatement setZero = conn.prepareStatement(zeroQuery);
+			)
+		{
+			
+			setZero.setString(1, username);
+
+			//execute update
+			setZero.executeUpdate();
+
+			System.out.println("error check: success! breath reset to 0! user:  " + username);
+
+		} catch (Exception e) {
+
+			System.out.println("Error: " + e);
+		}
+	}//end method
 }
