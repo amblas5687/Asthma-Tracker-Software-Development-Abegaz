@@ -118,7 +118,7 @@
                         </Label>
                         <PasswordField fx:id="txtpassword" layoutX="461.0" layoutY="213.0" prefHeight="31.0" prefWidth="230.0" promptText="1234" />
                         <PasswordField fx:id="txtconPassword" layoutX="461.0" layoutY="328.0" prefHeight="31.0" prefWidth="230.0" promptText="1234" />
-                        <Button fx:id="btnNextTab" layoutX="336.0" layoutY="453.0" mnemonicParsing="false" onAction="#ClickNextButton" text="NEXT" textFill="#452bbb">
+                        <Button fx:id="btnNextTab" layoutX="336.0" layoutY="453.0" mnemonicParsing="false" text="NEXT" textFill="#452bbb">
                            <font>
                               <Font name="Georgia" size="15.0" />
                            </font>
