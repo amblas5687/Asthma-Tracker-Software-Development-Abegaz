@@ -7,13 +7,14 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="672.0" stylesheets="@../application/application.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AAPController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="744.0" styleClass="welcomestyle" stylesheets="@../application/application.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AAPController">
    <bottom>
       <HBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
@@ -43,8 +44,11 @@
             </Label>
          </children>
          <padding>
-            <Insets bottom="7.0" />
+            <Insets bottom="7.0" top="7.0" />
          </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </HBox>
    </bottom>
    <center>
@@ -54,7 +58,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="mildstyle" stylesheets="@../application/application.css">
                      <children>
-                        <Label layoutX="14.0" layoutY="14.0" text="Please enter your medication information for Nonexistent or Mild Asthma.">
+                        <Label layoutX="73.0" layoutY="14.0" text="Please enter your medication information for Nonexistent or Mild Asthma.">
                            <font>
                               <Font name="Georgia" size="16.0" />
                            </font>
@@ -74,9 +78,9 @@
                               <Font name="Georgia" size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="mildMedTF" layoutX="190.0" layoutY="67.0" prefHeight="31.0" prefWidth="273.0" />
-                        <TextField fx:id="mildAmtTF" layoutX="190.0" layoutY="149.0" prefHeight="31.0" prefWidth="273.0" />
-                        <TextField fx:id="mildFreqTF" layoutX="190.0" layoutY="240.0" prefHeight="31.0" prefWidth="273.0" />
+                        <TextField fx:id="mildMedTF" layoutX="200.0" layoutY="66.0" prefHeight="31.0" prefWidth="273.0" />
+                        <TextField fx:id="mildAmtTF" layoutX="200.0" layoutY="148.0" prefHeight="31.0" prefWidth="273.0" />
+                        <TextField fx:id="mildFreqTF" layoutX="200.0" layoutY="239.0" prefHeight="31.0" prefWidth="273.0" />
                         <Label fx:id="mildMedErr" layoutX="190.0" layoutY="104.0" textFill="RED">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
@@ -109,7 +113,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="moderatestyle" stylesheets="@../application/application.css">
                      <children>
-                        <Label layoutX="14.0" layoutY="14.0" text="Please enter your medication information for Moderate Asthma.">
+                        <Label layoutX="110.0" layoutY="14.0" text="Please enter your medication information for Moderate Asthma.">
                            <font>
                               <Font name="Georgia" size="16.0" />
                            </font>
@@ -129,9 +133,9 @@
                               <Font name="Georgia" size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="modMedTF" layoutX="190.0" layoutY="67.0" prefHeight="31.0" prefWidth="273.0" />
-                        <TextField fx:id="modAmtTF" layoutX="190.0" layoutY="149.0" prefHeight="31.0" prefWidth="273.0" />
-                        <TextField fx:id="modFreqTF" layoutX="190.0" layoutY="240.0" prefHeight="31.0" prefWidth="273.0" />
+                        <TextField fx:id="modMedTF" layoutX="200.0" layoutY="66.0" prefHeight="31.0" prefWidth="273.0" />
+                        <TextField fx:id="modAmtTF" layoutX="200.0" layoutY="148.0" prefHeight="31.0" prefWidth="273.0" />
+                        <TextField fx:id="modFreqTF" layoutX="200.0" layoutY="239.0" prefHeight="31.0" prefWidth="273.0" />
                         <Label fx:id="modMedErr" layoutX="190.0" layoutY="104.0" textFill="RED">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
@@ -164,7 +168,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="severestyle" stylesheets="@../application/application.css">
                      <children>
-                        <Label layoutX="14.0" layoutY="14.0" text="Please enter your medication information for Severe Asthma.">
+                        <Label layoutX="111.0" layoutY="14.0" text="Please enter your medication information for Severe Asthma.">
                            <font>
                               <Font name="Georgia" size="16.0" />
                            </font>
@@ -184,9 +188,9 @@
                               <Font name="Georgia" size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="sevMedTF" layoutX="190.0" layoutY="67.0" prefHeight="31.0" prefWidth="273.0" />
-                        <TextField fx:id="sevAmtTF" layoutX="190.0" layoutY="149.0" prefHeight="31.0" prefWidth="273.0" />
-                        <TextField fx:id="sevFreqTF" layoutX="190.0" layoutY="240.0" prefHeight="31.0" prefWidth="273.0" />
+                        <TextField fx:id="sevMedTF" layoutX="200.0" layoutY="66.0" prefHeight="31.0" prefWidth="273.0" />
+                        <TextField fx:id="sevAmtTF" layoutX="200.0" layoutY="148.0" prefHeight="31.0" prefWidth="273.0" />
+                        <TextField fx:id="sevFreqTF" layoutX="200.0" layoutY="239.0" prefHeight="31.0" prefWidth="273.0" />
                         <Label fx:id="sevMedErr" layoutX="190.0" layoutY="104.0" textFill="RED">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
@@ -219,7 +223,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="docstyle" stylesheets="@../application/application.css">
                      <children>
-                        <Label layoutX="14.0" layoutY="14.0" text="Please enter your doctor's information in case of emergency.">
+                        <Label layoutX="114.0" layoutY="14.0" text="Please enter your doctor's information in case of emergency.">
                            <font>
                               <Font name="Georgia" size="16.0" />
                            </font>
@@ -239,9 +243,9 @@
                               <Font name="Georgia" size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="drNameTF" layoutX="190.0" layoutY="67.0" prefHeight="31.0" prefWidth="273.0" />
-                        <TextField fx:id="drPhoneTF" layoutX="190.0" layoutY="149.0" prefHeight="31.0" prefWidth="273.0" />
-                        <TextField fx:id="drCityTF" layoutX="190.0" layoutY="240.0" prefHeight="31.0" prefWidth="273.0" />
+                        <TextField fx:id="drNameTF" layoutX="200.0" layoutY="67.0" prefHeight="31.0" prefWidth="273.0" />
+                        <TextField fx:id="drPhoneTF" layoutX="200.0" layoutY="149.0" prefHeight="31.0" prefWidth="273.0" />
+                        <TextField fx:id="drCityTF" layoutX="200.0" layoutY="240.0" prefHeight="31.0" prefWidth="273.0" />
                         <Label fx:id="drNameErr" layoutX="190.0" layoutY="104.0" textFill="RED">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
@@ -271,6 +275,9 @@
                </content>
             </Tab>
         </tabs>
+         <effect>
+            <InnerShadow blurType="TWO_PASS_BOX" />
+         </effect>
       </TabPane>
    </center>
    <top>
@@ -286,7 +293,7 @@
                   <Font name="Georgia Bold" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="43.0" layoutY="74.0" text="If you're under the age of 10, please have a parent help you fill this out.">
+            <Label layoutX="43.0" layoutY="74.0" text="If you're under the age of 10, please have a parent help you.">
                <font>
                   <Font name="Georgia Bold" size="16.0" />
                </font>
@@ -302,4 +309,10 @@
          </children>
       </VBox>
    </top>
+   <left>
+      <Label prefWidth="20.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Label prefWidth="20.0" BorderPane.alignment="CENTER" />
+   </right>
 </BorderPane>
