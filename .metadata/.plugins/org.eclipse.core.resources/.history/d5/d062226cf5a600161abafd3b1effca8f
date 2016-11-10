@@ -5,10 +5,12 @@
 //I've set activeUser in the methods with the username ab6789 for testing purposes
 package controller;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -93,7 +95,7 @@ public class AAPController {
   	//runs when initialized, grabs info from database and populates the textfields
   	// CHRISTIAN // This needs to handle cases where the user has not set up AAP yet,
   	// CHRISTIAN // whether by making a blank AAP as a place holder, or checking to see if they have one
-  	
+  	/*
 	@FXML
   	public void initialize() throws SQLException
   	{
@@ -118,7 +120,7 @@ public class AAPController {
 	    drPhoneTF.setText(Integer.toString(userPlan.getDrPhone()));
 	    drCityTF.setText(userPlan.getDrCity());
   	}//end method
-
+*/
 
 	//TODO need the fxml for main menu and the controller
   	//right now this is integrated personally
