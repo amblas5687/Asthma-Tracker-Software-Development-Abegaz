@@ -1,5 +1,5 @@
 package application;
-	
+
 import controller.AsthmaController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,21 +16,21 @@ public class Main extends Application {
 			Scene scene = new Scene(root,700,500);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
-			
+
 			// we need to give the controller access to the Main app.
 			AsthmaController controller = new AsthmaController();
-			controller.setMain(this);;
+			controller.setMain(this);
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
+
 }
-		
+
 
 

@@ -11,21 +11,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="741.0" style="-fx-background-color: cdcdcd;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AsthmaController">
-   <bottom>
-      <Button fx:id="btnSubmit" mnemonicParsing="false" onAction="#ClickSubmitButton" text="SUBMIT" textFill="#452bbb" BorderPane.alignment="CENTER">
-         <font>
-            <Font name="Georgia" size="16.0" />
-         </font>
-         <BorderPane.margin>
-            <Insets bottom="15.0" />
-         </BorderPane.margin>
-      </Button>
-   </bottom>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="733.0" style="-fx-background-color: cdcdcd;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AsthmaController">
    <center>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab closable="false" style="-fx-font-family: Georgia;" text="User Information">
+          <Tab fx:id="tab1" closable="false" style="-fx-font-family: Georgia;" text="User Information">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="loginstyle" stylesheets="@../application/application.css">
                      <children>
@@ -64,18 +54,18 @@
                            <font>
                               <Font name="Georgia" size="16.0" />
                            </font></Label>
-                        <TextField fx:id="txtfirstName" layoutX="116.0" layoutY="102.0" prefHeight="31.0" prefWidth="230.0">
+                        <TextField fx:id="txtfirstName" layoutX="116.0" layoutY="102.0" prefHeight="31.0" prefWidth="230.0" promptText="John">
                            <font>
                               <Font name="Calibri" size="15.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="txtlastName" layoutX="116.0" layoutY="213.0" prefHeight="31.0" prefWidth="230.0" />
-                        <TextField fx:id="txtbirthdate" layoutX="116.0" layoutY="329.0" prefHeight="29.0" prefWidth="230.0">
+                        <TextField fx:id="txtlastName" layoutX="116.0" layoutY="213.0" prefHeight="31.0" prefWidth="230.0" promptText="Smith" />
+                        <TextField fx:id="txtbirthDate" layoutX="116.0" layoutY="329.0" prefHeight="29.0" prefWidth="230.0" promptText="DD/MM/YYYY">
                            <font>
                               <Font name="Georgia" size="15.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="txtuserName" layoutX="461.0" layoutY="102.0" prefHeight="31.0" prefWidth="230.0" />
+                        <TextField fx:id="txtuserName" layoutX="461.0" layoutY="102.0" prefHeight="31.0" prefWidth="230.0" promptText="Jsmit123" />
                         <Label layoutX="378.0" layoutY="325.0" text="Confirm">
                            <font>
                               <Font name="Georgia" size="16.0" />
@@ -98,7 +88,7 @@
                            <font>
                               <Font name="Georgia Italic" size="15.0" />
                            </font></Label>
-                        <Label fx:id="lblErrorBirthdate" layoutX="44.0" layoutY="384.0" prefHeight="19.0" prefWidth="303.0" textFill="RED">
+                        <Label fx:id="lblErrorbirthDate" layoutX="44.0" layoutY="384.0" prefHeight="19.0" prefWidth="303.0" textFill="RED">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
@@ -126,13 +116,18 @@
                               <Font name="Georgia Bold" size="17.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="txtpassword" layoutX="461.0" layoutY="213.0" prefHeight="31.0" prefWidth="230.0" />
-                        <PasswordField fx:id="txtconPassword" layoutX="461.0" layoutY="328.0" prefHeight="31.0" prefWidth="230.0" />
+                        <PasswordField fx:id="txtpassword" layoutX="461.0" layoutY="213.0" prefHeight="31.0" prefWidth="230.0" promptText="1234" />
+                        <PasswordField fx:id="txtconPassword" layoutX="461.0" layoutY="328.0" prefHeight="31.0" prefWidth="230.0" promptText="1234" />
+                        <Button fx:id="btnNext" layoutX="336.0" layoutY="453.0" mnemonicParsing="false" onAction="#ClickNextButton" text="NEXT" textFill="#452bbb">
+                           <font>
+                              <Font name="Georgia" size="15.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab closable="false" style="-fx-font-family: Georgia;" text="Emergency Contact Information">
+          <Tab fx:id="tab2" closable="false" style="-fx-font-family: Georgia;" text="Emergency Contact Information">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="loginstyle" stylesheets="@../application/application.css">
                      <children>
@@ -161,7 +156,7 @@
                               <Font name="Georgia" size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtECphone" layoutX="271.0" layoutY="265.0" prefHeight="31.0" prefWidth="305.0">
+                        <TextField fx:id="txtphone" layoutX="271.0" layoutY="265.0" prefHeight="31.0" prefWidth="305.0" promptText="555-555-1234">
                            <font>
                               <Font name="Calibri" size="15.0" />
                            </font>
@@ -171,12 +166,12 @@
                               <Font name="Georgia" size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtECname" layoutX="271.0" layoutY="103.0" prefHeight="31.0" prefWidth="305.0">
+                        <TextField fx:id="txtfullName" layoutX="271.0" layoutY="103.0" prefHeight="31.0" prefWidth="305.0" promptText="Bob Smith">
                            <font>
                               <Font name="Calibri" size="15.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="txtECemail" layoutX="271.0" layoutY="347.0" prefHeight="31.0" prefWidth="305.0">
+                        <TextField fx:id="txtemail" layoutX="271.0" layoutY="347.0" prefHeight="31.0" prefWidth="305.0" promptText="Bsmith@yahoo.com">
                            <font>
                               <Font name="Calibri" size="15.0" />
                            </font>
@@ -201,7 +196,7 @@
                               <Font name="Georgia Bold Italic" size="17.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtECrelation" layoutX="271.0" layoutY="186.0" prefHeight="31.0" prefWidth="305.0">
+                        <TextField fx:id="txtrelation" layoutX="271.0" layoutY="186.0" prefHeight="31.0" prefWidth="305.0" promptText="Parent">
                            <font>
                               <Font name="Calibri" size="15.0" />
                            </font>
@@ -216,6 +211,11 @@
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
                         </Label>
+                        <Button fx:id="btnSubmit" layoutX="324.0" layoutY="452.0" mnemonicParsing="false" onAction="#ClickSubmitButton" text="SUBMIT" textFill="#452bbb">
+                           <font>
+                              <Font name="Georgia" size="16.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
             </content>

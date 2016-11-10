@@ -1,30 +1,28 @@
 //Anna
 package model;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 
 public class AAP 
 {
 	 
 		//mildMed
 	    private String mildMed;
-	    private int mildAmt;
-	    private int mildFreq;
+	    private String mildAmt;
+	    private String mildFreq;
 
 	    //modMed
 	    private String modMed;
-	    private int modAmt;
-	    private int modFreq;
+	    private String modAmt;
+	    private String modFreq;
 
 	    //sevMed
 	    private String sevMed;
-	    private int sevAmt;
-	    private int sevFreq;
+	    private String sevAmt;
+	    private String sevFreq;
 		
 	    //dr info
 	    private String drName;
-	    private int drPhone;
+	    private String drPhone;
 	    private String drCity;
 	    
 	    
@@ -36,19 +34,19 @@ public class AAP
 			this.mildMed = mildMed;
 		}
 		
-		public int getMildAmt() {
+		public String getMildAmt() {
 			return mildAmt;
 		}
 		
-		public void setMildAmt(int mildAmt) {
+		public void setMildAmt(String mildAmt) {
 			this.mildAmt = mildAmt;
 		}
 		
-		public int getMildFreq() {
+		public String getMildFreq() {
 			return mildFreq;
 		}
 		
-		public void setMildFreq(int mildFreq) {
+		public void setMildFreq(String mildFreq) {
 			this.mildFreq = mildFreq;
 		}
 		
@@ -60,19 +58,19 @@ public class AAP
 			this.modMed = modMed;
 		}
 		
-		public int getModAmt() {
+		public String getModAmt() {
 			return modAmt;
 		}
 		
-		public void setModAmt(int modAmt) {
+		public void setModAmt(String modAmt) {
 			this.modAmt = modAmt;
 		}
 		
-		public int getModFreq() {
+		public String getModFreq() {
 			return modFreq;
 		}
 		
-		public void setModFreq(int modFreq) {
+		public void setModFreq(String modFreq) {
 			this.modFreq = modFreq;
 		}
 		
@@ -84,19 +82,19 @@ public class AAP
 			this.sevMed = sevMed;
 		}
 		
-		public int getSevAmt() {
+		public String getSevAmt() {
 			return sevAmt;
 		}
 		
-		public void setSevAmt(int sevAmt) {
+		public void setSevAmt(String sevAmt) {
 			this.sevAmt = sevAmt;
 		}
 		
-		public int getSevFreq() {
+		public String getSevFreq() {
 			return sevFreq;
 		}
 		
-		public void setSevFreq(int sevFreq) {
+		public void setSevFreq(String sevFreq) {
 			this.sevFreq = sevFreq;
 		}
 
@@ -108,11 +106,11 @@ public class AAP
 			this.drName = drName;
 		}
 
-		public int getDrPhone() {
+		public String getDrPhone() {
 			return drPhone;
 		}
 
-		public void setDrPhone(int drPhone) {
+		public void setDrPhone(String drPhone) {
 			this.drPhone = drPhone;
 		}
 
