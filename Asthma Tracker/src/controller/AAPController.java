@@ -93,7 +93,7 @@ public class AAPController {
   	//runs when initialized, grabs info from database and populates the textfields
   	// CHRISTIAN // This needs to handle cases where the user has not set up AAP yet,
   	// CHRISTIAN // whether by making a blank AAP as a place holder, or checking to see if they have one
-  	
+ /* 	
 	@FXML
   	public void initialize() throws SQLException
   	{
@@ -103,22 +103,22 @@ public class AAPController {
   		//set the textfields with the content of the database
   		//mildMed
 	    mildMedTF.setText(userPlan.getMildMed());
-	    mildAmtTF.setText(Integer.toString(userPlan.getMildAmt()));
-	    mildFreqTF.setText(Integer.toString(userPlan.getMildFreq()));
+	    mildAmtTF.setText(userPlan.getMildAmt());
+	    mildFreqTF.setText(userPlan.getMildFreq());
 	    //modMed
 	    modMedTF.setText(userPlan.getModMed());
-	    modAmtTF.setText(Integer.toString(userPlan.getModAmt()));
-	    modFreqTF.setText(Integer.toString(userPlan.getModFreq()));
+	    modAmtTF.setText(userPlan.getModAmt());
+	    modFreqTF.setText(userPlan.getModFreq());
 	    //sevMed
 	    sevMedTF.setText(userPlan.getSevMed());
-	    sevAmtTF.setText(Integer.toString(userPlan.getSevAmt()));
-	    sevFreqTF.setText(Integer.toString(userPlan.getSevFreq()));
+	    sevAmtTF.setText(userPlan.getSevAmt());
+	    sevFreqTF.setText(userPlan.getSevFreq());
 	    //dr info
 	    drNameTF.setText(userPlan.getDrName());
-	    drPhoneTF.setText(Integer.toString(userPlan.getDrPhone()));
+	    drPhoneTF.setText(userPlan.getDrPhone());
 	    drCityTF.setText(userPlan.getDrCity());
   	}//end method
-
+*/
 
 	//TODO need the fxml for main menu and the controller
   	//right now this is integrated personally
@@ -167,6 +167,27 @@ public class AAPController {
 	    drNameTF.setText(null);
 	    drPhoneTF.setText(null);
 	    drCityTF.setText(null);
+	    
+	    //clear error labels---Danni<start>----------------------------------------------------------------------------
+	    //all fields
+	    allFieldsErr.setText(null);
+	    //dr info
+	    drNameErr.setText(null); 
+	    drCityErr.setText(null);
+	    drPhoneErr.setText(null);
+	    //sev
+	    sevMedErr.setText(null);
+	    sevAmtErr.setText(null);
+	    sevFreqErr.setText(null);
+	    //mod
+	    modMedErr.setText(null);
+    	modAmtErr.setText(null);
+    	modFreqErr.setText(null);
+    	//mild
+    	mildMedErr.setText(null);
+    	mildAmtErr.setText(null);
+    	mildFreqErr.setText(null);
+	    //Danni<end>---------------------------------------------------------------------------------------------------
 
 	    System.out.println("error check: current user reset " + activeUser.getuserName());
     }//end method
@@ -186,22 +207,22 @@ public class AAPController {
     	
     	//mildMed
 	    String mildMed = mildMedTF.getText();
-	    int mildAmt = Integer.parseInt(mildAmtTF.getText());
-	    int mildFreq = Integer.parseInt(mildFreqTF.getText());
-
+	    String mildAmt = mildAmtTF.getText();
+		String mildFreq = mildFreqTF.getText();
+	    
 	    //modMed
 	    String modMed = modMedTF.getText();
-	    int modAmt = Integer.parseInt(modAmtTF.getText());
-	    int modFreq = Integer.parseInt(modFreqTF.getText());
-
+	    String modAmt = modAmtTF.getText();
+		String modFreq = modFreqTF.getText();
+	    
 	    //sevMed
 	    String sevMed = sevMedTF.getText();
-	    int sevAmt = Integer.parseInt(sevAmtTF.getText());
-	    int sevFreq = Integer.parseInt(sevFreqTF.getText());
+	    String sevAmt = sevAmtTF.getText();
+		String sevFreq = sevFreqTF.getText();
 
 	    //dr info
 	    String drName = drNameTF.getText();
-	    int drPhone = Integer.parseInt(drPhoneTF.getText());
+	    String drPhone = drPhoneTF.getText();
 	    String drCity = drCityTF.getText();
 	    //Danni<start>-------------------------------------------------------------------------------------------------
 	    //check to see if all fields of one of the tabs is filled in
@@ -217,12 +238,21 @@ public class AAPController {
 	    
 	    allFieldsErr.setText(null);
 	    //checks for blank fields
-    	if((!mildMed.equals("") && !mia.equals("") && !mif.equals("")) || (!mildMed.equals("") 
-    			&& !moa.equals("") && !mof.equals("")) || (!sevMed.equals("") && !sea.equals("") && !sef.equals(""))
-    			&& (!drName.equals("") && !drphon.equals("") && !drCity.equals(""))){
+    	if(!mildMed.equals("") || !mia.equals("") || !mif.equals("")){
+    		mildMed = capitalizeName(mildMed);
+    		test = true;
+    	}else if(!modMed.equals("") && !moa.equals("") && !mof.equals("")){
+    		modMed = capitalizeName(modMed);
+    		test = true;
+    	}else if(!sevMed.equals("") && !sea.equals("") && !sef.equals("")){
+    		sevMed = capitalizeName(sevMed);
     		test = true;
     	}else{
-    		allFieldsErr.setText("Please fill in all fields.");
+    		allFieldsErr.setText("Please fill in all fields for severity info.");
+    		test = false;
+    	}
+    	if(drName.equals("") || drphon.equals("") || drCity.equals("")){
+    		allFieldsErr.setText("Please fill in all fields for doctor info.");
     		test = false;
     	}
     	
@@ -314,6 +344,8 @@ public class AAPController {
 			drCityErr.setText("Invalid city name. Cannot use special characters or numbers.");
 			test = false;
 		}
+		
+		//capitalizes names
 		drName = capitalizeName(drName);
 		drCity = capitalizeName(drCity);
 		
@@ -331,7 +363,8 @@ public class AAPController {
 			test = false;
 		}
     	//Danni<end>---------------------------------------------------------------------------------------------------
-    	//create an instance of your model and set the values into it
+		
+		//create an instance of your model and set the values into it
 		if(test == true){//Danni---------------------------------------------------------------------------------------
 			AAP newPlan = new AAP();
 	
@@ -357,8 +390,9 @@ public class AAPController {
 	
 	
 	    	//create a query
-	    	String AAP = "update aap set mildMed = ?, mildAmt = ?, mildFreq = ?, modMed = ?, modAmt = ?, modFreq = ?, sevMed = ?, sevAmt = ?, sevFreq = ?, drName = ?, drPhone = ?, drCity = ?"
-					+ "where uNameFK = ?";
+	    	String AAP = "UPDATE aap SET mildMed = ?, mildAmt = ?, mildFreq = ?, modMed = ?, modAmt = ?, "
+	    			+ "modFreq = ?, sevMed = ?, sevAmt = ?, sevFreq = ?, drName = ?, drPhone = ?, drCity = ?"
+					+ "WHERE uNameFK = ?";
 	
 	
 			//attempt to connect to database
@@ -368,22 +402,22 @@ public class AAPController {
 	
 				//mild
 				insertAAP.setString(1, newPlan.getMildMed());
-				insertAAP.setInt(2, newPlan.getMildAmt());
-				insertAAP.setInt(3, newPlan.getMildFreq());
+				insertAAP.setString(2, newPlan.getMildAmt());
+				insertAAP.setString(3, newPlan.getMildFreq());
 	
 				//mod
 				insertAAP.setString(4, newPlan.getModMed());
-				insertAAP.setInt(5, newPlan.getModAmt());
-				insertAAP.setInt(6, newPlan.getModFreq());
+				insertAAP.setString(5, newPlan.getModAmt());
+				insertAAP.setString(6, newPlan.getModFreq());
 	
 				//sev
 				insertAAP.setString(7, newPlan.getSevMed());
-				insertAAP.setInt(8, newPlan.getSevAmt());
-				insertAAP.setInt(9, newPlan.getSevFreq());
+				insertAAP.setString(8, newPlan.getSevAmt());
+				insertAAP.setString(9, newPlan.getSevFreq());
 	
 				//dr info
 				insertAAP.setString(10, newPlan.getDrName());
-				insertAAP.setInt(11, newPlan.getDrPhone());
+				insertAAP.setString(11, newPlan.getDrPhone());
 				insertAAP.setString(12, newPlan.getDrCity());
 	
 				insertAAP.setString(13, activeUser.getuserName());
@@ -397,6 +431,7 @@ public class AAPController {
 				System.out.println("error check: success! account updated " + newPlan);
 
 			}//try
+			allFieldsErr.setText("Your AAP information has been updated.");
 		}//if--Danni---------------------------------------------------------------------------------------------------
     }//end method
 
@@ -425,22 +460,22 @@ public class AAPController {
 
 		    	//mild
 				displayPlan.setMildMed(rs.getString("mildMed"));
-				displayPlan.setMildAmt(rs.getInt("mildAmt"));
-				displayPlan.setMildFreq(rs.getInt("mildFreq"));
+				displayPlan.setMildAmt(rs.getString("mildAmt"));
+				displayPlan.setMildFreq(rs.getString("mildFreq"));
 
 		    	//mod
 				displayPlan.setModMed(rs.getString("modMed"));
-				displayPlan.setModAmt(rs.getInt("modAmt"));
-				displayPlan.setModFreq(rs.getInt("modFreq"));
+				displayPlan.setModAmt(rs.getString("modAmt"));
+				displayPlan.setModFreq(rs.getString("modFreq"));
 
 		    	//sev
 				displayPlan.setSevMed(rs.getString("sevMed"));
-				displayPlan.setSevAmt(rs.getInt("sevAmt"));
-				displayPlan.setSevFreq(rs.getInt("sevFreq"));
+				displayPlan.setSevAmt(rs.getString("sevAmt"));
+				displayPlan.setSevFreq(rs.getString("sevFreq"));
 
 		    	//dr info
 				displayPlan.setDrName(rs.getString("drName"));
-				displayPlan.setDrPhone(rs.getInt("drPhone"));
+				displayPlan.setDrPhone(rs.getString("drPhone"));
 				displayPlan.setDrCity(rs.getString("drCity"));
 
 
