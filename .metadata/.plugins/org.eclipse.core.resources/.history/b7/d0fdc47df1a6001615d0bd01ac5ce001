@@ -73,8 +73,8 @@ public class AAPController {
     Parent root;
 
     //Danni<start>-----------------------------------------------------------------------------------------------------
-    @FXML private Label allFieldsErr, drNameErr, drCityErr, drPhoneErr, sevMedErr, sevAmtErr, sevFreqErr, modMedErr,
-    	modAmtErr, modFreqErr, mildMedErr, mildAmtErr, mildFreqErr;
+    @FXML private Label allFieldsErr, drNameErr, drCityErr, drPhoneErr, sevMedErr, sevAmtErr, sevFreqErr, modMedErr, modAmtErr, 
+    modFreqErr, mildMedErr, mildAmtErr, mildFreqErr;
     //Danni<end>-------------------------------------------------------------------------------------------------------
     
     //current user
@@ -88,7 +88,7 @@ public class AAPController {
     private Main main;
   	public void setMain(Main mainIn)
   	{
-  		main = mainIn;
+  		main=mainIn;
   	}
 
 

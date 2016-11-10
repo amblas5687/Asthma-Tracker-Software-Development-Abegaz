@@ -180,7 +180,7 @@ public class AsthmaController {
 			lblErrorbirthDate.setText("Incorrect date format.");
 			test = false;
 		}else if(month > 12 || month < 1 || day > 31 || day < 1 || year > 2017 || year < 1920 && !birthDate.equals("")){
-			lblErrorbirthDate.setText("Invalid date.");
+			lblErrorbirthDate.setText("Incorrect date.");
 			test = false;
 		}
 		

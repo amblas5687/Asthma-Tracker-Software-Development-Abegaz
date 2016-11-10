@@ -88,14 +88,14 @@ public class AAPController {
     private Main main;
   	public void setMain(Main mainIn)
   	{
-  		main = mainIn;
+  		main=mainIn;
   	}
 
 
   	//runs when initialized, grabs info from database and populates the textfields
   	// CHRISTIAN // This needs to handle cases where the user has not set up AAP yet,
   	// CHRISTIAN // whether by making a blank AAP as a place holder, or checking to see if they have one
-  	/*
+  	
 	@FXML
   	public void initialize() throws SQLException
   	{
@@ -120,7 +120,7 @@ public class AAPController {
 	    drPhoneTF.setText(Integer.toString(userPlan.getDrPhone()));
 	    drCityTF.setText(userPlan.getDrCity());
   	}//end method
-*/
+
 
 	//TODO need the fxml for main menu and the controller
   	//right now this is integrated personally
