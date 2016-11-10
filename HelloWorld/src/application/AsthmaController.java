@@ -1,4 +1,4 @@
-package controller;
+package application;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,36 +20,42 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Account;
+import application.Account;
 
 public class AsthmaController {
 	Main main = new Main();
+	//-----------------------------------------------------------------------------------------------------------------
 	//accessing the controls from .fxml file for inserting purpose
-	@FXML private TextField txtfirstName, txtlastName,txtuserName, txtgetUserName;
+	@FXML private TextField txtfirstName, txtlastName,txtuserName, txtgetUserName, txtbirthDate, txtfullName, txtrelation, txtphone, txtemail;
 	@FXML private PasswordField  txtpassword, txtconPassword, txtgetPassword;
-	@FXML private Button btnSubmit, btnSave, btngetLogIn, btnlogIn, btnCreateAccount;
-	@FXML private Label lblStatus, lblErrorallFields, lblErrorfirstName, lblErrorlastName, lblErroruserName,
-	lblErrorPassword, lblErrorlogIn, lblErrorgetUserName, lblErrorgetPassword;
+	@FXML private Button btnSubmit, btnNext, btngetLogIn, btngetLogIn1, btnlogIn, btnCreateAccount;
+	@FXML private Label lblStatus, lblErrorallFields1, lblErrorallFields2, lblErrorfirstName, lblErrorlastName, lblErroruserName,
+	lblErrorPassword, lblErrorbirthDate, lblErrorlogIn, lblErrorgetUserName, lblErrorgetPassword, lblErrorECname,
+	lblErrorECrelation, lblErrorECphone, lblErrorECemail;
 	Stage stage;
 	Scene scene;
 	Parent root;
-	ResultSet resultSet;
-
+	@FXML TabPane tabPane;
+	@FXML Tab tab1, tab2;
 	// EventHandler +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    //defines user object to enable the passing userName
+	//-----------------------------------------------------------------------------------------------------------------
+	//defines user object to enable the passing userName
 	public static Account curUser = new Account();//-Anna
-
-	//sets main in Main.java
+	//-----------------------------------------------------------------------------------------------------------------
+    //sets main in Main.java
 	public void setMain(Main mainIn)
 	{
 		main = mainIn;
 	}
-
+	//-----------------------------------------------------------------------------------------------------------------
 	/*Click Event which checks password & username, clears if error occurs, takes to LogIn view*/
-	public void ClickSubmitButton(ActionEvent event) throws SQLException {
-		String firstName, lastName, userName, password, conPassword;
+	public void ClickNextButton(ActionEvent event) throws SQLException {
+		String firstName, lastName, userName, password, conPassword, birthDate;
 		int password2, conPassword2;
 		boolean test = false;
 		firstName = txtfirstName.getText();
@@ -57,14 +63,15 @@ public class AsthmaController {
 		userName = txtuserName.getText();
 		password = txtpassword.getText();
 		conPassword = txtconPassword.getText();
+		birthDate = txtbirthDate.getText();
 
 		int plen = txtpassword.getLength();
 		int cplen = txtconPassword.getLength();
 
-		lblErrorallFields.setText(null);
+		lblErrorallFields1.setText(null);
 		if(firstName.equals("") || lastName.equals("") || userName.equals("") ||
-				password.equals("") || conPassword.equals("")){//catches when all or any field is blank
-			lblErrorallFields.setText("Please fill in all fields.");
+				password.equals("") || conPassword.equals("") || birthDate.equals("")){//catches when all or any field is blank
+			lblErrorallFields1.setText("Please fill in all fields.");
 			test = false;
 		}
 
@@ -100,7 +107,7 @@ public class AsthmaController {
 		}
 
 		//checks for special characters in firstName, lastName, and userName -> not allowed, except - or .
-		Pattern p = Pattern.compile("[^a-z0-9-\\.]", Pattern.CASE_INSENSITIVE);//regex, can test on regex101.com -> very useful
+		Pattern p = Pattern.compile("[^a-zA-Z0-9-\\.]");//regex, can test on regex101.com -> very useful
 		Matcher uName = p.matcher(userName);
 		Matcher fName = p.matcher(firstName);
 		Matcher lName = p.matcher(lastName);
@@ -136,7 +143,7 @@ public class AsthmaController {
 				}else if(password2 == conPassword2){//will insert account
 					test = true;
 				}else{//password does not equal confirmation password
-					lblErrorPassword.setText("Incorrect password confirmation. Please try again.");
+					lblErrorPassword.setText("Incorrect password confirmation.");
 					test = false;
 					txtpassword.setText(null);
 					txtconPassword.setText(null);
@@ -149,17 +156,115 @@ public class AsthmaController {
 				test = false;
 			}
 		}
+		lblErrorbirthDate.setText(null);
+		//error check for birthDate
+		Pattern p2 = Pattern.compile("[^0-9/]");
+		Matcher bDate = p2.matcher(birthDate);
+		boolean bDat = bDate.find();
+
+		if(bDat){
+			lblErrorbirthDate.setText("Birth Date must only contain numbers.");
+ 			test = false;
+		}
+		String string = birthDate;
+		String[] parts = string.split("/");
+		String part1 = parts[0]; //charAt(0) & charAr(1)
+		String part2 = parts[1];
+		String part3 = parts[2];
+		int month = Integer.parseInt(part1);
+		int day = Integer.parseInt(part2);
+		int year = Integer.parseInt(part3);
+		//System.out.println(month+":"+day+":"+year);//testing
+		if(birthDate.charAt(2) != '/'|| birthDate.charAt(5) != '/'|| birthDate.length() != 10
+				&& !birthDate.equals("")){
+			lblErrorbirthDate.setText("Incorrect date format.");
+			test = false;
+		}else if(month > 12 || month < 1 || day > 31 || day < 1 || year > 2017 || year < 1920 && !birthDate.equals("")){
+			lblErrorbirthDate.setText("Incorrect date.");
+			test = false;
+		}
+
 		//will only insert account if everything checks out
+		if(test == true){
+			tabPane.getSelectionModel().select(tab2);
+		}
+	}
+	//-----------------------------------------------------------------------------------------------------------------
+	//if all error checking is passed all data is inserted into account
+	public void ClickSubmitButton(ActionEvent event) throws SQLException {
+		String fullName, relation, phone, email;
+		fullName = txtfullName.getText();
+		relation = txtrelation.getText();
+		phone = txtphone.getText();
+		email = txtemail.getText();
+		boolean test = false;
+		lblErrorallFields2.setText(null);
+		if(fullName.equals("") || relation.equals("") || phone.equals("") || email.equals("")){
+			lblErrorallFields2.setText("Please fill in all fields.");
+			test = false;
+		}else{
+			test = true;
+		}
+		lblErrorECname.setText(null);
+		//checks for to make sure full name only consists of letters, ., -, and spaces
+		Pattern p = Pattern.compile("[^a-zA-Z-\\.\\s]");
+		Matcher fuName = p.matcher(fullName);
+		boolean fun = fuName.find();
+		if(fun){
+			lblErrorECname.setText("Invalid full name. Cannot use special characters or numbers.");
+			test = false;
+		}
+		lblErrorECrelation.setText(null);
+		//checks to make sure relation only contains letters, -, and spaces
+		Pattern p2 = Pattern.compile("[^a-zA-Z-\\s]");
+		Matcher relat = p2.matcher(relation);
+		boolean rel = relat.find();
+		if(rel){
+			lblErrorECrelation.setText("Invalid relation. Cannot use special characters or numbers.");
+			test = false;
+		}
+		lblErrorECphone.setText(null);
+		//checks to make sure phone number only consists of numbers and -
+		Pattern p3 = Pattern.compile("[^0-9-]");
+		Matcher phon = p3.matcher(phone);
+		boolean pho = phon.find();
+		if(pho){
+			lblErrorECphone.setText("Invalid phone number. Phone number must consist of numbers only.");
+			test = false;
+		}
+		if(phone.charAt(3) != '-' || phone.charAt(7) != '-' || phone.length() != 12 && !phone.equals("")){
+			lblErrorECphone.setText("Incorrect phone number format.");
+			test = false;
+		}
+		lblErrorECemail.setText(null);
+		//checks to make sure email consists of at least one @ and .
+		String s = email;
+		int count = 0;
+		for( int i = 0; i < s.length(); i++ ) {
+		    if( s.charAt(i) == '@' ) {
+		        count++;
+		    }
+		}
+		int counter = 0;
+		for( int i = 0; i < s.length(); i++ ) {
+		    if( s.charAt(i) == '.' ) {
+		        counter++;
+		    }
+		}
+		if(count < 1 || counter < 1 || s.length() < 5 && !email.equals("")){
+			lblErrorECemail.setText("Invalid email address.");
+			test = false;
+		}
 		if(test == true){
 			insertAccount(event);
 		}
 	}
-
+	//-----------------------------------------------------------------------------------------------------------------
 	//capitalizes first letter in name
 	public String capitalizeName(String name){
 			return name.substring(0,1).toUpperCase() + name.substring(1);//.toLowerCase();
 	}
-
+	//-----------------------------------------------------------------------------------------------------------------
 	//log in button clicked on CreateAccount page, takes you to LogIn page
 	public void ClickgetLogInButton(ActionEvent event) throws Exception {
 		stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
@@ -167,7 +272,7 @@ public class AsthmaController {
 		scene = new Scene(root);
 		stage.setScene(scene);
 	}
-
+	//-----------------------------------------------------------------------------------------------------------------
 	//takes you from the LogIn page to the CreateAccount page
 	public void ClickgotoCreateAccountButton(ActionEvent event) throws Exception {
 		stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
@@ -175,9 +280,9 @@ public class AsthmaController {
 		scene = new Scene(root);
 		stage.setScene(scene);
 	}
-
+	//-----------------------------------------------------------------------------------------------------------------
 	/* Checks userName and password against database userNames */
-	public boolean checkLogIn(String userName, String password) throws SQLException{
+	public boolean checkLogIn(String userName, String password) throws SQLException{//having issues:it's trying to look for a column name rather than a value in that column
 		boolean logIn = false;
 		boolean missing_credentials = false;
 		lblErrorgetUserName.setText(null);
@@ -223,13 +328,31 @@ public class AsthmaController {
 		}
 		return logIn;
 	}
+	//-----------------------------------------------------------------------------------------------------------------
+	//Click Log In button on Log In page, takes you to main view page
+	public void ClicklogInButton(ActionEvent event) throws Exception {
+		String userName, password;
+		userName = txtgetUserName.getText();
+		password = txtgetPassword.getText();
+		lblErrorlogIn.setText(null);
+		if(checkLogIn(userName, password)){
+			setCurrentUserInfo(userName);
 
+			stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("/application/AAPView.fxml"));
+			scene = new Scene(root);
+			stage.setScene(scene);
+		}else{
+			if(!userName.equals("") && !password.equals("")){
+				lblErrorlogIn.setText("Incorrect user name or password.");
+			}
+		}
+	}
+	//-----------------------------------------------------------------------------------------------------------------
 	//gets and sets current users
 	public void setCurrentUserInfo(String curUserName) throws SQLException{
-
 		//String currentUser = curUser;//mod by Anna
 		//return curUser;//mod by Anna
-
 		String SQLQuery = "SELECT * FROM `account` WHERE account.userName=" + "'"+curUserName+"'";
 		ResultSet rs = null;
 
@@ -244,75 +367,53 @@ public class AsthmaController {
 			if (rs.next())
 			{
 				//create an instance of your model
-	        		curUser.setfirstName(rs.getString("firstName"));
-	        		curUser.setlastName(rs.getString("lastName"));
-	        		curUser.setuserName(rs.getString("userName"));
-	        		System.out.println("error check: current user " + curUser.getfirstName() + " " + curUser.getlastName() + " " +curUser.getuserName());//-Anna
+	        	curUser.setfirstName(rs.getString("firstName"));
+	        	curUser.setlastName(rs.getString("lastName"));
+		   		curUser.setuserName(rs.getString("userName"));
+	       		System.out.println("error check: current user " + curUser.getfirstName() + " " + curUser.getlastName() + " " +curUser.getuserName());//-Anna
 			}//if
 			else
 			{
 				curUser.setfirstName(null);
-        			curUser.setlastName(null);
-        			curUser.setuserName(null);
-        			System.out.println("current user not found" + curUser);
+      			curUser.setlastName(null);
+     			curUser.setuserName(null);
+	  			System.out.println("current user not found" + curUser);
 			}
-		}catch(SQLException ex)//try
-		{
+		}catch(SQLException ex){//try
 			ex.printStackTrace();
-		}finally //catch
-		{
+		}finally{//catch
 			if(rs != null)
 			{
 				rs.close();
 			}
 		}//finally
 	}
-
-	//Click Log In button on Log In page, takes you to main view page
-	public void ClicklogInButton(ActionEvent event) throws Exception {
-		String userName, password;
-		userName = txtgetUserName.getText();
-		password = txtgetPassword.getText();
-		lblErrorlogIn.setText(null);
-		if(checkLogIn(userName, password)){
-			setCurrentUserInfo(userName);
-
-			stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-			root = FXMLLoader.load(getClass().getResource("/view/MainView.fxml"));
-			scene = new Scene(root);
-			stage.setScene(scene);
-		}else{
-			if(!userName.equals("") && !password.equals("")){
-				lblErrorlogIn.setText("Incorrect user name or password.");
-			}
-		}
-	}
-
+	//-----------------------------------------------------------------------------------------------------------------
 	/* Insert a row to Account table of Database -> populates: firstName, lastName, userName, password */
 	private void insertAccount(ActionEvent event) throws MySQLIntegrityConstraintViolationException, SQLException {
-		String query = "insert into account " + "(firstName,lastName,userName, password) "
-				+ "values(?,?,?,?)";
-		String BreathUser = "INSERT INTO `asthmatrackerdb`.`clicktracker` (`userNameFK`) VALUES (?)";//query to add row in clicktracker-Anna
-		String AAPUser = "INSERT INTO `asthmatrackerdb`.`aap` (`uNameFK`) VALUES (?)";//query to add row in app-Anna
-
+		String query = "insert into account " + "(firstName, lastName, userName, password, birthDate, fullName, relation, phone, email) "
+				+ "values(?,?,?,?,?,?,?,?,?)";
 		ResultSet keys = null;
 		try (Connection conn = DBConfig.getConnection();
-				PreparedStatement insertAccount = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-		    		PreparedStatement insertClicktracker = conn.prepareStatement(BreathUser, Statement.RETURN_GENERATED_KEYS);//-Anna
-				PreparedStatement insertAAP = conn.prepareStatement(AAPUser, Statement.RETURN_GENERATED_KEYS))//-Anna
-
-		{
+				PreparedStatement insertAccount = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
 
 			// get values from the TextField controls
-			String firstName, lastName, userName, password;
+			String firstName, lastName, userName, password, birthDate, fullName, relation, phone, email;
 			firstName = txtfirstName.getText();
 			lastName = txtlastName.getText();
 			userName = txtuserName.getText();
 			password = txtpassword.getText();
+			birthDate = txtbirthDate.getText();
+			fullName = txtfullName.getText();
+			relation = txtrelation.getText();
+			phone = txtphone.getText();
+			email = txtemail.getText();
 
 			//capitalize first and last name
 			firstName = capitalizeName(firstName);
 			lastName = capitalizeName(lastName);
+			fullName = capitalizeName(fullName);
+			relation = capitalizeName(relation);
 
 			// working on model, creating a model and setting values into it
 			Account account = new Account();
@@ -320,32 +421,26 @@ public class AsthmaController {
 			account.setlastName(lastName);
 			account.setuserName(userName);
 			account.setpassword(password);
+			account.setbirthDate(birthDate);
+			account.setfullName(fullName);
+			account.setrelation(relation);
+			account.setphone(phone);
+			account.setemail(email);
 
 			//insertAccount object of PreparedStatement that passes data from the model to the database
 			insertAccount.setString(1, account.getfirstName());
 			insertAccount.setString(2, account.getlastName());
 			insertAccount.setString(3, account.getuserName());
 			insertAccount.setString(4, account.getpassword());
+			insertAccount.setString(5, account.getbirthDate());
+			insertAccount.setString(6, account.getfullName());
+			insertAccount.setString(7, account.getrelation());
+			insertAccount.setString(8, account.getphone());
+			insertAccount.setString(9, account.getemail());
 
 			// get the number of return rows, will return 0 if successful
 			int affectedRow = insertAccount.executeUpdate();
 			System.out.println(affectedRow);
-
-			//set for clicktracker and update-Anna
-			insertClicktracker.setString(1, account.getuserName());
-			insertClicktracker.executeUpdate();
-
-			//set for app and update-Anna
-			insertAAP.setString(1, account.getuserName());
-			insertAAP.executeUpdate();
-
-			//set for clicktracker and update-Anna
-			insertClicktracker.setString(1, account.getuserName());
-			insertClicktracker.executeUpdate();
-
-			//set for app and update-Anna
-			insertAAP.setString(1, account.getuserName());
-			insertAAP.executeUpdate();
 
 			//Once we enter the data, we need to clear our UI so as to accept  the next input
 			if (affectedRow == 1) {
@@ -356,6 +451,11 @@ public class AsthmaController {
 				txtuserName.setText(null);
 				txtpassword.setText(null);
 				txtconPassword.setText(null);
+				txtbirthDate.setText(null);
+				txtfullName.setText(null);
+				txtrelation.setText(null);
+				txtphone.setText(null);
+				txtemail.setText(null);
 
 				//takes user to personal info page
 				stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
@@ -365,7 +465,8 @@ public class AsthmaController {
 				}
 		  //catches entered userNames that are already in the database
 		} catch (MySQLIntegrityConstraintViolationException e) {
-			lblErroruserName.setText("That User Name is taken. Please try again.");
+			lblErroruserName.setText("That User Name is taken.");
+			tabPane.getSelectionModel().select(tab1);
 			txtuserName.setText(null);
 		} catch (Exception e){//catches other exceptions
 			lblStatus.setText("Status: operation failed due to: " + e.getMessage());
@@ -377,5 +478,5 @@ public class AsthmaController {
 			}
 		}
 	}
-
+	//-----------------------------------------------------------------------------------------------------------------
 }
