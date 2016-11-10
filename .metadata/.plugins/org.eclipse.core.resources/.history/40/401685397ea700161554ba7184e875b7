@@ -336,7 +336,6 @@ public class AsthmaController {
 		lblErrorlogIn.setText(null);
 		if(checkLogIn(userName, password)){ 
 			setCurrentUserInfo(userName);
-			resetBreathZero(userName);
 			
 			stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("/view/MainView.fxml"));
