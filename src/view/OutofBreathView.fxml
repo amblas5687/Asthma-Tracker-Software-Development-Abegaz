@@ -5,25 +5,34 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="669.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OutOfBreathController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="732.0" styleClass="welcomestyle" stylesheets="@../application/application.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OutOfBreathController">
    <center>
-      <VBox alignment="CENTER" prefHeight="272.0" prefWidth="580.0" spacing="80.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="299.0" prefWidth="712.0" spacing="80.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Every time you feel like you can't breathe, click this handy button.">
                <font>
-                  <Font name="Georgia" size="16.0" />
+                  <Font name="Georgia Bold" size="16.0" />
                </font>
             </Label>
-            <Button fx:id="outBreathBTN" alignment="CENTER" mnemonicParsing="false" onAction="#countOutOfBreath" text="I can't breathe!">
+            <Button fx:id="outBreathBTN" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#countOutOfBreath" prefHeight="85.0" prefWidth="172.0" style="-fx-background-color: #da0000;" stylesheets="@../application/application.css" text="I can't breathe!" textFill="WHITE">
                <font>
                   <Font name="Georgia Bold Italic" size="16.0" />
                </font>
+               <effect>
+                  <DropShadow height="134.325" radius="71.73875" width="154.63">
+                     <input>
+                        <Blend mode="BLUE" />
+                     </input>
+                  </DropShadow>
+               </effect>
             </Button>
             <Label fx:id="breathCountLBL" alignment="CENTER" text="Current count: 0">
                <font>
@@ -41,11 +50,11 @@
    <bottom>
       <HBox alignment="CENTER" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="resetBTN" alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#resetOutOfBreath" text="Reset Count">
+          <Button fx:id="backMainBTN" mnemonicParsing="false" onAction="#returnToMain" text="Back to Main">
                <font>
                   <Font name="Georgia" size="15.0" />
                </font></Button>
-          <Button fx:id="backMainBTN" mnemonicParsing="false" onAction="#returnToMain" text="Back to Main">
+            <Button fx:id="resetBTN" alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#resetOutOfBreath" text="Reset Count">
                <font>
                   <Font name="Georgia" size="15.0" />
                </font></Button>
@@ -53,14 +62,14 @@
       </HBox>
    </bottom>
    <top>
-      <AnchorPane prefHeight="78.0" prefWidth="649.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="86.0" prefWidth="712.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="177.0" layoutY="34.0" text="Out of Breath Clicker">
+            <Label layoutX="208.0" layoutY="29.0" text="Out of Breath Clicker" textFill="#452bbb">
                <font>
                   <Font name="Poor Richard" size="36.0" />
                </font>
             </Label>
-            <Button layoutX="568.0" layoutY="3.0" mnemonicParsing="false" text="Log Out">
+            <Button layoutX="621.0" layoutY="14.0" mnemonicParsing="false" text="Log Out">
                <font>
                   <Font name="Georgia Bold" size="14.0" />
                </font></Button>
