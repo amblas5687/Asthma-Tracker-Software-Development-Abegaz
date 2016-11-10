@@ -241,59 +241,14 @@ public class AAPController {
 		boolean se1 = sem.find();
 		if(mi1){
 			mildMedErr.setText("Invalid medicine type. Cannot contain special characters or numbers.");
-			test = false;
 		}
 		if(mo1){
 			modMedErr.setText("Invalid medicine type. Cannot contain special characters or numbers.");
-			test = false;
 		}
 		if(se1){
 			sevMedErr.setText("Invalid medicine type. Cannot contain special characters or numbers.");
-			test = false;
 		}
 		
-		mildAmtErr.setText(null);
-		mildFreqErr.setText(null);
-		modAmtErr.setText(null);
-		modFreqErr.setText(null);
-		sevAmtErr.setText(null);
-		sevFreqErr.setText(null);
-		//checks for anything that isn't a number in
-    	Pattern p4 = Pattern.compile("[^0-9]");
-    	//mild
-    	Matcher mia2 = p4.matcher(mia);
-    	Matcher mif2 = p4.matcher(mif);
-    	boolean mi2 = mia2.find();
-    	boolean mi3 = mif2.find();
-    	if(mi2){
-    		mildAmtErr.setText("Amount must consist of only numbers.");
-    	}
-    	if(mi3){
-    		mildFreqErr.setText("Frequency must consist of only numbers.");
-    	}
-    	//moderate
-    	Matcher moa2 = p4.matcher(moa);
-    	Matcher mof2 = p4.matcher(mof);
-    	boolean mo2 = moa2.find();
-    	boolean mo3 = mof2.find();
-    	if(mo2){
-    		modAmtErr.setText("Amount must consist of only numbers.");
-    	}
-    	if(mo3){
-    		modFreqErr.setText("Frequency must consist of only numbers.");
-    	}
-    	//severe
-    	Matcher sea2 = p4.matcher(sea);
-    	Matcher sef2 = p4.matcher(sef);
-    	boolean se2 = sea2.find();
-    	boolean se3 = sef2.find();
-    	if(se2){
-    		sevAmtErr.setText("Amount must consist of only numbers.");
-    	}
-    	if(se3){
-    		sevFreqErr.setText("Frequency must consist of only numbers.");
-    	}
-    	
     	drNameErr.setText(null);
     	drCityErr.setText(null);
     	//checks for special characters and number in drName and drCity
@@ -308,7 +263,6 @@ public class AAPController {
 		}
 		if(dc){
 			drCityErr.setText("Invalid city name. Cannot use special characters or numbers.");
-			test = false;
 		}
 		drName = capitalizeName(drName);
 		drCity = capitalizeName(drCity);
