@@ -267,11 +267,9 @@ public class AAPController {
     	boolean mi3 = mif2.find();
     	if(mi2){
     		mildAmtErr.setText("Amount must consist of only numbers.");
-    		test = false;
     	}
     	if(mi3){
     		mildFreqErr.setText("Frequency must consist of only numbers.");
-    		test = false;
     	}
     	//moderate
     	Matcher moa2 = p4.matcher(moa);
@@ -280,11 +278,9 @@ public class AAPController {
     	boolean mo3 = mof2.find();
     	if(mo2){
     		modAmtErr.setText("Amount must consist of only numbers.");
-    		test = false;
     	}
     	if(mo3){
     		modFreqErr.setText("Frequency must consist of only numbers.");
-    		test = false;
     	}
     	//severe
     	Matcher sea2 = p4.matcher(sea);
@@ -293,11 +289,9 @@ public class AAPController {
     	boolean se3 = sef2.find();
     	if(se2){
     		sevAmtErr.setText("Amount must consist of only numbers.");
-    		test = false;
     	}
     	if(se3){
     		sevFreqErr.setText("Frequency must consist of only numbers.");
-    		test = false;
     	}
     	
     	drNameErr.setText(null);
