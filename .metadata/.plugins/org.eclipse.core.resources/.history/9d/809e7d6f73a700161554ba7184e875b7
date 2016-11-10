@@ -361,10 +361,10 @@ public class AAPController {
 		if(drphon.length() != 12 && !drphon.equals("")){
 			drPhoneErr.setText("Incorrect phone number length.");
 			test = false;
-		}else if(drphon.charAt(3) != '-' || drphon.charAt(7) != '-' && !drphon.equals("") ){
+		}/*else if(drphon.charAt(3) != '-' || drphon.charAt(7) != '-' && !drphon.equals("") ){
 			drPhoneErr.setText("Incorrect phone number format.");
 			test = false;
-		}
+		}*/
     	//Danni<end>---------------------------------------------------------------------------------------------------
 		
 		//create an instance of your model and set the values into it

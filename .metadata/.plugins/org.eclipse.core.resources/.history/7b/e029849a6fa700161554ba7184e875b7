@@ -390,18 +390,15 @@ public class AsthmaController {
 	//-----------------------------------------------------------------------------------------------------------------
 	/* Insert a row to Account table of Database -> populates: firstName, lastName, userName, password */
 	private void insertAccount(ActionEvent event) throws MySQLIntegrityConstraintViolationException, SQLException {
-		String query = "insert into account " + "(firstName, lastName, userName, password, "
-				+ "birthDate, fullName, relation, phone, email) " + "values(?,?,?,?,?,?,?,?,?)";
-		String BreathUser = "INSERT INTO `asthmatrackerdb`.`clicktracker` (`userNameFK`) VALUES (?)";//query to add row in clicktracker-Anna
-		String AAPUser = "INSERT INTO `asthmatrackerdb`.`aap` (`uNameFK`) VALUES (?)";//query to add row in app-Anna
-
+		String query = "insert into account " + "(firstName, lastName, userName, password, birthDate, fullName, relation, phone, email) "
+				+ "values(?,?,?,?,?,?,?,?,?)";
+		String aap = "insert into aap" + "(mildMed, mildAmt, mildFreq, modMed, modAmt, "
+	    			+ "modFreq, sevMed, sevAmt, sevFreq, drName, drPhone, drCity"
+					+ "WHERE uNameFK" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		ResultSet keys = null;
 		try (Connection conn = DBConfig.getConnection();
-				PreparedStatement insertAccount = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-		    		PreparedStatement insertClicktracker = conn.prepareStatement(BreathUser, Statement.RETURN_GENERATED_KEYS);//-Anna
-				PreparedStatement insertAAP = conn.prepareStatement(AAPUser, Statement.RETURN_GENERATED_KEYS))//-Anna
-
-		{	
+				PreparedStatement insertAccount = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
+			
 			// get values from the TextField controls
 			String firstName, lastName, userName, password, birthDate, fullName, relation, phone, email;
 			firstName = txtfirstName.getText();
@@ -447,15 +444,6 @@ public class AsthmaController {
 			int affectedRow = insertAccount.executeUpdate();
 			System.out.println(affectedRow);
 			
-			//set for clicktracker and update-Anna
-			insertClicktracker.setString(1, account.getuserName());
-			insertClicktracker.executeUpdate();
-			
-			//set for app and update-Anna
-			insertAAP.setString(1, account.getuserName());
-			insertAAP.executeUpdate();
-
-			
 			//Once we enter the data, we need to clear our UI so as to accept  the next input
 			if (affectedRow == 1) {
 				
@@ -493,27 +481,4 @@ public class AsthmaController {
 		}
 	}
 	//-----------------------------------------------------------------------------------------------------------------
-	//when user logs in, resets breath count to 0-Anna
-		public void resetBreathZero(String username)
-		{
-			String zeroQuery = "update clicktracker set clicks = 0 where userNameFK = ?";
-
-	    	//attempt to connect to database
-			try (Connection conn = DBConfig.getConnection();
-					PreparedStatement setZero = conn.prepareStatement(zeroQuery);
-				)
-			{
-				
-				setZero.setString(1, username);
-
-				//execute update
-				setZero.executeUpdate();
-
-				System.out.println("error check: success! breath reset to 0! user:  " + username);
-
-			} catch (Exception e) {
-
-				System.out.println("Error: " + e);
-			}
-		}//end method
 }

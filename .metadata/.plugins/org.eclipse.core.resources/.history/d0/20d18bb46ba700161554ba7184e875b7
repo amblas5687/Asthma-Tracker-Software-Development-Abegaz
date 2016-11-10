@@ -254,10 +254,6 @@ public class AAPController {
     	if(drName.equals("") || drphon.equals("") || drCity.equals("")){
     		allFieldsErr.setText("Please fill in all fields for doctor info.");
     		test = false;
-    	}else{
-    		//capitalizes names
-    		drName = capitalizeName(drName);
-    		drCity = capitalizeName(drCity);
     	}
     	
     	mildMedErr.setText(null);
@@ -349,6 +345,10 @@ public class AAPController {
 			test = false;
 		}
 		
+		//capitalizes names
+		drName = capitalizeName(drName);
+		drCity = capitalizeName(drCity);
+		
 		drPhoneErr.setText(null);
 		//checks to make sure phone number only consists of numbers and -
 		Pattern p2 = Pattern.compile("[^0-9-]");
@@ -358,10 +358,7 @@ public class AAPController {
 			drPhoneErr.setText("Invalid phone number. Phone number must consist of numbers only.");
 			test = false;
 		}
-		if(drphon.length() != 12 && !drphon.equals("")){
-			drPhoneErr.setText("Incorrect phone number length.");
-			test = false;
-		}else if(drphon.charAt(3) != '-' || drphon.charAt(7) != '-' && !drphon.equals("") ){
+		if(drphon.charAt(3) != '-' || drphon.charAt(7) != '-' || drphon.length() != 12 && !drphon.equals("")){
 			drPhoneErr.setText("Incorrect phone number format.");
 			test = false;
 		}
@@ -413,12 +410,12 @@ public class AAPController {
 				insertAAP.setString(5, newPlan.getModAmt());
 				insertAAP.setString(6, newPlan.getModFreq());
 	
-				//severe
+				//sev
 				insertAAP.setString(7, newPlan.getSevMed());
 				insertAAP.setString(8, newPlan.getSevAmt());
 				insertAAP.setString(9, newPlan.getSevFreq());
 	
-				//doctor info
+				//dr info
 				insertAAP.setString(10, newPlan.getDrName());
 				insertAAP.setString(11, newPlan.getDrPhone());
 				insertAAP.setString(12, newPlan.getDrCity());
@@ -433,10 +430,7 @@ public class AAPController {
 				System.out.println("error check: current user updated " + activeUser.getuserName());
 				System.out.println("error check: success! account updated " + newPlan);
 
-			}catch(SQLException ex)//try
-			{
-				DBConfig.displayException(ex);
-			}
+			}//try
 			allFieldsErr.setText("Your AAP information has been updated.");
 		}//if--Danni---------------------------------------------------------------------------------------------------
     }//end method

@@ -242,10 +242,10 @@ public class AAPController {
     		mildMed = capitalizeName(mildMed);
     		test = true;
     	}else if(!modMed.equals("") && !moa.equals("") && !mof.equals("")){
-    		modMed = capitalizeName(modMed);
+    		//modMed = capitalizeName(modMed);
     		test = true;
     	}else if(!sevMed.equals("") && !sea.equals("") && !sef.equals("")){
-    		sevMed = capitalizeName(sevMed);
+    		//sevMed = capitalizeName(sevMed);
     		test = true;
     	}else{
     		allFieldsErr.setText("Please fill in all fields for severity info.");
@@ -254,10 +254,6 @@ public class AAPController {
     	if(drName.equals("") || drphon.equals("") || drCity.equals("")){
     		allFieldsErr.setText("Please fill in all fields for doctor info.");
     		test = false;
-    	}else{
-    		//capitalizes names
-    		drName = capitalizeName(drName);
-    		drCity = capitalizeName(drCity);
     	}
     	
     	mildMedErr.setText(null);
@@ -349,6 +345,10 @@ public class AAPController {
 			test = false;
 		}
 		
+		//capitalizes names
+		//drName = capitalizeName(drName);
+		//drCity = capitalizeName(drCity);
+		
 		drPhoneErr.setText(null);
 		//checks to make sure phone number only consists of numbers and -
 		Pattern p2 = Pattern.compile("[^0-9-]");
@@ -358,10 +358,7 @@ public class AAPController {
 			drPhoneErr.setText("Invalid phone number. Phone number must consist of numbers only.");
 			test = false;
 		}
-		if(drphon.length() != 12 && !drphon.equals("")){
-			drPhoneErr.setText("Incorrect phone number length.");
-			test = false;
-		}else if(drphon.charAt(3) != '-' || drphon.charAt(7) != '-' && !drphon.equals("") ){
+		if(drphon.charAt(3) != '-' || drphon.charAt(7) != '-' || drphon.length() != 12 && !drphon.equals("")){
 			drPhoneErr.setText("Incorrect phone number format.");
 			test = false;
 		}
