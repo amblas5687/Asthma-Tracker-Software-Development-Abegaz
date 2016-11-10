@@ -255,7 +255,6 @@ public class AsthmaController {
 			test = false;
 		}else if(s.length() > 30){
 			lblErrorECemail.setText("Email is too long. Cannot exceed 30 characters.");
-			test = false;
 		}
 		if(test == true){
 			insertAccount(event);

@@ -253,9 +253,6 @@ public class AsthmaController {
 		if(count < 1 || counter < 1 || s.length() < 5 && !email.equals("")){
 			lblErrorECemail.setText("Invalid email address.");
 			test = false;
-		}else if(s.length() > 30){
-			lblErrorECemail.setText("Email is too long. Cannot exceed 30 characters.");
-			test = false;
 		}
 		if(test == true){
 			insertAccount(event);
@@ -489,7 +486,6 @@ public class AsthmaController {
 		} catch (Exception e){//catches other exceptions
 			lblStatus.setText("Status: operation failed due to: " + e.getMessage());
 			System.out.println("Here hs the error "+ e.getMessage());
-			e.printStackTrace();
 			
 		} finally {
 			if (keys != null) {
