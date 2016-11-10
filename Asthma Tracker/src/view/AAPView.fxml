@@ -84,9 +84,9 @@
                               <Font name="Georgia" size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="mildMedTF" layoutX="216.0" layoutY="66.0" prefHeight="31.0" prefWidth="273.0" />
-                        <TextField fx:id="mildAmtTF" layoutX="216.0" layoutY="148.0" prefHeight="31.0" prefWidth="273.0" />
-                        <TextField fx:id="mildFreqTF" layoutX="216.0" layoutY="239.0" prefHeight="31.0" prefWidth="273.0" />
+                        <TextField fx:id="mildMedTF" layoutX="216.0" layoutY="66.0" prefHeight="31.0" prefWidth="273.0" promptText="Medicine" />
+                        <TextField fx:id="mildAmtTF" layoutX="216.0" layoutY="148.0" prefHeight="31.0" prefWidth="273.0" promptText="Number per Dose" />
+                        <TextField fx:id="mildFreqTF" layoutX="216.0" layoutY="239.0" prefHeight="31.0" prefWidth="273.0" promptText="Times per Day" />
                         <Label fx:id="mildMedErr" layoutX="190.0" layoutY="104.0" textFill="RED">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
@@ -139,9 +139,9 @@
                               <Font name="Georgia" size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="modMedTF" layoutX="216.0" layoutY="66.0" prefHeight="31.0" prefWidth="273.0" />
-                        <TextField fx:id="modAmtTF" layoutX="216.0" layoutY="148.0" prefHeight="31.0" prefWidth="273.0" />
-                        <TextField fx:id="modFreqTF" layoutX="216.0" layoutY="239.0" prefHeight="31.0" prefWidth="273.0" />
+                        <TextField fx:id="modMedTF" layoutX="216.0" layoutY="66.0" prefHeight="31.0" prefWidth="273.0" promptText="Medicine" />
+                        <TextField fx:id="modAmtTF" layoutX="216.0" layoutY="148.0" prefHeight="31.0" prefWidth="273.0" promptText="Number per Dose" />
+                        <TextField fx:id="modFreqTF" layoutX="216.0" layoutY="239.0" prefHeight="31.0" prefWidth="273.0" promptText="Times per Day" />
                         <Label fx:id="modMedErr" layoutX="190.0" layoutY="104.0" textFill="RED">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
@@ -194,9 +194,9 @@
                               <Font name="Georgia" size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="sevMedTF" layoutX="217.0" layoutY="66.0" prefHeight="31.0" prefWidth="273.0" />
-                        <TextField fx:id="sevAmtTF" layoutX="216.0" layoutY="148.0" prefHeight="31.0" prefWidth="273.0" />
-                        <TextField fx:id="sevFreqTF" layoutX="216.0" layoutY="239.0" prefHeight="31.0" prefWidth="273.0" />
+                        <TextField fx:id="sevMedTF" layoutX="217.0" layoutY="66.0" prefHeight="31.0" prefWidth="273.0" promptText="Medicine" />
+                        <TextField fx:id="sevAmtTF" layoutX="216.0" layoutY="148.0" prefHeight="31.0" prefWidth="273.0" promptText="Number per Dose" />
+                        <TextField fx:id="sevFreqTF" layoutX="216.0" layoutY="239.0" prefHeight="31.0" prefWidth="273.0" promptText="Times per Day" />
                         <Label fx:id="sevMedErr" layoutX="190.0" layoutY="104.0" textFill="RED">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
@@ -249,9 +249,9 @@
                               <Font name="Georgia" size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="drNameTF" layoutX="216.0" layoutY="67.0" prefHeight="31.0" prefWidth="273.0" />
-                        <TextField fx:id="drPhoneTF" layoutX="216.0" layoutY="149.0" prefHeight="31.0" prefWidth="273.0" />
-                        <TextField fx:id="drCityTF" layoutX="216.0" layoutY="240.0" prefHeight="31.0" prefWidth="273.0" />
+                        <TextField fx:id="drNameTF" layoutX="216.0" layoutY="67.0" prefHeight="31.0" prefWidth="273.0" promptText="e.g John Smith" />
+                        <TextField fx:id="drPhoneTF" layoutX="216.0" layoutY="149.0" prefHeight="31.0" prefWidth="273.0" promptText="555-555-1234" />
+                        <TextField fx:id="drCityTF" layoutX="216.0" layoutY="240.0" prefHeight="31.0" prefWidth="273.0" promptText="e.g. New York" />
                         <Label fx:id="drNameErr" layoutX="190.0" layoutY="104.0" textFill="RED">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
