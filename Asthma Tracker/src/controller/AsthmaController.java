@@ -160,29 +160,43 @@ public class AsthmaController {
 		Pattern p2 = Pattern.compile("[^0-9/]");
 		Matcher bDate = p2.matcher(birthDate);
 		boolean bDat = bDate.find();
-
+		
+		String string = birthDate;
+		int count = 0;
+		for( int i = 0; i < string.length(); i++ ) {
+		    if( string.charAt(i) == '/' ) {
+		        count++;
+		    } 
+		}
+		
 		if(bDat){
 			lblErrorbirthDate.setText("Birth Date must only contain numbers.");
  			test = false;
-		}
-		String string = birthDate;
-		String[] parts = string.split("/");
-		String part1 = parts[0]; //charAt(0) & charAr(1)
-		String part2 = parts[1];
-		String part3 = parts[2];
-		int month = Integer.parseInt(part1);
-		int day = Integer.parseInt(part2);
-		int year = Integer.parseInt(part3);
-		//System.out.println(month+":"+day+":"+year);//testing
-		if(birthDate.charAt(2) != '/'|| birthDate.charAt(5) != '/'|| birthDate.length() != 10 
-				&& !birthDate.equals("")){
-			lblErrorbirthDate.setText("Incorrect date format.");
+		}else if(count == 0 || count == 1 && !birthDate.equals("")){
+			lblErrorbirthDate.setText("Date format required.");
 			test = false;
-		}else if(month > 12 || month < 1 || day > 31 || day < 1 || year > 2017 || year < 1920 && !birthDate.equals("")){
-			lblErrorbirthDate.setText("Invalid date.");
+		}else{
+			String[] parts = string.split("/");
+			String part1 = parts[0]; //charAt(0) & charAr(1)
+			String part2 = parts[1];
+			String part3 = parts[2];
+			int month = Integer.parseInt(part1);
+			int day = Integer.parseInt(part2);
+			int year = Integer.parseInt(part3);
+			//System.out.println(month+":"+day+":"+year);//testing
+			if(birthDate.charAt(2) != '/'|| birthDate.charAt(5) != '/'|| birthDate.length() != 10 
+					&& !birthDate.equals("")){
+				lblErrorbirthDate.setText("Incorrect date format.");
+				test = false;
+			}else if(month > 12 || month < 1 || day > 31 || day < 1 || year > 2017 || year < 1920 && !birthDate.equals("")){
+				lblErrorbirthDate.setText("Invalid date.");
+				test = false;
+			}
+		}
+		if(birthDate.equals("")){
+			lblErrorbirthDate.setText(null);
 			test = false;
 		}
-		
 		//will only insert account if everything checks out
 		if(test == true){
 			tabPane.getSelectionModel().select(tab2);
@@ -255,6 +269,10 @@ public class AsthmaController {
 			test = false;
 		}else if(s.length() > 30){
 			lblErrorECemail.setText("Email is too long. Cannot exceed 30 characters.");
+			test = false;
+		}
+		if(email.equals("")){
+			lblErrorECemail.setText(null);
 			test = false;
 		}
 		if(test == true){
