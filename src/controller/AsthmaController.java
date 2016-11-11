@@ -172,7 +172,7 @@ public class AsthmaController {
 		if(bDat){
 			lblErrorbirthDate.setText("Birth Date must only contain numbers.");
  			test = false;
-		}else if(count == 0 || count == 1){
+		}else if(count == 0 || count == 1 && !birthDate.equals("")){
 			lblErrorbirthDate.setText("Date format required.");
 			test = false;
 		}else{
@@ -192,6 +192,10 @@ public class AsthmaController {
 				lblErrorbirthDate.setText("Invalid date.");
 				test = false;
 			}
+		}
+		if(birthDate.equals("")){
+			lblErrorbirthDate.setText(null);
+			test = false;
 		}
 		//will only insert account if everything checks out
 		if(test == true){
@@ -265,6 +269,10 @@ public class AsthmaController {
 			test = false;
 		}else if(s.length() > 30){
 			lblErrorECemail.setText("Email is too long. Cannot exceed 30 characters.");
+			test = false;
+		}
+		if(email.equals("")){
+			lblErrorECemail.setText(null);
 			test = false;
 		}
 		if(test == true){
