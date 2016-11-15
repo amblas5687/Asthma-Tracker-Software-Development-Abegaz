@@ -398,7 +398,7 @@ public class AAPController {
 	    allFieldsErr.setText(null);
 	    //checks for blank fields
 	    if(drName.equals("") || drPhone.equals("") || drCity.equals("")){
-	    	//System.out.println("Success");
+	    	System.out.println("Success");
     		allFieldsErr.setText("Please fill in all fields for doctor info.");
     		tabpane.getSelectionModel().select(tab4);
     		test = false;
@@ -449,7 +449,7 @@ public class AAPController {
 		if(drPhone.length() != 12 && !drPhone.equals("")){
 			drPhoneErr.setText("Incorrect phone number length.");
 			test = false;
-		}else if(!drPhone.equals("") && (drPhone.charAt(3) != '-' || drPhone.charAt(7) != '-')){
+		}else if(drPhone.charAt(3) != '-' || drPhone.charAt(7) != '-' && !drPhone.equals("") ){
 			drPhoneErr.setText("Incorrect phone number format.");
 			test = false;
 		}

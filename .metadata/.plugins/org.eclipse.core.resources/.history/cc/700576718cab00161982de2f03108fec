@@ -398,7 +398,7 @@ public class AAPController {
 	    allFieldsErr.setText(null);
 	    //checks for blank fields
 	    if(drName.equals("") || drPhone.equals("") || drCity.equals("")){
-	    	//System.out.println("Success");
+	    	System.out.println("Success");
     		allFieldsErr.setText("Please fill in all fields for doctor info.");
     		tabpane.getSelectionModel().select(tab4);
     		test = false;

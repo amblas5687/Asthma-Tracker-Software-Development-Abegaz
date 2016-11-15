@@ -382,23 +382,24 @@ public class AAPController {
 
 	    //dr info
 	    String drName = drNameTF.getText();
-	    String drPhone = drPhoneTF.getText();
+	    //String drPhone = drPhoneTF.getText();
 	    String drCity = drCityTF.getText();
 	    //Danni<start>-------------------------------------------------------------------------------------------------
 	    //check to see if all fields of one of the tabs is filled in
 	    boolean test = false;
-	    String mia, mif, moa, mof, sea, sef;
+	    String mia, mif, moa, mof, sea, sef, drphon;
 	    mia = mildAmtTF.getText();
 	    mif = mildFreqTF.getText();
 	    moa = modAmtTF.getText();
 	    mof = modFreqTF.getText();
 	    sea = sevAmtTF.getText();
 	    sef = sevFreqTF.getText();
+	    drphon = drPhoneTF.getText();
 	    
 	    allFieldsErr.setText(null);
 	    //checks for blank fields
-	    if(drName.equals("") || drPhone.equals("") || drCity.equals("")){
-	    	//System.out.println("Success");
+	    if(drName.equals("") || drphon.equals(null) || drCity.equals("")){
+	    	System.out.println("Success");
     		allFieldsErr.setText("Please fill in all fields for doctor info.");
     		tabpane.getSelectionModel().select(tab4);
     		test = false;
@@ -440,16 +441,16 @@ public class AAPController {
 		drPhoneErr.setText(null);
 		//checks to make sure phone number only consists of numbers and -
 		Pattern p2 = Pattern.compile("[^0-9-]");
-		Matcher phon = p2.matcher(drPhone);
+		Matcher phon = p2.matcher(drphon);
 		boolean pho = phon.find();
 		if(pho){
 			drPhoneErr.setText("Invalid phone number. Phone number must consist of numbers only.");
 			test = false;
 		}
-		if(drPhone.length() != 12 && !drPhone.equals("")){
+		if(drphon.length() != 12 && !drphon.equals("")){
 			drPhoneErr.setText("Incorrect phone number length.");
 			test = false;
-		}else if(!drPhone.equals("") && (drPhone.charAt(3) != '-' || drPhone.charAt(7) != '-')){
+		}else if(drphon.charAt(3) != '-' || drphon.charAt(7) != '-' && !drphon.equals("") ){
 			drPhoneErr.setText("Incorrect phone number format.");
 			test = false;
 		}

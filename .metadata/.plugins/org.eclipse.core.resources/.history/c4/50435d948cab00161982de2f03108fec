@@ -244,7 +244,7 @@ public class AsthmaController {
 		if(pho){
 			lblErrorECphone.setText("Invalid phone number. Phone number must consist of numbers only.");
 			test = false;
-		}else if(!phone.equals("") && (phone.charAt(3) != '-' || phone.charAt(7) != '-' || phone.length() != 12)){
+		}else if(phone.charAt(3) != '-' || phone.charAt(7) != '-' || phone.length() != 12 && !phone.equals("")){
 			lblErrorECphone.setText("Incorrect phone number format.");
 			test = false;
 		}
