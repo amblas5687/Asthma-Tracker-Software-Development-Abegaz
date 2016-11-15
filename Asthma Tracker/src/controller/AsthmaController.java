@@ -506,6 +506,7 @@ public class AsthmaController {
 		} catch (Exception e){//catches other exceptions
 			lblStatus.setText("Status: operation failed due to: " + e.getMessage());
 			System.out.println("Here hs the error "+ e.getMessage());
+			tabPane.getSelectionModel().select(tab1);
 			e.printStackTrace();
 			
 		} finally {

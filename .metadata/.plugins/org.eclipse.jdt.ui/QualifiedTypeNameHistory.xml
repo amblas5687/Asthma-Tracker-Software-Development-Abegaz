@@ -2,4 +2,6 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="javafx.scene.control.Menu"/>
 <fullyQualifiedTypeName name="com.mysql.jdbc.MysqlDataTruncation"/>
+<fullyQualifiedTypeName name="javafx.scene.control.TabPane"/>
+<fullyQualifiedTypeName name="javafx.scene.control.Tab"/>
 </qualifiedTypeNameHistroy>
