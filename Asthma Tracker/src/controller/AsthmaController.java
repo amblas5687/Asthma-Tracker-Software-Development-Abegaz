@@ -244,8 +244,7 @@ public class AsthmaController {
 		if(pho){
 			lblErrorECphone.setText("Invalid phone number. Phone number must consist of numbers only.");
 			test = false;
-		}
-		if(phone.charAt(3) != '-' || phone.charAt(7) != '-' || phone.length() != 12 && !phone.equals("")){
+		}else if(!phone.equals("") && (phone.charAt(3) != '-' || phone.charAt(7) != '-' || phone.length() != 12)){
 			lblErrorECphone.setText("Incorrect phone number format.");
 			test = false;
 		}
@@ -507,6 +506,8 @@ public class AsthmaController {
 		} catch (Exception e){//catches other exceptions
 			lblStatus.setText("Status: operation failed due to: " + e.getMessage());
 			System.out.println("Here hs the error "+ e.getMessage());
+			tabPane.getSelectionModel().select(tab1);
+			e.printStackTrace();
 			
 		} finally {
 			if (keys != null) {
