@@ -1,8 +1,4 @@
-//Author: Anna
-//Description: This is the controller for the AAP
-//Problems: none
-//Comments: this controller grabs the info from database, populates textfields, and lets the user submit new information
-//I've set activeUser in the methods with the username ab6789 for testing purposes
+//updated sql queries 11/25/16
 package controller;
 
 import java.sql.Connection;
@@ -85,10 +81,7 @@ public class AAPController {
     Account activeUser = AsthmaController.curUser;
 
 
-
-
 	//for integration
-
     private Main main;
   	public void setMain(Main mainIn)
   	{
@@ -97,15 +90,14 @@ public class AAPController {
 
 
   	//runs when initialized, grabs info from database and populates the textfields
-  	// CHRISTIAN // This needs to handle cases where the user has not set up AAP yet,
-  	// CHRISTIAN // whether by making a blank AAP as a place holder, or checking to see if they have one
- 
 	@FXML
   	public void initialize() throws SQLException
   	{
   		System.out.println("error check: initialize ran");
+  		
   		//pass the object from getAAPInfo method
   		AAP userPlan = getAAPInfo(activeUser.getuserName());
+  		
   		//set the textfields with the content of the database
   		//mildMed
 	    mildMedTF.setText(userPlan.getMildMed());
@@ -137,11 +129,10 @@ public class AAPController {
 
     	try {
 			root = FXMLLoader.load(getClass().getResource("/view/MainView.fxml"));
-
-		MainMenuController conX=new MainMenuController();
-		conX.setMain(main);
-		scene = new Scene(root);
-		stage.setScene(scene);
+			MainMenuController conX=new MainMenuController();
+			conX.setMain(main);
+			scene = new Scene(root);
+			stage.setScene(scene);
     	} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -481,43 +472,53 @@ public class AAPController {
 	
 	
 	    	//create a query
-	    	String AAP = "UPDATE aap SET mildMed = ?, mildAmt = ?, mildFreq = ?, modMed = ?, modAmt = ?, "
-	    			+ "modFreq = ?, sevMed = ?, sevAmt = ?, sevFreq = ?, drName = ?, drPhone = ?, drCity = ?"
-					+ "WHERE uNameFK = ?";
-	
+	    	String mildAAPQuery = "UPDATE `asthmatrackerdb`.`mildaap` SET mildMed = ?, mildAmt = ?, mildFreq = ?"
+	    			+ "WHERE uNameFK3 = ?";
+			String modAAPQuery = "UPDATE `asthmatrackerdb`.`moderateaap` SET modMed = ?, modAmt = ?, modFreq = ?"
+					+ "WHERE uNameFK4 = ?";
+			String sevAAPQuery = "UPDATE `asthmatrackerdb`.`severeaap` SET sevMed = ?, sevAmt = ?, sevFreq = ?"
+					+ "WHERE uNameFK5 = ?";
+			String docInfoQuery = "UPDATE `asthmatrackerdb`.`doctorinfo` SET drName = ?, drPhone = ?, drCity = ?"
+					+ "WHERE uNameFK6 = ?";
 	
 			//attempt to connect to database
 			try (Connection conn = DBConfig.getConnection();
-					PreparedStatement insertAAP = conn.prepareStatement(AAP);)
+					PreparedStatement insertMild = conn.prepareStatement(mildAAPQuery);
+					PreparedStatement insertMod = conn.prepareStatement(modAAPQuery);
+					PreparedStatement insertSev = conn.prepareStatement(sevAAPQuery);
+					PreparedStatement insertDoc = conn.prepareStatement(docInfoQuery);)
 			{
 	
 				//mild
-				insertAAP.setString(1, newPlan.getMildMed());
-				insertAAP.setString(2, newPlan.getMildAmt());
-				insertAAP.setString(3, newPlan.getMildFreq());
+				insertMild.setString(1, newPlan.getMildMed());
+				insertMild.setString(2, newPlan.getMildAmt());
+				insertMild.setString(3, newPlan.getMildFreq());
+				insertMild.setString(4, activeUser.getuserName());
 	
 				//mod
-				insertAAP.setString(4, newPlan.getModMed());
-				insertAAP.setString(5, newPlan.getModAmt());
-				insertAAP.setString(6, newPlan.getModFreq());
+				insertMod.setString(1, newPlan.getModMed());
+				insertMod.setString(2, newPlan.getModAmt());
+				insertMod.setString(3, newPlan.getModFreq());
+				insertMod.setString(4, activeUser.getuserName());
 	
 				//severe
-				insertAAP.setString(7, newPlan.getSevMed());
-				insertAAP.setString(8, newPlan.getSevAmt());
-				insertAAP.setString(9, newPlan.getSevFreq());
+				insertSev.setString(1, newPlan.getSevMed());
+				insertSev.setString(2, newPlan.getSevAmt());
+				insertSev.setString(3, newPlan.getSevFreq());
+				insertSev.setString(4, activeUser.getuserName());
 	
 				//doctor info
-				insertAAP.setString(10, newPlan.getDrName());
-				insertAAP.setString(11, newPlan.getDrPhone());
-				insertAAP.setString(12, newPlan.getDrCity());
-	
-				insertAAP.setString(13, activeUser.getuserName());
-	
-	
+				insertDoc.setString(10, newPlan.getDrName());
+				insertDoc.setString(11, newPlan.getDrPhone());
+				insertDoc.setString(12, newPlan.getDrCity());
+				insertDoc.setString(13, activeUser.getuserName());
 	
 				//execute the update
-				insertAAP.executeUpdate();
-	
+				insertMild.executeUpdate();
+				insertMod.executeUpdate();
+				insertSev.executeUpdate();
+				insertDoc.executeUpdate();
+				
 				System.out.println("error check: current user updated " + activeUser.getuserName());
 				System.out.println("error check: success! account updated " + newPlan);
 
@@ -534,44 +535,63 @@ public class AAPController {
     private AAP getAAPInfo (String userName) throws SQLException
     {
 
-    	String AAPInfo = "select * from aap where uNameFK =" + "'"+userName+"'";
-		ResultSet rs = null;
+    	String mildInfo = "select * from mildaap where uNameFK3 =" + "'"+userName+"'";
+    	String modInfo = "select * from moderateaap where uNameFK4 =" + "'"+userName+"'";
+    	String sevInfo = "select * from severeaap where uNameFK5 =" + "'"+userName+"'";
+    	String docInfo = "select * from doctorinfo where uNameFK6 =" + "'"+userName+"'";
+    	
+    	ResultSet rs1 = null;
+    	ResultSet rs2 = null;
+    	ResultSet rs3 = null;
+    	ResultSet rs4 = null;
+    	    	
+    	//create instance of model
+		AAP displayPlan = new AAP();
 
 		try(
 				Connection conn = DBConfig.getConnection();
-				PreparedStatement displayAAPInfo = conn.prepareStatement(AAPInfo);
+				PreparedStatement displayMildInfo = conn.prepareStatement(mildInfo);
+				PreparedStatement displayModInfo = conn.prepareStatement(modInfo);
+				PreparedStatement displaySevInfo = conn.prepareStatement(sevInfo);
+				PreparedStatement displayDocInfo = conn.prepareStatement(docInfo);
+			
 		){
-			//displayAccountInfo.setInt(1, voterId);
-			rs = displayAAPInfo.executeQuery();
+			rs1 = displayMildInfo.executeQuery();
+			rs2 = displayModInfo.executeQuery();
+			rs3 = displaySevInfo.executeQuery();
+			rs4 = displayDocInfo.executeQuery();
+			
+			/*System.out.println("result set1" + rs1);
+			System.out.println("result set2" + rs1);
+			System.out.println("result set3" + rs1);
+			System.out.println("result set4" + rs1);*/
 
 			// check to see if receiving any data
-			if (rs.next())
+			if (rs1.next() && rs2.next() && rs3.next() && rs4.next())
 			{
-				//create instance of model
-				AAP displayPlan = new AAP();
 
 				//add info from db to model
 
 		    	//mild
-				displayPlan.setMildMed(rs.getString("mildMed"));
-				displayPlan.setMildAmt(rs.getString("mildAmt"));
-				displayPlan.setMildFreq(rs.getString("mildFreq"));
-
+				displayPlan.setMildMed(rs1.getString("mildMed"));
+				displayPlan.setMildAmt(rs1.getString("mildAmt"));
+				displayPlan.setMildFreq(rs1.getString("mildFreq"));
+				
 		    	//mod
-				displayPlan.setModMed(rs.getString("modMed"));
-				displayPlan.setModAmt(rs.getString("modAmt"));
-				displayPlan.setModFreq(rs.getString("modFreq"));
+				displayPlan.setModMed(rs2.getString("modMed"));
+				displayPlan.setModAmt(rs2.getString("modAmt"));
+				displayPlan.setModFreq(rs2.getString("modFreq"));
 
 		    	//sev
-				displayPlan.setSevMed(rs.getString("sevMed"));
-				displayPlan.setSevAmt(rs.getString("sevAmt"));
-				displayPlan.setSevFreq(rs.getString("sevFreq"));
+				displayPlan.setSevMed(rs3.getString("sevMed"));
+				displayPlan.setSevAmt(rs3.getString("sevAmt"));
+				displayPlan.setSevFreq(rs3.getString("sevFreq"));
 
 		    	//dr info
-				displayPlan.setDrName(rs.getString("drName"));
-				displayPlan.setDrPhone(rs.getString("drPhone"));
-				displayPlan.setDrCity(rs.getString("drCity"));
-
+				displayPlan.setDrName(rs4.getString("drName"));
+				displayPlan.setDrPhone(rs4.getString("drPhone"));
+				displayPlan.setDrCity(rs4.getString("drCity"));
+				
 
 		        System.out.println("gotten aap " + displayPlan);
 
@@ -588,9 +608,13 @@ public class AAPController {
 			return null;
 		}finally //catch
 		{
-			if(rs != null)
+			if(rs1 != null && rs2 != null && rs3 != null && rs4 != null)
 			{
-				rs.close();
+				rs1.close();
+				rs2.close();
+				rs3.close();
+				rs4.close();
+				
 			}
 		}//finally
     }//end method
