@@ -1,7 +1,0 @@
-.loginstyle{
-	-fx-background-image:url("cross1.png");
-}
-
-.welcomestyle{
-	-fx-background-image:url("blueBG.png");
-}
