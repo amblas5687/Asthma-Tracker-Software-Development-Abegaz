@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="740.0" styleClass="welcomestyle" stylesheets="@../application/application.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="783.0" styleClass="welcomestyle" stylesheets="@../application/application.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
    <right>
       <AnchorPane prefHeight="388.0" prefWidth="751.0" stylesheets="@../application/application.css" BorderPane.alignment="CENTER">
          <children>
@@ -58,6 +58,16 @@
                </font>
             </Label>
             <Button fx:id="AAP" mnemonicParsing="false" onAction="#ClickButton" style="-fx-background-color: lightblue;" text="ASTHMA ACTION PLAN">
+               <font>
+                  <Font name="Georgia Bold" size="15.0" />
+               </font>
+            </Button>
+            <Label text="|">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="updateAcnt" layoutX="494.0" layoutY="10.0" mnemonicParsing="false" onAction="#ClickButton" style="-fx-background-color: lightblue;" text="UPDATE ACCOUNT">
                <font>
                   <Font name="Georgia Bold" size="15.0" />
                </font>
