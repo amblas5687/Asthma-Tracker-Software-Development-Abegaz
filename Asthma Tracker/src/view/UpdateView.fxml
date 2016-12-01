@@ -147,6 +147,14 @@
                               <Font name="Georgia Italic" size="15.0" />
                            </font>
                         </Label>
+                        <Button fx:id="btngetMain3" layoutX="622.0" layoutY="441.0" mnemonicParsing="false" onAction="#ClickgetLogInButton" text="Back to Main">
+                           <font>
+                              <Font name="Georgia" size="14.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
                      </children>
                   </AnchorPane>
                </content>
