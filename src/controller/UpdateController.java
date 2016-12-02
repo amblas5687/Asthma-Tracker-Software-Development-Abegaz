@@ -1,3 +1,4 @@
+//Fixed queries 12/1/16-Anna
 package controller;
 
 import java.sql.Connection;
@@ -37,6 +38,8 @@ public class UpdateController {
 	Parent root;
 	@FXML TabPane tabPane;
 	@FXML Tab tab1, tab2, tab3;
+	//current user
+    Account activeUser = AsthmaController.curUser;//Anna
 	// EventHandler +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //sets main in Main.java 
 	public void setMain(Main mainIn)
@@ -225,12 +228,14 @@ public class UpdateController {
 	private void updateFirst(String firstName) throws SQLException {
 		Account account = new Account();
 		account.setfirstName(firstName);
-		String query = "UPDATE userinfo SET firstName = ?";
+		String query = "UPDATE userinfo SET firstName = ? WHERE userName = ?";
 		//attempt to connect to database
 		try (Connection conn = DBConfig.getConnection();
 				PreparedStatement updateFirst = conn.prepareStatement(query);)
 		{
 			updateFirst.setString(1, account.getfirstName());
+			updateFirst.setString(2, activeUser.getuserName());//Anna
+			
 			//execute the update
 			updateFirst.executeUpdate();
 
@@ -271,12 +276,13 @@ public class UpdateController {
 	private void updateLast(String lastName) throws SQLException {
 		Account account = new Account();
 		account.setlastName(lastName);
-		String query = "UPDATE userinfo SET lastName = ?";
+		String query = "UPDATE userinfo SET lastName = ? WHERE userName = ?";
 		//attempt to connect to database
 		try (Connection conn = DBConfig.getConnection();
 				PreparedStatement updateLast = conn.prepareStatement(query);)
 		{
 			updateLast.setString(1, account.getlastName());
+			updateLast.setString(2, activeUser.getuserName());//Anna
 			//execute the update
 			updateLast.executeUpdate();
 
@@ -346,12 +352,14 @@ public class UpdateController {
 	private void updatebirthDate(String birthDate) throws SQLException {	
 		Account account = new Account();
 		account.setbirthDate(birthDate);
-		String query = "UPDATE userinfo SET birthDate = ?";
+		String query = "UPDATE userinfo SET birthDate = ? WHERE userName = ?";
 		//attempt to connect to database
 		try (Connection conn = DBConfig.getConnection();
 				PreparedStatement updatebirthDate = conn.prepareStatement(query);)
 		{
 			updatebirthDate.setString(1, account.getbirthDate());
+			updatebirthDate.setString(2,activeUser.getuserName());//Anna
+			
 			//execute the update
 			updatebirthDate.executeUpdate();
 
@@ -439,12 +447,13 @@ public class UpdateController {
 	private void updatePassword(String password) throws SQLException {	
 		Account account = new Account();
 		account.setpassword(password);
-		String query = "UPDATE userinfo SET password = ?";
+		String query = "UPDATE userinfo SET password = ? WHERE userName = ?";
 		//attempt to connect to database
 		try (Connection conn = DBConfig.getConnection();
 			PreparedStatement updatePassword = conn.prepareStatement(query);)
 		{
 			updatePassword.setString(1, account.getpassword());
+			updatePassword.setString(2,activeUser.getuserName());//Anna
 			//execute the update
 			updatePassword.executeUpdate();
 
@@ -484,12 +493,13 @@ public class UpdateController {
 	private void updatefullName(String fullName) throws SQLException {	
 		Account account = new Account();
 		account.setfullName(fullName);
-		String query = "UPDATE contactinfo SET fullName = ?";
+		String query = "UPDATE contactinfo SET fullName = ? WHERE uNameFK1 = ?";
 		//attempt to connect to database
 		try (Connection conn = DBConfig.getConnection();
 				PreparedStatement updatefullName = conn.prepareStatement(query);)
 		{
 			updatefullName.setString(1, account.getfullName());
+			updatefullName.setString(2,activeUser.getuserName());//Anna
 			//execute the update
 			updatefullName.executeUpdate();
 
@@ -529,12 +539,13 @@ public class UpdateController {
 	private void updaterelation(String relation) throws SQLException {	
 		Account account = new Account();
 		account.setrelation(relation);
-		String query = "UPDATE contactinfo SET relation = ?";
+		String query = "UPDATE contactinfo SET relation = ? WHERE uNameFK1 = ?";
 		//attempt to connect to database
 		try (Connection conn = DBConfig.getConnection();
 				PreparedStatement updaterelation = conn.prepareStatement(query);)
 		{
 			updaterelation.setString(1, account.getrelation());
+			updaterelation.setString(2,activeUser.getuserName());//Anna
 			//execute the update
 			updaterelation.executeUpdate();
 
@@ -571,12 +582,13 @@ public class UpdateController {
 	private void updatephone(String phone) throws SQLException {	
 		Account account = new Account();
 		account.setphone(phone);
-		String query = "UPDATE contactinfo SET phone = ?";
+		String query = "UPDATE contactinfo SET phone = ? WHERE uNameFK1 = ?";
 		//attempt to connect to database
 		try (Connection conn = DBConfig.getConnection();
 				PreparedStatement updatephone = conn.prepareStatement(query);)
 		{
 			updatephone.setString(1, account.getphone());
+			updatephone.setString(2,activeUser.getuserName());//Anna
 			//execute the update
 			updatephone.executeUpdate();
 
@@ -620,12 +632,13 @@ public class UpdateController {
 	private void updateemail(String email) throws SQLException {	
 		Account account = new Account();
 		account.setemail(email);
-		String query = "UPDATE contactinfo SET email = ?";
+		String query = "UPDATE contactinfo SET email = ? WHERE uNameFK1 = ?";
 		//attempt to connect to database
 		try (Connection conn = DBConfig.getConnection();
 				PreparedStatement updateemail = conn.prepareStatement(query);)
 		{
 			updateemail.setString(1, account.getemail());
+			updateemail.setString(2,activeUser.getuserName());//Anna
 			//execute the update
 			updateemail.executeUpdate();
 
