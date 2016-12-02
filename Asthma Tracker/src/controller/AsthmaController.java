@@ -172,7 +172,7 @@ public class AsthmaController {
 		if(bDat){
 			lblErrorbirthDate.setText("Birth Date must only contain numbers.");
  			test = false;
-		}else if(count == 0 || count == 1 && !birthDate.equals("")){
+		}else if(!birthDate.equals("") && count == 0 || count == 1){
 			lblErrorbirthDate.setText("Date format required.");
 			test = false;
 		}else{
@@ -184,11 +184,10 @@ public class AsthmaController {
 			int day = Integer.parseInt(part2);
 			int year = Integer.parseInt(part3);
 			//System.out.println(month+":"+day+":"+year);//testing
-			if(birthDate.charAt(2) != '/'|| birthDate.charAt(5) != '/'|| birthDate.length() != 10 
-					&& !birthDate.equals("")){
+			if(!birthDate.equals("") && birthDate.charAt(2) != '/'|| birthDate.charAt(5) != '/'|| birthDate.length() != 10){
 				lblErrorbirthDate.setText("Incorrect date format.");
 				test = false;
-			}else if(month > 12 || month < 1 || day > 31 || day < 1 || year > 2017 || year < 1920 && !birthDate.equals("")){
+			}else if(!birthDate.equals("") && month > 12 || month < 1 || day > 31 || day < 1 || year > 2017 || year < 1920){
 				lblErrorbirthDate.setText("Invalid date.");
 				test = false;
 			}
@@ -263,7 +262,7 @@ public class AsthmaController {
 		        counter++;
 		    } 
 		}
-		if(count < 1 || counter < 1 || s.length() < 5 && !email.equals("")){
+		if(!email.equals("") && count < 1 || counter < 1 || s.length() < 5){
 			lblErrorECemail.setText("Invalid email address.");
 			test = false;
 		}else if(s.length() > 30){
@@ -321,7 +320,7 @@ public class AsthmaController {
 		{
 			Connection conn = DBConfig.getConnection();
 			
-			String query = "SELECT userName, password FROM account WHERE userName = ? AND password = ?";
+			String query = "SELECT userName, password FROM userinfo WHERE userName = ? AND password = ?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, userName);
 			ps.setString(2, password);
@@ -373,7 +372,7 @@ public class AsthmaController {
 	public void setCurrentUserInfo(String curUserName) throws SQLException{
 		//String currentUser = curUser;//mod by Anna
 		//return curUser;//mod by Anna
-		String SQLQuery = "SELECT * FROM `account` WHERE account.userName=" + "'"+curUserName+"'";
+		String SQLQuery = "SELECT * FROM `userinfo` WHERE userinfo.userName=" + "'"+curUserName+"'";
 		ResultSet rs = null;
 
 		try(
@@ -411,25 +410,44 @@ public class AsthmaController {
 	//-----------------------------------------------------------------------------------------------------------------
 	/* Insert a row to Account table of Database -> populates: firstName, lastName, userName, password */
 	private void insertAccount(ActionEvent event) throws MySQLIntegrityConstraintViolationException, SQLException {
-		String query = "insert into account " + "(firstName, lastName, userName, password, "
-				+ "birthDate, fullName, relation, phone, email) " + "values(?,?,?,?,?,?,?,?,?)";
-		String BreathUser = "INSERT INTO `asthmatrackerdb`.`clicktracker` (`userNameFK`) VALUES (?)";//query to add row in clicktracker-Anna
-		String AAPUser = "INSERT INTO `asthmatrackerdb`.`aap` (`uNameFK`) VALUES (?)";//query to add row in app-Anna
+		
+		String userInfoQuery = "insert into userinfo " + "(firstName, lastName, userName, password, "
+				+ "birthDate) " + "values(?,?,?,?,?)";
+		String contactInfoQuery = "insert into contactinfo " + "(uNameFK1, fullName, relation, phone, email) " + 
+				"values (?,?,?,?,?)";
+		
+		String clickTrackerQuery = "INSERT INTO `asthmatrackerdb`.`clicktracker` (`uNameFK2`) VALUES (?)";//query to add row in clicktracker-Anna
+		
+		String mildAAPQuery = "INSERT INTO `asthmatrackerdb`.`mildaap` (`uNameFK3`) VALUES (?)";//query to add row in app-Anna
+		String modAAPQuery = "INSERT INTO `asthmatrackerdb`.`moderateaap` (`uNameFK4`) VALUES (?)";
+		String sevAAPQuery = "INSERT INTO `asthmatrackerdb`.`severeaap` (`uNameFK5`) VALUES (?)";
+		String docInfoQuery = "INSERT INTO `asthmatrackerdb`.`doctorinfo` (`uNameFK6`) VALUES (?)";
 
 		ResultSet keys = null;
 		try (Connection conn = DBConfig.getConnection();
-				PreparedStatement insertAccount = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-		    		PreparedStatement insertClicktracker = conn.prepareStatement(BreathUser, Statement.RETURN_GENERATED_KEYS);//-Anna
-				PreparedStatement insertAAP = conn.prepareStatement(AAPUser, Statement.RETURN_GENERATED_KEYS))//-Anna
+				PreparedStatement insertUserInfo = conn.prepareStatement(userInfoQuery, Statement.RETURN_GENERATED_KEYS);
+				PreparedStatement insertContactInfo = conn.prepareStatement(contactInfoQuery, Statement.RETURN_GENERATED_KEYS);
+	
+				PreparedStatement insertClicktracker = conn.prepareStatement(clickTrackerQuery, Statement.RETURN_GENERATED_KEYS);//-Anna
+				
+				PreparedStatement insertMildAAP = conn.prepareStatement(mildAAPQuery, Statement.RETURN_GENERATED_KEYS);
+				PreparedStatement insertModAAP = conn.prepareStatement(modAAPQuery, Statement.RETURN_GENERATED_KEYS);
+				PreparedStatement insertSevAAP = conn.prepareStatement(sevAAPQuery, Statement.RETURN_GENERATED_KEYS);
+				PreparedStatement insertDocInfo = conn.prepareStatement(docInfoQuery, Statement.RETURN_GENERATED_KEYS);)
 
 		{	
 			// get values from the TextField controls
 			String firstName, lastName, userName, password, birthDate, fullName, relation, phone, email;
+			
+			//goes in userinfo
 			firstName = txtfirstName.getText();
 			lastName = txtlastName.getText();
 			userName = txtuserName.getText();
 			password = txtpassword.getText();
 			birthDate = txtbirthDate.getText();
+			
+			//goes in contactinfo
+			//username goes in as well
 			fullName = txtfullName.getText();
 			relation = txtrelation.getText();
 			phone = txtphone.getText();
@@ -448,34 +466,52 @@ public class AsthmaController {
 			account.setuserName(userName);
 			account.setpassword(password);
 			account.setbirthDate(birthDate);
+			
 			account.setfullName(fullName);
 			account.setrelation(relation);
 			account.setphone(phone);
 			account.setemail(email);
 			
-			//insertAccount object of PreparedStatement that passes data from the model to the database
-			insertAccount.setString(1, account.getfirstName());
-			insertAccount.setString(2, account.getlastName());
-			insertAccount.setString(3, account.getuserName());
-			insertAccount.setString(4, account.getpassword());
-			insertAccount.setString(5, account.getbirthDate());
-			insertAccount.setString(6, account.getfullName());
-			insertAccount.setString(7, account.getrelation());
-			insertAccount.setString(8, account.getphone());
-			insertAccount.setString(9, account.getemail());
+			//insertUserInfo to insert into userinfo table
+			insertUserInfo.setString(1, account.getfirstName());
+			insertUserInfo.setString(2, account.getlastName());
+			insertUserInfo.setString(3, account.getuserName());
+			insertUserInfo.setString(4, account.getpassword());
+			insertUserInfo.setString(5, account.getbirthDate());
+			
+			//insertContactInfo to insert into contactinfo table
+			insertContactInfo.setString(1, account.getuserName());
+			insertContactInfo.setString(2, account.getfullName());
+			insertContactInfo.setString(3, account.getrelation());
+			insertContactInfo.setString(4, account.getphone());
+			insertContactInfo.setString(5, account.getemail());
 			
 			// get the number of return rows, will return 0 if successful
-			int affectedRow = insertAccount.executeUpdate();
+			int affectedRow = insertUserInfo.executeUpdate();
+			int affectedRow2 = insertContactInfo.executeUpdate();
 			System.out.println(affectedRow);
+			System.out.println(affectedRow2);
+
 			
 			//set for clicktracker and update-Anna
 			insertClicktracker.setString(1, account.getuserName());
 			insertClicktracker.executeUpdate();
 			
-			//set for app and update-Anna
-			insertAAP.setString(1, account.getuserName());
-			insertAAP.executeUpdate();
+			//set for mildAAP and update-Anna
+			insertMildAAP.setString(1, account.getuserName());
+			insertMildAAP.executeUpdate();
 
+			//set for modAAP and update-Anna
+			insertModAAP.setString(1, account.getuserName());
+			insertModAAP.executeUpdate();
+			
+			//set for sevAAP and update-Anna
+			insertSevAAP.setString(1, account.getuserName());
+			insertSevAAP.executeUpdate();
+			
+			//set for doctorinfo and update-Anna
+			insertDocInfo.setString(1, account.getuserName());
+			insertDocInfo.executeUpdate();
 			
 			//Once we enter the data, we need to clear our UI so as to accept  the next input
 			if (affectedRow == 1) {
@@ -487,17 +523,23 @@ public class AsthmaController {
 				txtpassword.setText(null);
 				txtconPassword.setText(null);
 				txtbirthDate.setText(null);
-				txtfullName.setText(null);
-				txtrelation.setText(null);
-				txtphone.setText(null);
-				txtemail.setText(null);
 				
 				//takes user to personal info page
 				stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 				root = FXMLLoader.load(getClass().getResource("/view/LogIn.fxml"));
 				scene = new Scene(root);
 				stage.setScene(scene);
-				}
+			}
+			
+			if (affectedRow2 == 1)
+			{
+				txtfullName.setText(null);
+				txtrelation.setText(null);
+				txtphone.setText(null);
+				txtemail.setText(null);
+			}
+				
+				
 		  //catches entered userNames that are already in the database
 		} catch (MySQLIntegrityConstraintViolationException e) {
 			lblErroruserName.setText("That User Name is taken.");
@@ -519,14 +561,13 @@ public class AsthmaController {
 	//when user logs in, resets breath count to 0-Anna
 		public void resetBreathZero(String username)
 		{
-			String zeroQuery = "update clicktracker set clicks = 0 where userNameFK = ?";
+			String zeroQuery = "update clicktracker set clicks = 0 where uNameFK2 = ?";
 
 	    	//attempt to connect to database
 			try (Connection conn = DBConfig.getConnection();
 					PreparedStatement setZero = conn.prepareStatement(zeroQuery);
 				)
 			{
-				
 				setZero.setString(1, username);
 
 				//execute update

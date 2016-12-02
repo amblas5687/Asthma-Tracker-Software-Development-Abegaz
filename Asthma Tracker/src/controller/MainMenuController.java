@@ -28,6 +28,7 @@ public class MainMenuController {
 	@FXML private Button logOut; //Logs Out
     @FXML private Button OOB; // OutOfBreath
     @FXML private Button AAP; // Asthma Action Plan
+    @FXML private Button updateAcnt; //Update Account
     @FXML private Label welcome; // Welcome Message
 
     //Runs methods at scene start
@@ -65,6 +66,12 @@ public class MainMenuController {
 			root = FXMLLoader.load(getClass().getResource("/view/AAPView.fxml"));
 			AAPController con3=new AAPController();
 			con3.setMain(main);
+			break;
+			
+		case "updateAcnt":
+			root = FXMLLoader.load(getClass().getResource("/view/UpdateView.fxml"));
+			AAPController con4=new AAPController();
+			con4.setMain(main);
 			break;
 
 		default:

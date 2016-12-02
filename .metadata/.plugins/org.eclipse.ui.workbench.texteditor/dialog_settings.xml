@@ -1,30 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item value="false" key="isRegEx"/>
-		<item value="capitalize" key="selection"/>
+		<item value="true" key="isRegEx"/>
+		<item value="failed" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="capitalize"/>
-			<item value="relation"/>
-			<item value="query"/>
-			<item value="reset"/>
-			<item value="hbox"/>
-			<item value="ButtonBar"/>
-			<item value="button"/>
-			<item value="clicktracker"/>
+			<item value="failed"/>
+			<item value="lblErrorallFields2"/>
+			<item value="0-9"/>
+			<item value="insert"/>
+			<item value="Account"/>
+			<item value="insertAccount"/>
+			<item value="login"/>
+			<item value="txtconPassword"/>
 		</list>
 		<list key="replacehistory">
+			<item value="update failed"/>
+			<item value="updat"/>
+			<item value="Update"/>
+			<item value="update"/>
+			<item value="userinfo"/>
+			<item value="txtConfirmPass"/>
+			<item value="txtNewPass"/>
+			<item value="\1.equals(&quot;&quot;)"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="284" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="391" key="DIALOG_HEIGHT"/>
-		<item value="817" key="DIALOG_X_ORIGIN"/>
-		<item value="345" key="DIALOG_Y_ORIGIN"/>
+		<item value="816" key="DIALOG_X_ORIGIN"/>
+		<item value="116" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

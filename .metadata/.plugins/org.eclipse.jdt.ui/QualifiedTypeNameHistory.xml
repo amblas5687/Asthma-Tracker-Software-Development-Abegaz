@@ -4,4 +4,6 @@
 <fullyQualifiedTypeName name="com.mysql.jdbc.MysqlDataTruncation"/>
 <fullyQualifiedTypeName name="javafx.scene.control.TabPane"/>
 <fullyQualifiedTypeName name="javafx.scene.control.Tab"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="controller.AsthmaController"/>
 </qualifiedTypeNameHistroy>
