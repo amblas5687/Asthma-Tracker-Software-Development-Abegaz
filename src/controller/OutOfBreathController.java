@@ -1,8 +1,4 @@
-//Author: Anna
-//Description: This is the controller for the out of breath view
-//Problems: none
-//Comments: No way to auto add user into database yet, run sql query until that is resolved.
-//Query: INSERT INTO `asthmatrackerdb`.`clicktracker` (`userNameFK`) VALUES ('theUser');
+//updated sql queries 11/25/16
 package controller;
 
 import java.sql.Connection;
@@ -44,19 +40,7 @@ public class OutOfBreathController
     //counter for breath count
     private int breathCount;
 
-    //tester database user
-   // String testUser = "ab6789";
-
     Account activeUser = AsthmaController.curUser;
-
-
-  //connect your controller to the launcher- for testing using the specialized launcher
-    /*private BreathCountLauncher main;
-  	public void setMain(BreathCountLauncher mainIn)
-  	{
-  		main=mainIn;
-  	}
-  	*/
 
   	private Main main;
   	public void setMain(Main mainIn)
@@ -75,10 +59,7 @@ public class OutOfBreathController
   	//gets breath from database so if user moves pages, current breath is not lost. Reset during log in or log out
   	public int getBreath() throws SQLException
   	{
-  		//System.out.println("error check: line 77");
-  		String SQLQuery = "SELECT * FROM `clicktracker` WHERE clicktracker.userNameFK=" + "'"+activeUser.getuserName()+"'";
-  		//String SQLQuery = "SELECT * FROM `clicktracker` WHERE clicktracker.userNameFK=" + "'"+testUser+"'";-for testing
-
+  		String SQLQuery = "SELECT * FROM `clicktracker` WHERE clicktracker.uNameFK2=" + "'"+activeUser.getuserName()+"'";
 		ResultSet rs = null;
 
 		//System.out.println ("error check line");
@@ -88,25 +69,19 @@ public class OutOfBreathController
 				Connection conn = DBConfig.getConnection();
 				PreparedStatement dbBreathCount = conn.prepareStatement(SQLQuery);
 		){
-			//displayAccountInfo.setInt(1, voterId);
 			rs = dbBreathCount.executeQuery();
 
 			// check to see if receiving any data
 			if (rs.next())
 			{
-		  		//System.out.println("error check line 96");
-
 	        	breathCount = rs.getInt("clicks");
 	        	breathCountLBL.setText(Integer.toString(breathCount));
 
 	        	System.out.println("error check: getBreath ran, breath count " + breathCount);
-	        	//System.out.println ("error check line");
 	        	return breathCount;
 
 			}//if
-			else
-			{
-			}
+			
 		}catch(SQLException ex)//try
 		{
 			DBConfig.displayException(ex);
@@ -126,17 +101,12 @@ public class OutOfBreathController
     void countOutOfBreath(ActionEvent event) throws SQLException
     {
 
-    	//System.out.println("Testing user:" + activeUser.getfirstName());
-    	//breathCount = getBreath();
   		System.out.println("error check: countOutOfBreath, current breath: " +breathCount);
 
     	breathCount ++;
 
-    	//System.out.println("error check breathCount" + breathCount);
-    	//System.out.println("error check user" + testUser);
-
     	//query for database
-    	String updateQuery = "update clicktracker set clicks = ? where userNameFK = ?";
+    	String updateQuery = "update clicktracker set clicks = ? where uNameFK2 = ?";
 
     	//attempt to connect to database
 		try (Connection conn = DBConfig.getConnection();
@@ -146,7 +116,6 @@ public class OutOfBreathController
 			//the 1,2,3 in the setString correspond to the ?,?,? in the query
 			updateBreath.setInt(1, breathCount);
 			updateBreath.setString(2, activeUser.getuserName());
-			//updateBreath.setString(2, testUser);
 
 			//execute update
 			updateBreath.executeUpdate();
@@ -160,8 +129,6 @@ public class OutOfBreathController
 			System.out.println("Error: " + e);
 			//statusLabel.setText("Status: operation failed due to: " + e.getMessage());
 		}
-
-
     }
 
 
@@ -171,26 +138,20 @@ public class OutOfBreathController
     {
     	breathCount = 0;
 
-    	//System.out.println("error check breathCount" + breathCount);
-    	//System.out.println("error check user" + testUser);
-
     	//query for database
-    	String query = "update clicktracker set clicks = ? where userNameFK = ?";
+    	String query = "update clicktracker set clicks = ? where uNameFK2 = ?";
 
     	//attempt to connect to database
 		try (Connection conn = DBConfig.getConnection();
 				PreparedStatement resetBreath = conn.prepareStatement(query);
 			)
 		{
-			//the 1,2,3 in the setString correspond to the ?,?,? in the query
 			resetBreath.setInt(1, breathCount);
 			resetBreath.setString(2, activeUser.getuserName());
-			//resetBreath.setString(2, testUser);
 
 			//execute update
 			resetBreath.executeUpdate();
-
-
+			
 			System.out.println("error check: success! breath reset! user:  " + activeUser.getuserName() + " breath count: " + breathCount);
         	breathCountLBL.setText(Integer.toString(breathCount));
 
@@ -198,13 +159,11 @@ public class OutOfBreathController
 		} catch (Exception e) {
 
 			System.out.println("Error: " + e);
-			//statusLabel.setText("Status: operation failed due to: " + e.getMessage());
 		}
     }//end reset
 
 
-
-    //TODO need the fxml for main menu and the controller
+    //return to the main view
     @FXML
     void returnToMain(ActionEvent event)
     {
