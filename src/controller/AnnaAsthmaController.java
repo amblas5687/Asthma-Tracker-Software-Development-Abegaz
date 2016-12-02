@@ -173,7 +173,7 @@ public class AsthmaController {
 		if(bDat){
 			lblErrorbirthDate.setText("Birth Date must only contain numbers.");
  			test = false;
-		}else if(!birthDate.equals("") && count == 0 || count == 1){
+		}else if(count == 0 || count == 1 && !birthDate.equals("")){
 			lblErrorbirthDate.setText("Date format required.");
 			test = false;
 		}else{
@@ -185,17 +185,12 @@ public class AsthmaController {
 			int day = Integer.parseInt(part2);
 			int year = Integer.parseInt(part3);
 			//System.out.println(month+":"+day+":"+year);//testing
-			if(!birthDate.equals("") && birthDate.charAt(2) != '/'|| birthDate.charAt(5) != '/'|| birthDate.length() != 10){
+			if(birthDate.charAt(2) != '/'|| birthDate.charAt(5) != '/'|| birthDate.length() != 10 
+					&& !birthDate.equals("")){
 				lblErrorbirthDate.setText("Incorrect date format.");
 				test = false;
-			}else if(!birthDate.equals("") && month > 12 || month < 1 || day > 31 || day < 1 || year > 2017 || year < 1920){
+			}else if(month > 12 || month < 1 || day > 31 || day < 1 || year > 2017 || year < 1920 && !birthDate.equals("")){
 				lblErrorbirthDate.setText("Invalid date.");
-				test = false;
-			}else if(!birthDate.equals("") && month == 2 && day > 29){
-				lblErrorbirthDate.setText("Invalid day for February.");
-				test = false;
-			}else if(!birthDate.equals("") && month == 4 || month == 6 || month == 9 || month == 11 && day > 30){
-				lblErrorbirthDate.setText("Invalid day for that month.");
 				test = false;
 			}
 		}
@@ -269,7 +264,7 @@ public class AsthmaController {
 		        counter++;
 		    } 
 		}
-		if(!email.equals("") && count < 1 || counter < 1 || s.length() < 5){
+		if(count < 1 || counter < 1 || s.length() < 5 && !email.equals("")){
 			lblErrorECemail.setText("Invalid email address.");
 			test = false;
 		}else if(s.length() > 30){
