@@ -1,3 +1,4 @@
+//updated sql queries 11/25/16
 package controller;
 
 import java.sql.Connection;

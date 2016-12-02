@@ -1,3 +1,4 @@
+//updated sql queries 11/25/16
 package controller;
 
 import java.sql.Connection;
@@ -436,7 +437,7 @@ public class AAPController {
 			drPhoneErr.setText("Invalid phone number. Phone number must consist of numbers only.");
 			test = false;
 		}
-		if(!drPhone.equals("") && drPhone.length() != 12){
+		if(drPhone.length() != 12 && !drPhone.equals("")){
 			drPhoneErr.setText("Incorrect phone number length.");
 			test = false;
 		}else if(!drPhone.equals("") && (drPhone.charAt(3) != '-' || drPhone.charAt(7) != '-')){
