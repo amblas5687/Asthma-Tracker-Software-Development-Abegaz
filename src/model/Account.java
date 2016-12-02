@@ -1,4 +1,4 @@
-package application;
+package model;
 
 public class Account {
 	private String firstName, lastName, userName, password, conPassword, birthDate, fullName, relation, phone, email;
