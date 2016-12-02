@@ -190,12 +190,6 @@ public class AsthmaController {
 			}else if(!birthDate.equals("") && month > 12 || month < 1 || day > 31 || day < 1 || year > 2017 || year < 1920){
 				lblErrorbirthDate.setText("Invalid date.");
 				test = false;
-			}else if(!birthDate.equals("") && month == 2 && day > 29){
-				lblErrorbirthDate.setText("Invalid day for February.");
-				test = false;
-			}else if(!birthDate.equals("") && month == 4 || month == 6 || month == 9 || month == 11 && day > 30){
-				lblErrorbirthDate.setText("Invalid day for that month.");
-				test = false;
 			}
 		}
 		if(birthDate.equals("")){
