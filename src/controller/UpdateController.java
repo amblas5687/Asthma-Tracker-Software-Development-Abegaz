@@ -149,17 +149,18 @@ public class UpdateController {
 			lblErrorPassword.setText(null);
 			if(!curPassword.equals("") || !password.equals("") || !conPassword.equals("")){
 				if(!curPassword.equals("") && !password.equals("") && !conPassword.equals("")){
-					if(checkPassword(password, conPassword) == true && checkcurrentPassword(curPassword) == true){
-						updatePassword(password);
-						txtCurrentPass.setText(null);
-						txtNewPass.setText(null);
-						txtConfirmPass.setText(null);
-						counter += 1;
-							if(counter > 0){
-								lblErrorPassword.setText("Your password has been updated.");
-							}
+					if(checkcurrentPassword(curPassword) == true){
+						if(checkPassword(password, conPassword) == true){
+							updatePassword(password);
+							txtCurrentPass.setText(null);
+							txtNewPass.setText(null);
+							txtConfirmPass.setText(null);
+							counter += 1;
+						}else{
+							System.out.println("password update failed.");
+						}
 					}else{
-						System.out.println("password update failed.");
+						lblErrorPassword.setText("Incorrect current password.");
 					}
 				}else{
 					lblErrorPassword.setText("Please fill in all password fields.");
