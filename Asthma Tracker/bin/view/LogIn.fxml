@@ -48,7 +48,7 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label fx:id="lblErrorlogIn" prefHeight="28.0" prefWidth="339.0" textFill="RED" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+            <Label fx:id="lblErrorlogIn" prefHeight="28.0" prefWidth="447.0" textFill="RED" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <font>
                   <Font name="Georgia Bold Italic" size="14.0" />
                </font>
@@ -56,7 +56,7 @@
                   <Insets bottom="10.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="lblErrorgetUserName" prefHeight="24.0" prefWidth="336.0" textFill="#fc0101" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
+            <Label fx:id="lblErrorgetUserName" prefHeight="24.0" prefWidth="448.0" textFill="#fc0101" textOverrun="CLIP" wrapText="true" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
                <font>
                   <Font name="Georgia Bold Italic" size="14.0" />
                </font>
@@ -64,12 +64,12 @@
                   <Insets bottom="10.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="lblErrorgetPassword" prefHeight="24.0" prefWidth="335.0" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+            <Label fx:id="lblErrorgetPassword" prefHeight="24.0" prefWidth="449.0" textFill="RED" textOverrun="CLIP" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font name="Georgia Bold Italic" size="14.0" />
                </font>
                <GridPane.margin>
-                  <Insets bottom="20.0" />
+                  <Insets />
                </GridPane.margin>
             </Label>
             <PasswordField fx:id="txtgetPassword" maxWidth="-Infinity" prefWidth="266.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">

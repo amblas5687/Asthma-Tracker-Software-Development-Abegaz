@@ -57,17 +57,17 @@
                               <Font name="Georgia" size="15.0" />
                            </font>
                         </TextField>
-                        <Label fx:id="lblErrorfirstName" layoutX="38.0" layoutY="252.0" prefHeight="19.0" prefWidth="308.0" textFill="RED" wrapText="true">
+                        <Label fx:id="lblErrorfirstName" layoutX="13.0" layoutY="252.0" prefHeight="19.0" prefWidth="333.0" textFill="RED" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblErrorlastName" layoutX="390.0" layoutY="252.0" prefHeight="19.0" prefWidth="332.0" textFill="RED" wrapText="true">
+                        <Label fx:id="lblErrorlastName" layoutX="390.0" layoutY="252.0" prefHeight="19.0" prefWidth="332.0" textFill="RED" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblErrorbirthDate" layoutX="216.0" layoutY="360.0" prefHeight="19.0" prefWidth="303.0" textFill="RED">
+                        <Label fx:id="lblErrorbirthDate" layoutX="117.0" layoutY="361.0" prefHeight="19.0" prefWidth="500.0" textFill="RED" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
@@ -81,7 +81,7 @@
                               <Font name="Georgia Bold" size="17.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblErrorallFields1" layoutX="215.0" layoutY="49.0" prefHeight="20.0" prefWidth="461.0" textFill="RED">
+                        <Label fx:id="lblErrorallFields1" layoutX="215.0" layoutY="49.0" prefHeight="20.0" prefWidth="504.0" textFill="RED" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="17.0" />
                            </font>
@@ -96,7 +96,7 @@
                               <Font name="Georgia Bold" size="17.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblUsername" layoutX="380.0" layoutY="106.0" prefHeight="21.0" prefWidth="209.0" text="JSmit123">
+                        <Label fx:id="lblUsername" layoutX="380.0" layoutY="106.0" prefHeight="21.0" prefWidth="331.0" text="JSmit123" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold" size="16.0" />
                            </font>
@@ -137,7 +137,7 @@
                         <PasswordField fx:id="txtCurrentPass" layoutX="368.0" layoutY="106.0" prefHeight="31.0" prefWidth="230.0" promptText="1234" />
                         <PasswordField fx:id="txtNewPass" layoutX="368.0" layoutY="224.0" prefHeight="31.0" prefWidth="230.0" promptText="1234" />
                         <PasswordField fx:id="txtConfirmPass" layoutX="368.0" layoutY="346.0" prefHeight="31.0" prefWidth="230.0" promptText="1234" />
-                        <Label fx:id="lblErrorPassword" layoutX="235.0" layoutY="26.0" prefHeight="19.0" prefWidth="469.0" textFill="RED">
+                        <Label fx:id="lblErrorPassword" layoutX="235.0" layoutY="26.0" prefHeight="19.0" prefWidth="469.0" textFill="RED" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
@@ -147,6 +147,14 @@
                               <Font name="Georgia Italic" size="15.0" />
                            </font>
                         </Label>
+                        <Button fx:id="btngetMain3" layoutX="622.0" layoutY="441.0" mnemonicParsing="false" onAction="#ClickgetLogInButton" text="Back to Main">
+                           <font>
+                              <Font name="Georgia" size="14.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
                      </children>
                   </AnchorPane>
                </content>
@@ -195,22 +203,22 @@
                               <Font name="Calibri" size="15.0" />
                            </font>
                         </TextField>
-                        <Label fx:id="lblErrorfullName" layoutX="214.0" layoutY="150.0" prefHeight="19.0" prefWidth="360.0" textFill="RED">
+                        <Label fx:id="lblErrorfullName" layoutX="152.0" layoutY="146.0" prefHeight="19.0" prefWidth="563.0" textFill="RED" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblErrorphone" layoutX="207.0" layoutY="312.0" prefHeight="19.0" prefWidth="327.0" textFill="RED">
+                        <Label fx:id="lblErrorphone" layoutX="142.0" layoutY="312.0" prefHeight="19.0" prefWidth="578.0" textFill="RED" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblErroremail" layoutX="207.0" layoutY="393.0" prefHeight="19.0" prefWidth="370.0" textFill="RED">
+                        <Label fx:id="lblErroremail" layoutX="141.0" layoutY="393.0" prefHeight="19.0" prefWidth="576.0" textFill="RED" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblErrorallFields2" layoutX="22.0" layoutY="54.0" prefHeight="20.0" prefWidth="594.0" textFill="RED">
+                        <Label fx:id="lblErrorallFields2" layoutX="22.0" layoutY="54.0" prefHeight="20.0" prefWidth="699.0" textFill="RED" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="17.0" />
                            </font>
@@ -225,7 +233,7 @@
                               <Font name="Georgia" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblErrorrelation" layoutX="207.0" layoutY="229.0" prefHeight="19.0" prefWidth="371.0" textFill="RED">
+                        <Label fx:id="lblErrorrelation" layoutX="161.0" layoutY="227.0" prefHeight="19.0" prefWidth="559.0" textFill="RED" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>

@@ -16,8 +16,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Account;
@@ -25,7 +23,7 @@ import controller.AsthmaController;
 
 public class UpdateController {
 	Main main = new Main();
-	//-----------------------------------------------------------------------------------------------------------------
+	//=================================================================================================================
 	//accessing the controls from .fxml file for updating purpose
 	@FXML private TextField txtfirstName, txtlastName, txtbirthDate, txtfullName, txtrelation, txtphone, txtemail;
 	@FXML private PasswordField  txtCurrentPass, txtNewPass, txtConfirmPass;
@@ -35,36 +33,35 @@ public class UpdateController {
 	Stage stage;
 	Scene scene;
 	Parent root;
-	@FXML TabPane tabPane;
-	@FXML Tab tab1, tab2, tab3;
+	Account activeUser = AsthmaController.curUser;//Anna
 	// EventHandler +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //sets main in Main.java 
 	public void setMain(Main mainIn)
 	{
 		main = mainIn;
 	}
-	//-----------------------------------------------------------------------------------------------------------------
+	//=================================================================================================================
 	//Runs methods at scene start
     @FXML
     void initialize(){
     	setName();
     }
-
+    		    /************************************************************************************/
     //Displays welcome message, and makes it editable in code. Watch method called for changes.
     public void setName() {
     	lblUsername.setText(AsthmaController.curUser.getuserName());
     }
-    //-----------------------------------------------------------------------------------------------------------------
+    //=================================================================================================================
   	/*Error checks textfields, if passed they are updated*/
   	public void ClickUpdateButton(ActionEvent event) throws Exception {
   		String firstName, lastName, password, conPassword, curPassword, birthDate, fullName, relation, phone, email;
   		int count = 0;
   		int counter = 0;
   		int counting = 0;
-  		
+  		//-------------------------------------------------------------------------------------------------------------
   		lblErrorallFields1.setText(null);
   		lblErrorallFields2.setText(null);
-		
+  		//-------------------------------------------------------------------------------------------------------------
 		firstName = txtfirstName.getText();
 		lastName = txtlastName.getText();
 		password = txtNewPass.getText();
@@ -75,7 +72,7 @@ public class UpdateController {
 		relation = txtrelation.getText();
 		phone = txtphone.getText();
 		email = txtemail.getText();
-		
+		//-------------------------------------------------------------------------------------------------------------
 		try{
 			lblErrorfirstName.setText(null);
 			if(!firstName.equals("")){
@@ -87,8 +84,14 @@ public class UpdateController {
 				}else{
 					System.out.println("firstName update failed.");
 				}
+			}else{
+				lblErrorfirstName.setText(null);
 			}
-	
+		}catch(Exception e){
+			e.getMessage();
+		}
+		//-------------------------------------------------------------------------------------------------------------
+		try{
 			lblErrorlastName.setText(null);
 			if(!lastName.equals("")){
 				if(checkLast(lastName) == true){
@@ -99,8 +102,14 @@ public class UpdateController {
 				}else{
 					System.out.println("lastName update failed.");
 				}
+			}else{
+				lblErrorlastName.setText(null);
 			}
-			
+		}catch(Exception e){
+			e.getMessage();
+		}
+		//-------------------------------------------------------------------------------------------------------------
+		try{
 			lblErrorbirthDate.setText(null);
 			if(!birthDate.equals("")){
 				if(checkbirthDate(birthDate) == true){
@@ -110,33 +119,50 @@ public class UpdateController {
 				}else{
 					System.out.println("birthDate update failed.");
 				}
+			}else{
+				lblErrorbirthDate.setText(null);
 			}
-			
-			if(count > 0){
-				lblErrorallFields1.setText("Your information has been updated.");
-			}
-			
+		}catch(Exception e){
+			e.getMessage();
+		}
+		//-------------------------------------------------------------------------------------------------------------	
+		if(count > 0){
+			lblErrorallFields1.setText("Your personal information has been updated.");
+		}
+		//-------------------------------------------------------------------------------------------------------------	
+		try{
 			lblErrorPassword.setText(null);
 			if(!curPassword.equals("") || !password.equals("") || !conPassword.equals("")){
-				if(!curPassword.equals("") && !password.equals("") && !conPassword.equals("")){
-					if(checkPassword(password, conPassword) == true && checkcurrentPassword(curPassword) == true){
-						updatePassword(password);
-						txtCurrentPass.setText(null);
-						txtNewPass.setText(null);
-						txtConfirmPass.setText(null);
-						counter += 1;
-					}else{
-						System.out.println("password update failed.");
-					}
-				}else{
+				if(curPassword.equals("") || password.equals("") || conPassword.equals("")){
 					lblErrorPassword.setText("Please fill in all password fields.");
+				}else{
+					if(checkcurrentPassword(curPassword) == true){
+						if(checkPassword(password, conPassword) == true){
+							updatePassword(password);
+							txtCurrentPass.setText(null);
+							txtNewPass.setText(null);
+							txtConfirmPass.setText(null);
+							counter += 1;
+						}else{
+							System.out.println("password update failed.");
+						}
+					}else{
+						lblErrorPassword.setText("Incorrect current password.");
+					}
 				}
+			}else{
+				lblErrorPassword.setText(null);
+				System.out.println("All password fields are blank.");
 			}
-			
-			if(counter > 0){
-				lblErrorPassword.setText("Your password has been updated.");
-			}
-			
+		}catch(Exception e){
+			e.getMessage();
+		}
+		//-------------------------------------------------------------------------------------------------------------
+		if(counter > 0){
+			lblErrorPassword.setText("Your password has been updated.");
+		}
+		//-------------------------------------------------------------------------------------------------------------
+		try{
 			lblErrorfullName.setText(null);
 			if(!fullName.equals("")){
 				if(checkfullName(fullName) == true){
@@ -147,8 +173,14 @@ public class UpdateController {
 				}else{
 					System.out.println("fullName update failed.");
 				}
+			}else{
+				lblErrorfullName.setText(null);
 			}
-			
+		}catch(Exception e){
+			e.getMessage();
+		}
+		//-------------------------------------------------------------------------------------------------------------
+		try{
 			lblErrorrelation.setText(null);
 			if(!relation.equals("")){
 				if(checkrelation(relation) == true){
@@ -159,8 +191,14 @@ public class UpdateController {
 				}else{
 					System.out.println("relation update failed.");
 				}
+			}else{
+				lblErrorrelation.setText(null);
 			}
-			
+		}catch(Exception e){
+			e.getMessage();
+		}
+		//-------------------------------------------------------------------------------------------------------------
+		try{
 			lblErrorphone.setText(null);
 			if(!phone.equals("")){
 				if(checkphone(phone) == true){
@@ -170,8 +208,14 @@ public class UpdateController {
 				}else{
 					System.out.println("phone update failed.");
 				}
+			}else{
+				lblErrorphone.setText(null);
 			}
-			
+		}catch(Exception e){
+			e.getMessage();
+		}
+		//-------------------------------------------------------------------------------------------------------------
+		try{
 			lblErroremail.setText(null);
 			if(!email.equals("")){
 				if(checkemail(email) == true){
@@ -181,24 +225,27 @@ public class UpdateController {
 				}else{
 					System.out.println("email update failed.");
 				}
+			}else{
+				lblErroremail.setText(null);
 			}
-			
-			if(counting > 0){
-				lblErrorallFields2.setText("Your contact information has been updated.");
-			}
-		} catch(Exception e){
+		}catch(Exception e){
 			e.getMessage();
 		}
+		//-------------------------------------------------------------------------------------------------------------
+		if(counting > 0){
+			lblErrorallFields2.setText("Your contact information has been updated.");
+		}
+		//-------------------------------------------------------------------------------------------------------------
   	}
-  	//-----------------------------------------------------------------------------------------------------------------
+  	//=================================================================================================================
   	//capitalizes first letter in name
   	public String capitalizeName(String name){
   			return name.substring(0,1).toUpperCase() + name.substring(1);//.toLowerCase();
   	}
-  	//-----------------------------------------------------------------------------------------------------------------
+  	//=================================================================================================================
   	//Error checks firstName
   	public boolean checkFirst(String firstName){
-  		boolean test = true;
+  		boolean test = false;
   		lblErrorfirstName.setText(null);
   		//checks for numbers
   		Pattern p = Pattern.compile("([0-9])", Pattern.CASE_INSENSITIVE);
@@ -207,6 +254,8 @@ public class UpdateController {
 		if(firNam){
 			lblErrorfirstName.setText("First name cannot contain numbers.");
 			test = false;
+		}else{
+			test = true;
 		}
 		
 		//checks for special characters
@@ -220,17 +269,18 @@ public class UpdateController {
 		}
 		return test;
   	}
-  	//-----------------------------------------------------------------------------------------------------------------
+  	//=================================================================================================================
   	/* Updates firstName in userinfo table of Database -> populates: firstName */
 	private void updateFirst(String firstName) throws SQLException {
 		Account account = new Account();
 		account.setfirstName(firstName);
-		String query = "UPDATE userinfo SET firstName = ?";
+		String query = "UPDATE userinfo SET firstName = ? WHERE userName = ?";
 		//attempt to connect to database
 		try (Connection conn = DBConfig.getConnection();
 				PreparedStatement updateFirst = conn.prepareStatement(query);)
 		{
 			updateFirst.setString(1, account.getfirstName());
+			updateFirst.setString(2, activeUser.getuserName());//Anna
 			//execute the update
 			updateFirst.executeUpdate();
 
@@ -241,10 +291,10 @@ public class UpdateController {
 			DBConfig.displayException(ex);
 		}
 	}
-	//-----------------------------------------------------------------------------------------------------------------
+	//=================================================================================================================
   	//Error checks lastName
   	public boolean checkLast(String lastName){
-  		boolean test = true;
+  		boolean test = false;
   		lblErrorlastName.setText(null);
   		//checks for numbers
   		Pattern p = Pattern.compile("([0-9])", Pattern.CASE_INSENSITIVE);
@@ -253,6 +303,8 @@ public class UpdateController {
 		if(lasNam){
 			lblErrorlastName.setText("Last name cannot contain numbers.");
 			test = false;
+		}else{
+			test = true;
 		}
 		
 		//checks for special characters
@@ -266,17 +318,18 @@ public class UpdateController {
 		}
 		return test;
   	}
-  	//-----------------------------------------------------------------------------------------------------------------
+  	//=================================================================================================================
   	/* Updates lastName in userinfo table of Database -> populates: lastName */
 	private void updateLast(String lastName) throws SQLException {
 		Account account = new Account();
 		account.setlastName(lastName);
-		String query = "UPDATE userinfo SET lastName = ?";
+		String query = "UPDATE userinfo SET lastName = ? WHERE userName = ?";
 		//attempt to connect to database
 		try (Connection conn = DBConfig.getConnection();
 				PreparedStatement updateLast = conn.prepareStatement(query);)
 		{
 			updateLast.setString(1, account.getlastName());
+			updateLast.setString(2, activeUser.getuserName());//Anna
 			//execute the update
 			updateLast.executeUpdate();
 
@@ -287,7 +340,7 @@ public class UpdateController {
 			DBConfig.displayException(ex);
 		}
 	}
-	//-----------------------------------------------------------------------------------------------------------------
+	//=================================================================================================================
 	//Error checks birthDate dates and format
 	public boolean checkbirthDate(String birthDate){
 		boolean test = true;
@@ -308,7 +361,7 @@ public class UpdateController {
 		if(bDat){
 			lblErrorbirthDate.setText("Birth Date must only contain numbers.");
 		 	test = false;
-		}else if(count == 0 || count == 1 && !birthDate.equals("")){
+		}else if(count == 0 || count == 1){
 			lblErrorbirthDate.setText("Date format required.");
 			test = false;
 		}else{
@@ -320,8 +373,7 @@ public class UpdateController {
 			int day = Integer.parseInt(part2);
 			int year = Integer.parseInt(part3);
 			//System.out.println(month+":"+day+":"+year);//testing
-			if(birthDate.charAt(2) != '/'|| birthDate.charAt(5) != '/'|| birthDate.length() != 10 && 
-				!birthDate.equals("")){
+			if(birthDate.charAt(2) != '/'|| birthDate.charAt(5) != '/'|| birthDate.length() != 10){
 					lblErrorbirthDate.setText("Incorrect date format.");
 					test = false;
 			}else if(month > 12 || month < 1 || day > 31 || day < 1 || year > 2017 || year < 1920){
@@ -341,17 +393,18 @@ public class UpdateController {
 		}
 		return test;
 	}
-	//-----------------------------------------------------------------------------------------------------------------
+	//=================================================================================================================
 	/* Updates birthDate in userinfo table of Database -> populates: birthDate */
 	private void updatebirthDate(String birthDate) throws SQLException {	
 		Account account = new Account();
 		account.setbirthDate(birthDate);
-		String query = "UPDATE userinfo SET birthDate = ?";
+		String query = "UPDATE userinfo SET birthDate = ? WHERE userName = ?";
 		//attempt to connect to database
 		try (Connection conn = DBConfig.getConnection();
 				PreparedStatement updatebirthDate = conn.prepareStatement(query);)
 		{
 			updatebirthDate.setString(1, account.getbirthDate());
+			updatebirthDate.setString(2, activeUser.getuserName());//Anna
 			//execute the update
 			updatebirthDate.executeUpdate();
 
@@ -362,10 +415,10 @@ public class UpdateController {
 			DBConfig.displayException(ex);
 		}
 	}
-	//-----------------------------------------------------------------------------------------------------------------
+	//=================================================================================================================
 	//Error checks password and conPassword and makes sure they match
 	public boolean checkPassword(String password, String conPassword){
-		boolean test = true;
+		boolean test = false;
 		int plen = txtNewPass.getLength();
 		int cplen = txtConfirmPass.getLength();
 		int password2, conPassword2;
@@ -394,13 +447,13 @@ public class UpdateController {
 				lblErrorPassword.setText("Password must consist of numbers.");
 				txtNewPass.setText(null);
 				txtConfirmPass.setText(null);
-				e.printStackTrace();
+				e.getMessage();
 				test = false;
 			 }
 		}
 		return test;
 	}
-	//-----------------------------------------------------------------------------------------------------------------
+	//=================================================================================================================
 	/* Checks password against database passwords */
 	public boolean checkcurrentPassword(String curPassword) throws SQLException{
 		boolean pass = false;
@@ -421,6 +474,7 @@ public class UpdateController {
 			    		pass = true;
 			    	}else{
 			    		lblErrorPassword.setText("Incorrect current password.");
+			    		System.out.println("Wrong password.");
 			    		pass = false;
 			    	}
 			    }else{
@@ -434,17 +488,18 @@ public class UpdateController {
 		}
 		return pass;
 	}
-	//-----------------------------------------------------------------------------------------------------------------
+	//=================================================================================================================
 	/* Updates password in userinfo table of Database -> populates: password */
 	private void updatePassword(String password) throws SQLException {	
 		Account account = new Account();
 		account.setpassword(password);
-		String query = "UPDATE userinfo SET password = ?";
+		String query = "UPDATE userinfo SET password = ? WHERE userName = ?";
 		//attempt to connect to database
 		try (Connection conn = DBConfig.getConnection();
 			PreparedStatement updatePassword = conn.prepareStatement(query);)
 		{
 			updatePassword.setString(1, account.getpassword());
+			updatePassword.setString(2, activeUser.getuserName());//Anna
 			//execute the update
 			updatePassword.executeUpdate();
 
@@ -455,10 +510,10 @@ public class UpdateController {
 			DBConfig.displayException(ex);
 		}
 	}
-	//-----------------------------------------------------------------------------------------------------------------
+	//=================================================================================================================
 	//Error checks fullName for special characters and numbers
 	public boolean checkfullName(String fullName){
-		boolean test = true;
+		boolean test = false;
 		
 		//checks for numbers
   		Pattern p = Pattern.compile("([0-9])", Pattern.CASE_INSENSITIVE);
@@ -467,6 +522,8 @@ public class UpdateController {
 		if(fulNam){
 			lblErrorfullName.setText("Full name cannot contain numbers.");
 			test = false;
+		}else{
+			test = true;
 		}
 		
 		//checks for to make sure full name only consists of letters, ., -, and spaces
@@ -479,17 +536,18 @@ public class UpdateController {
 		}
 		return test;
 	}
-	//-----------------------------------------------------------------------------------------------------------------
+	//=================================================================================================================
 	/* Updates fullName in contactinfo table of Database -> populates: fullName */
 	private void updatefullName(String fullName) throws SQLException {	
 		Account account = new Account();
 		account.setfullName(fullName);
-		String query = "UPDATE contactinfo SET fullName = ?";
+		String query = "UPDATE contactinfo SET fullName = ? WHERE uNameFK1 = ?";
 		//attempt to connect to database
 		try (Connection conn = DBConfig.getConnection();
 				PreparedStatement updatefullName = conn.prepareStatement(query);)
 		{
 			updatefullName.setString(1, account.getfullName());
+			updatefullName.setString(2, activeUser.getuserName());//Anna
 			//execute the update
 			updatefullName.executeUpdate();
 
@@ -500,10 +558,10 @@ public class UpdateController {
 			DBConfig.displayException(ex);
 		}
 	} 
-	//-----------------------------------------------------------------------------------------------------------------
+	//=================================================================================================================
 	//Error checks relation for special characters and numbers, separately
 	public boolean checkrelation(String relation){
-		boolean test = true;
+		boolean test = false;
 		
 		//checks for numbers
   		Pattern p = Pattern.compile("([0-9])", Pattern.CASE_INSENSITIVE);
@@ -512,6 +570,8 @@ public class UpdateController {
 		if(rela){
 			lblErrorrelation.setText("Relationship cannot contain numbers.");
 			test = false;
+		}else{
+			test = true;
 		}
 		
 		//checks to make sure relation only contains letters, -, and spaces
@@ -524,17 +584,18 @@ public class UpdateController {
 		}
 		return test;
 	}
-	//-----------------------------------------------------------------------------------------------------------------
+	//=================================================================================================================
 	/* Updates relation in contactinfo table of Database -> populates: relation */
 	private void updaterelation(String relation) throws SQLException {	
 		Account account = new Account();
 		account.setrelation(relation);
-		String query = "UPDATE contactinfo SET relation = ?";
+		String query = "UPDATE contactinfo SET relation = ? WHERE uNameFK1 = ?";
 		//attempt to connect to database
 		try (Connection conn = DBConfig.getConnection();
 				PreparedStatement updaterelation = conn.prepareStatement(query);)
 		{
 			updaterelation.setString(1, account.getrelation());
+			updaterelation.setString(2, activeUser.getuserName());//Anna
 			//execute the update
 			updaterelation.executeUpdate();
 
@@ -545,10 +606,10 @@ public class UpdateController {
 			DBConfig.displayException(ex);
 		}
 	}
-	//-----------------------------------------------------------------------------------------------------------------
+	//=================================================================================================================
 	//Error checks phone for anything other than numbers and -
 	public boolean checkphone(String phone){
-		boolean test = true;
+		boolean test = false;
 		
 		//checks to make sure phone number only consists of numbers and -
 		Pattern p = Pattern.compile("[^0-9-]");
@@ -563,20 +624,23 @@ public class UpdateController {
 		}else if(phone.length() != 12){
 			lblErrorphone.setText("Incorrect phone number length.");
 			test = false;
+		}else{
+			test = true;
 		}
 		return test;
 	}
-	//-----------------------------------------------------------------------------------------------------------------
+	//=================================================================================================================
 	/* Updates phone in contactinfo table of Database -> populates: phone */
 	private void updatephone(String phone) throws SQLException {	
 		Account account = new Account();
 		account.setphone(phone);
-		String query = "UPDATE contactinfo SET phone = ?";
+		String query = "UPDATE contactinfo SET phone = ? WHERE uNameFK1 = ?";
 		//attempt to connect to database
 		try (Connection conn = DBConfig.getConnection();
 				PreparedStatement updatephone = conn.prepareStatement(query);)
 		{
 			updatephone.setString(1, account.getphone());
+			updatephone.setString(2, activeUser.getuserName());//Anna
 			//execute the update
 			updatephone.executeUpdate();
 
@@ -587,10 +651,10 @@ public class UpdateController {
 			DBConfig.displayException(ex);
 		}
 	}
-	//-----------------------------------------------------------------------------------------------------------------
+	//=================================================================================================================
 	//Error checks email for at least one @ and . plus length
 	public boolean checkemail(String email){
-		boolean test = true;
+		boolean test = false;
 		
 		//checks to make sure email consists of at least one @ and .
 		String s = email;
@@ -606,26 +670,37 @@ public class UpdateController {
 		        counter++;
 		    } 
 		}
+		
+		Pattern p = Pattern.compile("[\\s]");
+		Matcher mail = p.matcher(email);
+		boolean ema = mail.find();
+		if(ema){
+			lblErroremail.setText("Invalid email. Cannot contain spaces.");
+			test = false;
+		}
 		if(count < 1 || counter < 1 || s.length() < 5){
 			lblErroremail.setText("Invalid email address.");
 			test = false;
 		}else if(s.length() > 30){
 			lblErroremail.setText("Email is too long. Cannot exceed 30 characters.");
 			test = false;
+		}else{
+			test = true;
 		}
 		return test;
 	}
-	//-----------------------------------------------------------------------------------------------------------------
+	//=================================================================================================================
 	/* Updates email in contactinfo table of Database -> populates: email */
 	private void updateemail(String email) throws SQLException {	
 		Account account = new Account();
 		account.setemail(email);
-		String query = "UPDATE contactinfo SET email = ?";
+		String query = "UPDATE contactinfo SET email = ? WHERE uNameFK1 = ?";
 		//attempt to connect to database
 		try (Connection conn = DBConfig.getConnection();
 				PreparedStatement updateemail = conn.prepareStatement(query);)
 		{
 			updateemail.setString(1, account.getemail());
+			updateemail.setString(2, activeUser.getuserName());//Anna
 			//execute the update
 			updateemail.executeUpdate();
 
@@ -636,7 +711,7 @@ public class UpdateController {
 			DBConfig.displayException(ex);
 		}
 	}
-	//-----------------------------------------------------------------------------------------------------------------
+	//=================================================================================================================
 	//log in button clicked on CreateAccount page, takes you to LogIn page
 	public void ClickgetLogInButton(ActionEvent event) throws Exception {
 		stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
@@ -644,5 +719,5 @@ public class UpdateController {
 		scene = new Scene(root);
 		stage.setScene(scene);
 	}
-	//-----------------------------------------------------------------------------------------------------------------
+	//=================================================================================================================
 }

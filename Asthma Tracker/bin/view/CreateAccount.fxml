@@ -13,9 +13,9 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="733.0" style="-fx-background-color: cdcdcd;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AsthmaController">
    <center>
-      <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab fx:id="tab1" closable="false" style="-fx-font-family: Georgia;" text="User Information">
+          <Tab closable="false" style="-fx-font-family: Georgia;" text="User Information">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="loginstyle" stylesheets="@../application/application.css">
                      <children>
@@ -60,7 +60,7 @@
                            </font>
                         </TextField>
                         <TextField fx:id="txtlastName" layoutX="116.0" layoutY="213.0" prefHeight="31.0" prefWidth="230.0" promptText="Smith" />
-                        <TextField fx:id="txtbirthDate" layoutX="116.0" layoutY="329.0" prefHeight="29.0" prefWidth="230.0" promptText="DD/MM/YYYY">
+                        <TextField fx:id="txtbirthdate" layoutX="116.0" layoutY="329.0" prefHeight="29.0" prefWidth="230.0" promptText="DD/MM/YYYY">
                            <font>
                               <Font name="Georgia" size="15.0" />
                            </font>
@@ -70,16 +70,16 @@
                            <font>
                               <Font name="Georgia" size="16.0" />
                            </font></Label>
-                        <Label fx:id="lblErrorfirstName" layoutX="38.0" layoutY="149.0" prefHeight="19.0" prefWidth="308.0" textFill="RED">
+                        <Label fx:id="lblErrorfirstName" layoutX="9.0" layoutY="149.0" prefHeight="19.0" prefWidth="357.0" textFill="RED" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblErroruserName" layoutX="397.0" layoutY="149.0" prefHeight="19.0" prefWidth="327.0" textFill="RED">
+                        <Label fx:id="lblErroruserName" layoutX="397.0" layoutY="149.0" prefHeight="19.0" prefWidth="327.0" textFill="RED" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font></Label>
-                        <Label fx:id="lblErrorlastName" layoutX="40.0" layoutY="267.0" prefHeight="19.0" prefWidth="308.0" textFill="RED">
+                        <Label fx:id="lblErrorlastName" layoutX="14.0" layoutY="267.0" prefHeight="19.0" prefWidth="392.0" textFill="RED" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
@@ -88,12 +88,12 @@
                            <font>
                               <Font name="Georgia Italic" size="15.0" />
                            </font></Label>
-                        <Label fx:id="lblErrorbirthDate" layoutX="44.0" layoutY="384.0" prefHeight="19.0" prefWidth="303.0" textFill="RED">
+                        <Label fx:id="lblErrorBirthdate" layoutX="18.0" layoutY="375.0" prefHeight="19.0" prefWidth="345.0" textFill="RED" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblErrorPassword" layoutX="403.0" layoutY="384.0" prefHeight="19.0" prefWidth="300.0" textFill="RED">
+                        <Label fx:id="lblErrorPassword" layoutX="391.0" layoutY="375.0" prefHeight="19.0" prefWidth="331.0" textFill="RED" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font></Label>
@@ -106,7 +106,7 @@
                               <Font name="Georgia Bold" size="17.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblErrorallFields1" layoutX="107.0" layoutY="49.0" prefHeight="19.0" prefWidth="266.0" textFill="RED">
+                        <Label fx:id="lblErrorallFields1" layoutX="107.0" layoutY="49.0" prefHeight="20.0" prefWidth="579.0" textFill="RED" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="17.0" />
                            </font>
@@ -118,7 +118,7 @@
                         </Label>
                         <PasswordField fx:id="txtpassword" layoutX="461.0" layoutY="213.0" prefHeight="31.0" prefWidth="230.0" promptText="1234" />
                         <PasswordField fx:id="txtconPassword" layoutX="461.0" layoutY="328.0" prefHeight="31.0" prefWidth="230.0" promptText="1234" />
-                        <Button fx:id="btnNext" layoutX="336.0" layoutY="453.0" mnemonicParsing="false" onAction="#ClickNextButton" text="NEXT" textFill="#452bbb">
+                        <Button fx:id="btnNextTab" layoutX="336.0" layoutY="453.0" mnemonicParsing="false" onAction="#ClickNextButton" text="NEXT" textFill="#452bbb">
                            <font>
                               <Font name="Georgia" size="15.0" />
                            </font>
@@ -127,7 +127,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab fx:id="tab2" closable="false" style="-fx-font-family: Georgia;" text="Emergency Contact Information">
+          <Tab closable="false" style="-fx-font-family: Georgia;" text="Emergency Contact Information">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="loginstyle" stylesheets="@../application/application.css">
                      <children>
@@ -156,7 +156,7 @@
                               <Font name="Georgia" size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtphone" layoutX="271.0" layoutY="265.0" prefHeight="31.0" prefWidth="305.0" promptText="555-555-1234">
+                        <TextField fx:id="txtECphone" layoutX="271.0" layoutY="265.0" prefHeight="31.0" prefWidth="305.0" promptText="555-555-1234">
                            <font>
                               <Font name="Calibri" size="15.0" />
                            </font>
@@ -166,37 +166,37 @@
                               <Font name="Georgia" size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtfullName" layoutX="271.0" layoutY="103.0" prefHeight="31.0" prefWidth="305.0" promptText="Bob Smith">
+                        <TextField fx:id="txtECname" layoutX="271.0" layoutY="103.0" prefHeight="31.0" prefWidth="305.0" promptText="Bob Smith">
                            <font>
                               <Font name="Calibri" size="15.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="txtemail" layoutX="271.0" layoutY="347.0" prefHeight="31.0" prefWidth="305.0" promptText="Bsmith@yahoo.com">
+                        <TextField fx:id="txtECemail" layoutX="271.0" layoutY="347.0" prefHeight="31.0" prefWidth="305.0" promptText="Bsmith@yahoo.com">
                            <font>
                               <Font name="Calibri" size="15.0" />
                            </font>
                         </TextField>
-                        <Label fx:id="lblErrorECname" layoutX="207.0" layoutY="150.0" prefHeight="19.0" prefWidth="327.0" textFill="RED">
+                        <Label fx:id="lblErrorECname" layoutX="159.0" layoutY="144.0" prefHeight="19.0" prefWidth="557.0" textFill="RED" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblErrorECphone" layoutX="207.0" layoutY="312.0" prefHeight="19.0" prefWidth="327.0" textFill="RED">
+                        <Label fx:id="lblErrorECphone" layoutX="139.0" layoutY="312.0" prefHeight="19.0" prefWidth="581.0" textFill="RED" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblErrorECemail" layoutX="207.0" layoutY="393.0" prefHeight="19.0" prefWidth="327.0" textFill="RED">
+                        <Label fx:id="lblErrorECemail" layoutX="182.0" layoutY="393.0" prefHeight="19.0" prefWidth="514.0" textFill="RED" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblErrorallFields2" layoutX="476.0" layoutY="26.0" prefHeight="20.0" prefWidth="247.0" textFill="RED">
+                        <Label fx:id="lblErrorallFields2" layoutX="467.0" layoutY="26.0" prefHeight="20.0" prefWidth="256.0" textFill="RED">
                            <font>
                               <Font name="Georgia Bold Italic" size="17.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtrelation" layoutX="271.0" layoutY="186.0" prefHeight="31.0" prefWidth="305.0" promptText="Parent">
+                        <TextField fx:id="txtECrelation" layoutX="271.0" layoutY="186.0" prefHeight="31.0" prefWidth="305.0" promptText="Parent">
                            <font>
                               <Font name="Calibri" size="15.0" />
                            </font>
@@ -206,7 +206,7 @@
                               <Font name="Georgia" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblErrorECrelation" layoutX="207.0" layoutY="229.0" prefHeight="19.0" prefWidth="327.0" textFill="RED">
+                        <Label fx:id="lblErrorECrelation" layoutX="156.0" layoutY="229.0" prefHeight="19.0" prefWidth="563.0" textFill="RED" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="Georgia Bold Italic" size="15.0" />
                            </font>
