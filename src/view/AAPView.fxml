@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="744.0" styleClass="welcomestyle" stylesheets="@../application/application.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AAPController">
+   <bottom>
+      <HBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+          <Button fx:id="backBTN" mnemonicParsing="false" onAction="#backToMain" text="Back">
+               <font>
+                  <Font name="Georgia" size="15.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="4.0" />
+               </HBox.margin>
+            </Button>
+            <Label fx:id="codeErrLbl" textFill="RED">
+               <font>
+                  <Font name="Georgia Bold Italic" size="15.0" />
+               </font>
+               <padding>
+                  <Insets bottom="3.0" />
+               </padding>
+            </Label>
+            <Button fx:id="resetBTN" mnemonicParsing="false" onAction="#resetAAP" text="Reset">
+               <font>
+                  <Font name="Georgia" size="15.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="7.0" top="7.0" />
+         </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+   <center>
+      <TabPane fx:id="tabpane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab fx:id="tab1" text="Nonexistent/Mild Asthma">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="mildstyle" stylesheets="@../application/application.css">
+                     <children>
+                        <Label layoutX="89.0" layoutY="14.0" text="Please enter your medication information for Nonexistent or Mild Asthma.">
+                           <font>
+                              <Font name="Georgia" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="95.0" layoutY="72.0" text="Medicine Type: ">
+                           <font>
+                              <Font name="Georgia" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="138.0" layoutY="154.0" text="Amount: ">
+                           <font>
+                              <Font name="Georgia" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="122.0" layoutY="245.0" text="Frequency: ">
+                           <font>
+                              <Font name="Georgia" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="mildMedTF" layoutX="216.0" layoutY="66.0" prefHeight="31.0" prefWidth="273.0" promptText="Medicine" />
+                        <TextField fx:id="mildAmtTF" layoutX="216.0" layoutY="148.0" prefHeight="31.0" prefWidth="273.0" promptText="Number per Dose" />
+                        <TextField fx:id="mildFreqTF" layoutX="216.0" layoutY="239.0" prefHeight="31.0" prefWidth="273.0" promptText="Times per Day" />
+                        <Label fx:id="mildMedErr" layoutX="83.0" layoutY="103.0" textFill="RED">
+                           <font>
+                              <Font name="Georgia Bold Italic" size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="3.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="mildAmtErr" layoutX="190.0" layoutY="187.0" textFill="RED">
+                           <font>
+                              <Font name="Georgia Bold Italic" size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="3.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="mildFreqErr" layoutX="190.0" layoutY="281.0" textFill="RED">
+                           <font>
+                              <Font name="Georgia Bold Italic" size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="3.0" />
+                           </padding>
+                        </Label>
+                        <Button fx:id="btnNext1" layoutX="568.0" layoutY="280.0" mnemonicParsing="false" onAction="#ClickNext1Button" text="NEXT">
+                           <font>
+                              <Font name="Georgia" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab fx:id="tab2" text="Moderate Asthma">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="moderatestyle" stylesheets="@../application/application.css">
+                     <children>
+                        <Label layoutX="126.0" layoutY="14.0" text="Please enter your medication information for Moderate Asthma.">
+                           <font>
+                              <Font name="Georgia" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="95.0" layoutY="72.0" text="Medicine Type: ">
+                           <font>
+                              <Font name="Georgia" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="138.0" layoutY="154.0" text="Amount: ">
+                           <font>
+                              <Font name="Georgia" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="122.0" layoutY="245.0" text="Frequency: ">
+                           <font>
+                              <Font name="Georgia" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="modMedTF" layoutX="216.0" layoutY="66.0" prefHeight="31.0" prefWidth="273.0" promptText="Medicine" />
+                        <TextField fx:id="modAmtTF" layoutX="216.0" layoutY="148.0" prefHeight="31.0" prefWidth="273.0" promptText="Number per Dose" />
+                        <TextField fx:id="modFreqTF" layoutX="216.0" layoutY="239.0" prefHeight="31.0" prefWidth="273.0" promptText="Times per Day" />
+                        <Label fx:id="modMedErr" layoutX="82.0" layoutY="106.0" textFill="RED">
+                           <font>
+                              <Font name="Georgia Bold Italic" size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="3.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="modAmtErr" layoutX="190.0" layoutY="187.0" textFill="RED">
+                           <font>
+                              <Font name="Georgia Bold Italic" size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="3.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="modFreqErr" layoutX="190.0" layoutY="281.0" textFill="RED">
+                           <font>
+                              <Font name="Georgia Bold Italic" size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="3.0" />
+                           </padding>
+                        </Label>
+                        <Button fx:id="btnNext2" layoutX="568.0" layoutY="280.0" mnemonicParsing="false" onAction="#ClickNext2Button" text="NEXT">
+                           <font>
+                              <Font name="Georgia" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="tab3" text="Severe Asthma">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="severestyle" stylesheets="@../application/application.css">
+                     <children>
+                        <Label layoutX="136.0" layoutY="14.0" text="Please enter your medication information for Severe Asthma.">
+                           <font>
+                              <Font name="Georgia" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="89.0" layoutY="72.0" text=" Medicine Type: ">
+                           <font>
+                              <Font name="Georgia" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="134.0" layoutY="154.0" text=" Amount: ">
+                           <font>
+                              <Font name="Georgia" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="118.0" layoutY="245.0" text=" Frequency: ">
+                           <font>
+                              <Font name="Georgia" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="sevMedTF" layoutX="217.0" layoutY="66.0" prefHeight="31.0" prefWidth="273.0" promptText="Medicine" />
+                        <TextField fx:id="sevAmtTF" layoutX="216.0" layoutY="148.0" prefHeight="31.0" prefWidth="273.0" promptText="Number per Dose" />
+                        <TextField fx:id="sevFreqTF" layoutX="216.0" layoutY="239.0" prefHeight="31.0" prefWidth="273.0" promptText="Times per Day" />
+                        <Label fx:id="sevMedErr" layoutX="79.0" layoutY="104.0" textFill="RED">
+                           <font>
+                              <Font name="Georgia Bold Italic" size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="3.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="sevAmtErr" layoutX="190.0" layoutY="187.0" textFill="RED">
+                           <font>
+                              <Font name="Georgia Bold Italic" size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="3.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="sevFreqErr" layoutX="190.0" layoutY="281.0" textFill="RED">
+                           <font>
+                              <Font name="Georgia Bold Italic" size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="3.0" />
+                           </padding>
+                        </Label>
+                        <Button fx:id="btnNext3" layoutX="568.0" layoutY="280.0" mnemonicParsing="false" onAction="#ClickNext3Button" text="NEXT">
+                           <font>
+                              <Font name="Georgia" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="tab4" text="Doctor Information">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="docstyle" stylesheets="@../application/application.css">
+                     <children>
+                        <Label layoutX="140.0" layoutY="14.0" text="Please enter your doctor's information in case of emergency.">
+                           <font>
+                              <Font name="Georgia" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="123.0" layoutY="73.0" text="Full Name: ">
+                           <font>
+                              <Font name="Georgia" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="149.0" layoutY="155.0" text="Phone: ">
+                           <font>
+                              <Font name="Georgia" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="162.0" layoutY="246.0" text="City: ">
+                           <font>
+                              <Font name="Georgia" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="drNameTF" layoutX="216.0" layoutY="67.0" prefHeight="31.0" prefWidth="273.0" promptText="e.g John Smith" />
+                        <TextField fx:id="drPhoneTF" layoutX="216.0" layoutY="149.0" prefHeight="31.0" prefWidth="273.0" promptText="555-555-1234" />
+                        <TextField fx:id="drCityTF" layoutX="216.0" layoutY="240.0" prefHeight="31.0" prefWidth="273.0" promptText="e.g. New York" />
+                        <Label fx:id="drNameErr" layoutX="190.0" layoutY="104.0" textFill="RED">
+                           <font>
+                              <Font name="Georgia Bold Italic" size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="3.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="drPhoneErr" layoutX="190.0" layoutY="187.0" textFill="RED">
+                           <font>
+                              <Font name="Georgia Bold Italic" size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="3.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="drCityErr" layoutX="72.0" layoutY="281.0" textFill="RED">
+                           <font>
+                              <Font name="Georgia Bold Italic" size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="3.0" />
+                           </padding>
+                        </Label>
+                        <Button fx:id="updateBTN" layoutX="565.0" layoutY="279.0" mnemonicParsing="false" onAction="#submitAAP" text="SUBMIT">
+                           <font>
+                              <Font name="Georgia" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+         <effect>
+            <InnerShadow blurType="TWO_PASS_BOX" />
+         </effect>
+      </TabPane>
+   </center>
+   <top>
+      <VBox alignment="CENTER" prefHeight="106.0" prefWidth="601.0" spacing="5.0" stylesheets="@../application/application.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Asthma Action Plan" textFill="#452bbb">
+               <font>
+                  <Font name="Poor Richard" size="36.0" />
+               </font>
+            </Label>
+            <Label text="Please fill out the information below so we can better help you with your asthma.">
+               <font>
+                  <Font name="Georgia Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="43.0" layoutY="74.0" text="If you're under the age of 10, please have a parent help you.">
+               <font>
+                  <Font name="Georgia Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="allFieldsErr" layoutX="75.0" layoutY="84.0" textFill="RED">
+               <font>
+                  <Font name="Georgia Bold Italic" size="15.0" />
+               </font>
+               <padding>
+                  <Insets bottom="3.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
+   </top>
+   <left>
+      <Label prefWidth="20.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Label prefWidth="20.0" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>
