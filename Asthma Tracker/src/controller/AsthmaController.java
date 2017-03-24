@@ -67,15 +67,21 @@ public class AsthmaController {
 		int plen = txtpassword.getLength();
 		int cplen = txtconPassword.getLength();
 		
-		lblErrorallFields1.setText(null);
+		try{
+			lblErroruserName.setText(null);
+			lblErrorallFields1.setText(null);
+			lblErrorfirstName.setText(null);
+			lblErrorlastName.setText(null);
+			lblErrorbirthDate.setText(null);
+		}catch(NullPointerException e){
+			e.getMessage();
+		}
+
 		if(firstName.equals("") || lastName.equals("") || userName.equals("") || 
 				password.equals("") || conPassword.equals("") || birthDate.equals("")){//catches when all or any field is blank
 			lblErrorallFields1.setText("Please fill in all fields.");
 			test = false;
 		}
-		
-		lblErrorfirstName.setText(null);
-		lblErrorlastName.setText(null);
 		
 		//checks for numbers in firstName and lastName
 		Pattern p1 = Pattern.compile("([0-9])", Pattern.CASE_INSENSITIVE);
@@ -92,9 +98,7 @@ public class AsthmaController {
 			lblErrorlastName.setText("Last name cannot contain numbers.");
 			test = false;
 		}
-		
-		lblErroruserName.setText(null);
-		
+
 		//checks for spaces in userName
 		Pattern pattern = Pattern.compile("\\s");
 		Matcher matcher = pattern.matcher(userName);
@@ -147,15 +151,17 @@ public class AsthmaController {
 					txtpassword.setText(null);
 					txtconPassword.setText(null);
 				}
-			} catch (NumberFormatException e){//thrown when a non-number is entered for password
+			}catch(NumberFormatException e){//thrown when a non-number is entered for password
 				lblErrorPassword.setText("Password must consist of numbers.");
 				txtpassword.setText(null);
 				txtconPassword.setText(null);
-				e.printStackTrace();
+				//e.printStackTrace();
 				test = false;
+			}catch(Exception ex){
+				ex.getMessage();
 			}
 		}
-		lblErrorbirthDate.setText(null);
+		
 		//error check for birthDate
 		Pattern p2 = Pattern.compile("[^0-9/]");
 		Matcher bDate = p2.matcher(birthDate);
@@ -176,32 +182,36 @@ public class AsthmaController {
 			lblErrorbirthDate.setText("Date format required.");
 			test = false;
 		}else{
-			String[] parts = string.split("/");
-			String part1 = parts[0]; //charAt(0) & charAr(1)
-			String part2 = parts[1];
-			String part3 = parts[2];
-			int month = Integer.parseInt(part1);
-			int day = Integer.parseInt(part2);
-			int year = Integer.parseInt(part3);
-			//System.out.println(month+":"+day+":"+year);//testing
-			if(!birthDate.equals("") && birthDate.charAt(2) != '/'|| birthDate.charAt(5) != '/'|| birthDate.length() != 10){
-				lblErrorbirthDate.setText("Incorrect date format.");
-				test = false;
-			}else if(!birthDate.equals("") && month > 12 || month < 1 || day > 31 || day < 1 || year > 2017 || year < 1920){
-				lblErrorbirthDate.setText("Invalid date.");
-				test = false;
-			}else if(!birthDate.equals("") && month == 2 && day > 29){
-				lblErrorbirthDate.setText("Invalid day for February.");
-				test = false;
-			}else if(!birthDate.equals("") && month == 4 || month == 6 || month == 9 || month == 11 && day > 30){
-				lblErrorbirthDate.setText("Invalid day for that month.");
-				test = false;
+			try{
+				String[] parts = string.split("/");
+				String part1 = parts[0]; //charAt(0) & charAr(1)
+				String part2 = parts[1];
+				String part3 = parts[2];
+				int month = Integer.parseInt(part1);
+				int day = Integer.parseInt(part2);
+				int year = Integer.parseInt(part3);
+				//System.out.println(month+":"+day+":"+year);//testing
+				if(!birthDate.equals("") && birthDate.charAt(2) != '/'|| birthDate.charAt(5) != '/'|| birthDate.length() != 10){
+					lblErrorbirthDate.setText("Incorrect date format.");
+					test = false;
+				}else if(!birthDate.equals("") && month > 12 || month < 1 || day > 31 || day < 1 || year > 2017 || year < 1920){
+					lblErrorbirthDate.setText("Invalid date.");
+					test = false;
+				}else if(!birthDate.equals("") && month == 2 && day > 29){
+					lblErrorbirthDate.setText("Invalid day for February.");
+					test = false;
+				}else if(!birthDate.equals("") && month == 4 || month == 6 || month == 9 || month == 11 && day > 30){
+					lblErrorbirthDate.setText("Invalid day for that month.");
+					test = false;
+				}
+			}catch(ArrayIndexOutOfBoundsException e){
+				e.getMessage();
 			}
 		}
-		if(birthDate.equals("")){
+		/*if(birthDate.isEmpty()){
 			lblErrorbirthDate.setText(null);
 			test = false;
-		}
+		}*/
 		//will only insert account if everything checks out
 		if(test == true){
 			tabPane.getSelectionModel().select(tab2);
@@ -216,14 +226,24 @@ public class AsthmaController {
 		phone = txtphone.getText();
 		email = txtemail.getText();
 		boolean test = false;
-		lblErrorallFields2.setText(null);
+		
+		try{
+			lblErrorallFields2.setText(null);
+			lblErrorECname.setText(null);
+			lblErrorECrelation.setText(null);
+			lblErrorECphone.setText(null);
+			lblErrorECemail.setText(null);
+		}catch(NullPointerException e){
+			e.getMessage();
+		}
+		
 		if(fullName.equals("") || relation.equals("") || phone.equals("") || email.equals("")){
 			lblErrorallFields2.setText("Please fill in all fields.");
 			test = false;
 		}else{
 			test = true;
 		}
-		lblErrorECname.setText(null);
+		
 		//checks for to make sure full name only consists of letters, ., -, and spaces
 		Pattern p = Pattern.compile("[^a-zA-Z-\\.\\s]");
 		Matcher fuName = p.matcher(fullName);
@@ -232,7 +252,7 @@ public class AsthmaController {
 			lblErrorECname.setText("Invalid full name. Cannot use special characters or numbers.");
 			test = false;
 		}
-		lblErrorECrelation.setText(null);
+	
 		//checks to make sure relation only contains letters, -, and spaces
 		Pattern p2 = Pattern.compile("[^a-zA-Z-\\s]");
 		Matcher relat = p2.matcher(relation);
@@ -241,7 +261,7 @@ public class AsthmaController {
 			lblErrorECrelation.setText("Invalid relation. Cannot use special characters or numbers.");
 			test = false;
 		}
-		lblErrorECphone.setText(null);
+		
 		//checks to make sure phone number only consists of numbers and -
 		Pattern p3 = Pattern.compile("[^0-9-]");
 		Matcher phon = p3.matcher(phone);
@@ -253,7 +273,7 @@ public class AsthmaController {
 			lblErrorECphone.setText("Incorrect phone number format.");
 			test = false;
 		}
-		lblErrorECemail.setText(null);
+		
 		//checks to make sure email consists of at least one @ and .
 		String s = email;
 		int count = 0;
@@ -309,8 +329,13 @@ public class AsthmaController {
 	public boolean checkLogIn(String userName, String password) throws SQLException{//having issues:it's trying to look for a column name rather than a value in that column
 		boolean logIn = false;
 		boolean missing_credentials = false;
-		lblErrorgetUserName.setText(null);
-		lblErrorgetPassword.setText(null);
+		try{
+			lblErrorgetUserName.setText(null);
+			lblErrorgetPassword.setText(null);
+		}catch(NullPointerException e){
+			e.getMessage();
+		}
+		
 		if(userName.equals("")){//runs if userName is null
 			lblErrorgetUserName.setText("User name is required.");
 			missing_credentials = true;
@@ -349,6 +374,8 @@ public class AsthmaController {
 		    conn.close();  
 		}catch (SQLException ex) {
 			DBConfig.displayException(ex);
+		}catch(Exception e){
+			e.getMessage();
 		}
 		return logIn;
 	}
@@ -358,7 +385,13 @@ public class AsthmaController {
 		String userName, password; 
 		userName = txtgetUserName.getText();
 		password = txtgetPassword.getText();
-		lblErrorlogIn.setText(null);
+		
+		try{
+			lblErrorlogIn.setText(null);
+		}catch(NullPointerException e){
+			e.getMessage();
+		}
+		
 		if(checkLogIn(userName, password)){ 
 			setCurrentUserInfo(userName);
 			resetBreathZero(userName);
@@ -544,7 +577,8 @@ public class AsthmaController {
 				txtphone.setText(null);
 				txtemail.setText(null);
 			}
-				
+			
+			lblStatus.setText(null);
 				
 		  //catches entered userNames that are already in the database
 		} catch (MySQLIntegrityConstraintViolationException e) {

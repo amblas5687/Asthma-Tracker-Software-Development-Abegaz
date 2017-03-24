@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -18,28 +17,14 @@
    <bottom>
       <HBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <ButtonBar prefHeight="40.0" prefWidth="239.0">
-              <buttons>
-                <Button fx:id="backBTN" mnemonicParsing="false" onAction="#backToMain" text="Back">
-                     <font>
-                        <Font name="Georgia" size="15.0" />
-                     </font></Button>
-                  <Button fx:id="resetBTN" mnemonicParsing="false" onAction="#resetAAP" text="Reset">
-                     <font>
-                        <Font name="Georgia" size="15.0" />
-                     </font></Button>
-                  <Button fx:id="updateBTN" mnemonicParsing="false" onAction="#submitAAP" text="Submit">
-                     <font>
-                        <Font name="Georgia" size="15.0" />
-                     </font></Button>
-              </buttons>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets right="20.0" />
-               </padding>
-            </ButtonBar>
+          <Button fx:id="backBTN" mnemonicParsing="false" onAction="#backToMain" text="Back">
+               <font>
+                  <Font name="Georgia" size="15.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin>
+            </Button>
             <Label fx:id="codeErrLbl" textFill="RED" textOverrun="CLIP" wrapText="true">
                <font>
                   <Font name="Georgia Bold Italic" size="15.0" />
@@ -48,6 +33,14 @@
                   <Insets bottom="3.0" />
                </padding>
             </Label>
+            <Button fx:id="resetBTN" mnemonicParsing="false" onAction="#resetAAP" text="Reset">
+               <font>
+                  <Font name="Georgia" size="15.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
          </children>
          <padding>
             <Insets bottom="7.0" top="7.0" />
@@ -58,9 +51,9 @@
       </HBox>
    </bottom>
    <center>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane fx:id="tabpane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab text="Nonexistent/Mild Asthma">
+          <Tab fx:id="tab1" text="Nonexistent/Mild Asthma">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="mildstyle" stylesheets="@../application/application.css">
                      <children>
@@ -111,11 +104,16 @@
                               <Insets bottom="3.0" />
                            </padding>
                         </Label>
+                        <Button fx:id="btnNext1" layoutX="590.0" layoutY="240.0" mnemonicParsing="false" onAction="#ClickNext1Button" text="Next">
+                           <font>
+                              <Font name="Georgia" size="15.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Moderate Asthma">
+            <Tab fx:id="tab2" text="Moderate Asthma">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="moderatestyle" stylesheets="@../application/application.css">
                      <children>
@@ -166,11 +164,16 @@
                               <Insets bottom="3.0" />
                            </padding>
                         </Label>
+                        <Button fx:id="btnNext2" layoutX="590.0" layoutY="240.0" mnemonicParsing="false" onAction="#ClickNext2Button" text="Next">
+                           <font>
+                              <Font name="Georgia" size="15.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Severe Asthma">
+            <Tab fx:id="tab3" text="Severe Asthma">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="severestyle" stylesheets="@../application/application.css">
                      <children>
@@ -221,11 +224,16 @@
                               <Insets bottom="3.0" />
                            </padding>
                         </Label>
+                        <Button fx:id="btnNext3" layoutX="590.0" layoutY="240.0" mnemonicParsing="false" onAction="#ClickNext3Button" text="Next">
+                           <font>
+                              <Font name="Georgia" size="15.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Doctor Information">
+            <Tab fx:id="tab4" text="Doctor Information">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="docstyle" stylesheets="@../application/application.css">
                      <children>
@@ -276,6 +284,11 @@
                               <Insets bottom="3.0" />
                            </padding>
                         </Label>
+                        <Button fx:id="updateBTN" layoutX="573.0" layoutY="241.0" mnemonicParsing="false" onAction="#submitAAP" text="Submit">
+                           <font>
+                              <Font name="Georgia" size="15.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
                </content>

@@ -2,37 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="isRegEx"/>
-		<item value="Username" key="selection"/>
+		<item value="getAAP" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="userName"/>
-			<item value="?"/>
-			<item value=" ?"/>
-			<item value=" = ?"/>
-			<item value="= ?"/>
-			<item value="//============================================================================================================="/>
-			<item value="//-----------------------------------------------------------------------------------------------------------------"/>
-			<item value="count "/>
+			<item value="getAAp"/>
+			<item value="clickn"/>
+			<item value="mildMedTF"/>
+			<item value="tabPane"/>
+			<item value="tabpane"/>
+			<item value="knext"/>
+			<item value="nextb"/>
+			<item value="bar"/>
 		</list>
 		<list key="replacehistory">
+			<item value="tabpane"/>
+			<item value="tabPane"/>
 			<item value="uNameFK1"/>
 			<item value=" WHERE userName = ?"/>
 			<item value="//-------------------------------------------------------------------------------------------------------------"/>
 			<item value="//================================================================================================================="/>
 			<item value="count2"/>
 			<item value="counter"/>
-			<item value="count"/>
-			<item value="update failed"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="402" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="391" key="DIALOG_HEIGHT"/>
-		<item value="8" key="DIALOG_X_ORIGIN"/>
-		<item value="150" key="DIALOG_Y_ORIGIN"/>
+		<item value="693" key="DIALOG_X_ORIGIN"/>
+		<item value="108" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>
